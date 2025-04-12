@@ -1,0 +1,225 @@
+from . import CommandClass, CommandClassCommands
+
+
+# Authentication Commmand Class
+# Application
+# ==============================
+
+
+class AUTHENTICATION_V1_COMMANDS(CommandClassCommands):
+    version = 0x01
+    CAPABILITY_GET = 0x01
+    CAPABILITY_REPORT = 0x02
+    DATA_SET = 0x03
+    DATA_GET = 0x04
+    DATA_REPORT = 0x05
+    TECHNOLOGIES_COMBINATION_SET = 0x06
+    TECHNOLOGIES_COMBINATION_GET = 0x07
+    TECHNOLOGIES_COMBINATION_REPORT = 0x08
+    CHECKSUM_GET = 0x09
+    CHECKSUM_REPORT = 0x0A
+
+    DATA_SET_VALUES = ['Reserved', 'RFID Tag', 'Magnetic Card']
+    DATA_GET_VALUES = DATA_SET_VALUES[:]
+    DATA_REPORT_VALUES = DATA_SET_VALUES[:]
+
+    TECHNOLOGIES_COMBINATION_SET_VALUES = ['Available', 'Enabled', 'Disabled', 'Messaging', 'Passage Mode']
+    TECHNOLOGIES_COMBINATION_GET_VALUES = TECHNOLOGIES_COMBINATION_SET_VALUES[:]
+    TECHNOLOGIES_COMBINATION_REPORT_VALUES = TECHNOLOGIES_COMBINATION_SET_VALUES[:]
+
+
+class COMMAND_CLASS_AUTHENTICATION(CommandClass):
+    id = 0xA1
+    versions = [
+        AUTHENTICATION_V1_COMMANDS
+    ]
+
+
+# Values used for Authentication Capability Report command
+AUTHENTICATION_CAPABILITY_REPORT_PROPERTIES1_SUPPORTED_AUTHENTICATION_TECHNOLOGY_TYPE_BIT_MASK_LENGTH_MASK = 0x0F
+AUTHENTICATION_CAPABILITY_REPORT_PROPERTIES1_RESERVED1_BIT_MASK = 0x10
+AUTHENTICATION_CAPABILITY_REPORT_PROPERTIES1_OR_BIT_MASK = 0x20
+AUTHENTICATION_CAPABILITY_REPORT_PROPERTIES1_MADR_BIT_MASK = 0x40
+AUTHENTICATION_CAPABILITY_REPORT_PROPERTIES1_MAR_BIT_MASK = 0x80
+AUTHENTICATION_CAPABILITY_REPORT_PROPERTIES2_SUPPORTED_FALLBACK_STATUS_BIT_MASK_LENGTH_MASK = 0x1F
+AUTHENTICATION_CAPABILITY_REPORT_PROPERTIES2_RESERVED2_MASK = 0xE0
+AUTHENTICATION_CAPABILITY_REPORT_PROPERTIES2_RESERVED2_SHIFT = 0x05
+# Values used for Authentication Data Set command
+AUTHENTICATION_DATA_SET_PROPERTIES1_AUTHENTICATION_TECHNOLOGY_TYPE_MASK = 0x0F
+
+AUTHENTICATION_DATA_SET_PROPERTIES1_RESERVED1_MASK = 0xF0
+AUTHENTICATION_DATA_SET_PROPERTIES1_RESERVED1_SHIFT = 0x04
+# Values used for Authentication Data Get command
+AUTHENTICATION_DATA_GET_PROPERTIES1_REPORT_MORE_BIT_MASK = 0x01
+AUTHENTICATION_DATA_GET_PROPERTIES1_RESERVED1_MASK = 0xFE
+AUTHENTICATION_DATA_GET_PROPERTIES1_RESERVED1_SHIFT = 0x01
+# Values used for Authentication Technologies Combination Set command
+
+AUTHENTICATION_TECHNOLOGIES_COMBINATION_SET_PROPERTIES1_NUMBER_OF_AUTHENTICATION_DATA_IDS_MASK = 0x7F
+AUTHENTICATION_TECHNOLOGIES_COMBINATION_SET_PROPERTIES1_OR_LOGIC_BIT_MASK = 0x80
+# Values used for Authentication Technologies Combination Get command
+AUTHENTICATION_TECHNOLOGIES_COMBINATION_GET_PROPERTIES1_REPORT_MORE_BIT_MASK = 0x01
+AUTHENTICATION_TECHNOLOGIES_COMBINATION_GET_PROPERTIES1_RESERVED1_MASK = 0xFE
+AUTHENTICATION_TECHNOLOGIES_COMBINATION_GET_PROPERTIES1_RESERVED1_SHIFT = 0x01
+# Values used for Authentication Technologies Combination Report command
+
+# Values used for Authentication Checksum Get command
+AUTHENTICATION_CHECKSUM_GET_PROPERTIES1_AUTHENTICATION_TECHNOLOGY_TYPE_MASK = 0x0F
+AUTHENTICATION_CHECKSUM_GET_AUTHENTICATION_TECHNOLOGY_TYPE_RESERVED0 = 0x00
+AUTHENTICATION_CHECKSUM_GET_AUTHENTICATION_TECHNOLOGY_TYPE_RFID_TAG = 0x01
+AUTHENTICATION_CHECKSUM_GET_AUTHENTICATION_TECHNOLOGY_TYPE_MAGNETIC_CARD = 0x02
+AUTHENTICATION_CHECKSUM_GET_PROPERTIES1_CHECKSUM_TYPE_MASK = 0x70
+AUTHENTICATION_CHECKSUM_GET_PROPERTIES1_CHECKSUM_TYPE_SHIFT = 0x04
+AUTHENTICATION_CHECKSUM_GET_CHECKSUM_TYPE_AUTHENTICATION_DATA = 0x00
+AUTHENTICATION_CHECKSUM_GET_CHECKSUM_TYPE_COMBINATION_ENTRIES = 0x01
+AUTHENTICATION_CHECKSUM_GET_CHECKSUM_TYPE_RESERVED2 = 0x02
+AUTHENTICATION_CHECKSUM_GET_CHECKSUM_TYPE_RESERVED3 = 0x03
+AUTHENTICATION_CHECKSUM_GET_CHECKSUM_TYPE_RESERVED4 = 0x04
+AUTHENTICATION_CHECKSUM_GET_CHECKSUM_TYPE_RESERVED5 = 0x05
+AUTHENTICATION_CHECKSUM_GET_CHECKSUM_TYPE_RESERVED6 = 0x06
+AUTHENTICATION_CHECKSUM_GET_CHECKSUM_TYPE_RESERVED7 = 0x07
+AUTHENTICATION_CHECKSUM_GET_PROPERTIES1_RESERVED1_BIT_MASK = 0x80
+# Values used for Authentication Checksum Report command
+AUTHENTICATION_CHECKSUM_REPORT_PROPERTIES1_AUTHENTICATION_TECHNOLOGY_TYPE_MASK = 0x0F
+AUTHENTICATION_CHECKSUM_REPORT_AUTHENTICATION_TECHNOLOGY_TYPE_RESERVED0 = 0x00
+AUTHENTICATION_CHECKSUM_REPORT_AUTHENTICATION_TECHNOLOGY_TYPE_RFID_TAG = 0x01
+AUTHENTICATION_CHECKSUM_REPORT_AUTHENTICATION_TECHNOLOGY_TYPE_MAGNETIC_CARD = 0x02
+AUTHENTICATION_CHECKSUM_REPORT_PROPERTIES1_CHECKSUM_TYPE_MASK = 0x70
+AUTHENTICATION_CHECKSUM_REPORT_PROPERTIES1_CHECKSUM_TYPE_SHIFT = 0x04
+AUTHENTICATION_CHECKSUM_REPORT_CHECKSUM_TYPE_AUTHENTICATION_DATA = 0x00
+AUTHENTICATION_CHECKSUM_REPORT_CHECKSUM_TYPE_COMBINATION_ENTRIES = 0x01
+AUTHENTICATION_CHECKSUM_REPORT_CHECKSUM_TYPE_RESERVED2 = 0x02
+AUTHENTICATION_CHECKSUM_REPORT_CHECKSUM_TYPE_RESERVED3 = 0x03
+AUTHENTICATION_CHECKSUM_REPORT_CHECKSUM_TYPE_RESERVED4 = 0x04
+AUTHENTICATION_CHECKSUM_REPORT_CHECKSUM_TYPE_RESERVED5 = 0x05
+AUTHENTICATION_CHECKSUM_REPORT_CHECKSUM_TYPE_RESERVED6 = 0x06
+AUTHENTICATION_CHECKSUM_REPORT_CHECKSUM_TYPE_RESERVED7 = 0x07
+AUTHENTICATION_CHECKSUM_REPORT_PROPERTIES1_RESERVED1_BIT_MASK = 0x80
+
+class ZW_AUTHENTICATION_CAPABILITY_GET_FRAME(ZW_COMMON_FRAME):
+    _fields_ = []
+
+
+class ZW_AUTHENTICATION_CAPABILITY_REPORT_FRAME(ZW_COMMON_FRAME):
+    _fields_ = [
+        ('supportedDataIdEntries1', uint8_t),
+        ('supportedDataIdEntries2', uint8_t),
+        ('supportedAuthenticationIdEntries1', uint8_t),
+        ('supportedAuthenticationIdEntries2', uint8_t),
+        ('properties1', uint8_t),
+        ('supportedAuthenticationTechnologyTypeBitMask1', uint8_t),
+        ('supportedChecksumTypeBitMask', uint8_t),
+        ('properties2', uint8_t),
+        ('supportedFallbackStatusBitMask1', uint8_t),
+    ]
+
+
+class ZW_AUTHENTICATION_DATA_SET_FRAME(ZW_COMMON_FRAME):
+    _fields_ = [
+        ('authenticationDataId1', uint8_t),
+        ('authenticationDataId2', uint8_t),
+        ('properties1', uint8_t),
+        ('authenticationDataLength', uint8_t),
+        ('authenticationData1', uint8_t),
+    ]
+
+
+class ZW_AUTHENTICATION_DATA_GET_FRAME(ZW_COMMON_FRAME):
+    _fields_ = [
+        ('authenticationDataId1', uint8_t),
+        ('authenticationDataId2', uint8_t),
+        ('properties1', uint8_t),
+    ]
+
+
+class VG_AUTHENTICATION_DATA_REPORT_VG(ctypes.Structure):
+    _fields_ = [
+        ('authenticationDataId1', uint8_t),
+        ('authenticationDataId2', uint8_t),
+        ('properties1', uint8_t),
+        ('authenticationDataLength', uint8_t),
+        ('authenticationData1', uint8_t),
+    ]
+
+
+
+class ZW_AUTHENTICATION_DATA_REPORT_FRAME(ZW_COMMON_FRAME):
+    _fields_ = [
+        ('numberOfAuthenticationDataIdBlocks', uint8_t),
+        ('variantgroup1', VG_AUTHENTICATION_DATA_REPORT_VG),
+        ('nextAuthenticationDataId1', uint8_t),
+        ('nextAuthenticationDataId2', uint8_t),
+    ]
+
+
+class VG_AUTHENTICATION_TECHNOLOGIES_COMBINATION_SET_VG(ctypes.Structure):
+    _fields_ = [
+        ('authenticationDataId1', uint8_t),
+        ('authenticationDataId2', uint8_t),
+    ]
+
+
+class ZW_AUTHENTICATION_TECHNOLOGIES_COMBINATION_SET_FRAME(ZW_COMMON_FRAME):
+    _fields_ = [
+        ('authenticationId1', uint8_t),
+        ('authenticationId2', uint8_t),
+        ('fallbackStatus', uint8_t),
+        ('userIdentifier1', uint8_t),
+        ('userIdentifier2', uint8_t),
+        ('scheduleId1', uint8_t),
+        ('scheduleId2', uint8_t),
+        ('properties1', uint8_t),
+        ('variantgroup1', VG_AUTHENTICATION_TECHNOLOGIES_COMBINATION_SET_VG),
+    ]
+
+
+class ZW_AUTHENTICATION_TECHNOLOGIES_COMBINATION_GET_FRAME(ZW_COMMON_FRAME):
+    _fields_ = [
+        ('authenticationId1', uint8_t),
+        ('authenticationId2', uint8_t),
+        ('properties1', uint8_t),
+    ]
+
+
+class VG_AUTHENTICATION_TECHNOLOGIES_COMBINATION_REPORT_VG_VG(ctypes.Structure):
+    _fields_ = [
+        ('authenticationDataId1', uint8_t),
+        ('authenticationDataId2', uint8_t),
+    ]
+
+
+class VG_AUTHENTICATION_TECHNOLOGIES_COMBINATION_REPORT_VG(ctypes.Structure):
+    _fields_ = [
+        ('authenticationIdBlockLength', uint8_t),
+        ('authenticationId1', uint8_t),
+        ('authenticationId2', uint8_t),
+        ('fallbackStatus', uint8_t),
+        ('userIdentifier1', uint8_t),
+        ('userIdentifier2', uint8_t),
+        ('scheduleId1', uint8_t),
+        ('scheduleId2', uint8_t),
+        ('properties1', uint8_t),
+        ('variantgroup1', VG_AUTHENTICATION_TECHNOLOGIES_COMBINATION_REPORT_VG_VG),
+    ]
+
+
+class ZW_AUTHENTICATION_TECHNOLOGIES_COMBINATION_REPORT_FRAME(ZW_COMMON_FRAME):
+    _fields_ = [
+        ('numberOfAuthenticationIdBlocks', uint8_t),
+        ('variantgroup1', VG_AUTHENTICATION_TECHNOLOGIES_COMBINATION_REPORT_VG),
+        ('nextAuthenticationId1', uint8_t),
+        ('nextAuthenticationId2', uint8_t),
+    ]
+
+
+class ZW_AUTHENTICATION_CHECKSUM_GET_FRAME(ZW_COMMON_FRAME):
+    _fields_ = [('properties1', uint8_t)]
+
+
+class ZW_AUTHENTICATION_CHECKSUM_REPORT_FRAME(ZW_COMMON_FRAME):
+    _fields_ = [
+        ('properties1', uint8_t),
+        ('checksum1', uint8_t),
+        ('checksum2', uint8_t),
+    ]
+

@@ -1,0 +1,55 @@
+from . import CommandClass, CommandClassCommands
+
+
+class AV_CONTENT_DIRECTORY_MD_V1_COMMANDS(CommandClassCommands):
+    version = 0x01
+
+    GET = 0x01
+    REPORT = 0x02
+    BY_LETTER_GET = 0x03
+    BY_LETTER_REPORT = 0x04
+    CHILD_COUNT_GET = 0x05
+    CHILD_COUNT_REPORT = 0x06
+    MATCH_ITEM_TO_RENDERER_GET = 0x07
+    MATCH_ITEM_TO_RENDERER_REPORT = 0x08
+
+
+class COMMAND_CLASS_AV_CONTENT_DIRECTORY_MD(CommandClass):
+    id = 0x95
+    versions = [
+        AV_CONTENT_DIRECTORY_MD_V1_COMMANDS
+    ]
+
+
+
+class ZW_AV_CONTENT_BROWSE_MD_BY_LETTER_GET_FRAME(ZW_COMMON_FRAME):
+    _fields_ = []
+
+
+class ZW_AV_CONTENT_BROWSE_MD_BY_LETTER_REPORT_FRAME(ZW_COMMON_FRAME):
+    _fields_ = []
+
+
+class ZW_AV_CONTENT_BROWSE_MD_CHILD_COUNT_GET_FRAME(ZW_COMMON_FRAME):
+    _fields_ = []
+
+
+class ZW_AV_CONTENT_BROWSE_MD_CHILD_COUNT_REPORT_FRAME(ZW_COMMON_FRAME):
+    _fields_ = []
+
+
+class ZW_AV_CONTENT_BROWSE_MD_GET_FRAME(ZW_COMMON_FRAME):
+    _fields_ = []
+
+
+class ZW_AV_CONTENT_BROWSE_MD_REPORT_FRAME(ZW_COMMON_FRAME):
+    _fields_ = []
+
+
+class ZW_AV_MATCH_ITEM_TO_RENDERER_MD_GET_FRAME(ZW_COMMON_FRAME):
+    _fields_ = []
+
+
+class ZW_AV_MATCH_ITEM_TO_RENDERER_MD_REPORT_FRAME(ZW_COMMON_FRAME):
+    _fields_ = []
+

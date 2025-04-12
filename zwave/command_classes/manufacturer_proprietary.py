@@ -1,0 +1,5 @@
+# Manufacturer proprietary Command Class
+# Application
+COMMAND_CLASS_MANUFACTURER_PROPRIETARY = 0x91
+
+MANUFACTURER_PROPRIETARY_VERSION = 0x01

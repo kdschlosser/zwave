@@ -1,0 +1,131 @@
+# Protection Command Class
+# Application
+# ==============================
+COMMAND_CLASS_PROTECTION = 0x75
+
+PROTECTION_VERSION = 0x01
+# Protection Set
+PROTECTION_SET = 0x01
+# Protection Get
+PROTECTION_GET = 0x02
+# Protection Report
+PROTECTION_REPORT = 0x03
+
+# Values used for Protection Report command
+PROTECTION_REPORT_UNPROTECTED = 0x00
+PROTECTION_REPORT_PROTECTION_BY_SEQUENCE = 0x01
+PROTECTION_REPORT_NO_OPERATION_POSSIBLE = 0x02
+# Values used for Protection Set command
+PROTECTION_SET_UNPROTECTED = 0x00
+PROTECTION_SET_PROTECTION_BY_SEQUENCE = 0x01
+PROTECTION_SET_NO_OPERATION_POSSIBLE = 0x02
+
+PROTECTION_VERSION_V2 = 0x02
+PROTECTION_GET_V2 = 0x02
+PROTECTION_REPORT_V2 = 0x03
+PROTECTION_SET_V2 = 0x01
+# Protection Supported Get
+PROTECTION_SUPPORTED_GET_V2 = 0x04
+# Protection Supported Report
+PROTECTION_SUPPORTED_REPORT_V2 = 0x05
+# Protection Exclusive Control Set
+PROTECTION_EC_SET_V2 = 0x06
+# Protection Exclusive Control Get
+PROTECTION_EC_GET_V2 = 0x07
+# Protection Exclusive Control Report
+PROTECTION_EC_REPORT_V2 = 0x08
+# Protection Timeout Set
+PROTECTION_TIMEOUT_SET_V2 = 0x09
+# Protection Timeout Get
+PROTECTION_TIMEOUT_GET_V2 = 0x0A
+# Protection Timeout Report
+PROTECTION_TIMEOUT_REPORT_V2 = 0x0B
+
+# Values used for Protection Report command
+PROTECTION_REPORT_LEVEL_LOCAL_PROTECTION_STATE_MASK_V2 = 0x0F
+PROTECTION_REPORT_LEVEL_RESERVED1_MASK_V2 = 0xF0
+PROTECTION_REPORT_LEVEL_RESERVED1_SHIFT_V2 = 0x04
+PROTECTION_REPORT_LEVEL2_RF_PROTECTION_STATE_MASK_V2 = 0x0F
+PROTECTION_REPORT_LEVEL2_RESERVED2_MASK_V2 = 0xF0
+PROTECTION_REPORT_LEVEL2_RESERVED2_SHIFT_V2 = 0x04
+# Values used for Protection Set command
+PROTECTION_SET_LEVEL_LOCAL_PROTECTION_STATE_MASK_V2 = 0x0F
+PROTECTION_SET_LEVEL_RESERVED1_MASK_V2 = 0xF0
+PROTECTION_SET_LEVEL_RESERVED1_SHIFT_V2 = 0x04
+PROTECTION_SET_LEVEL2_RF_PROTECTION_STATE_MASK_V2 = 0x0F
+PROTECTION_SET_LEVEL2_RESERVED2_MASK_V2 = 0xF0
+PROTECTION_SET_LEVEL2_RESERVED2_SHIFT_V2 = 0x04
+# Values used for Protection Supported Report command
+PROTECTION_SUPPORTED_REPORT_LEVEL_TIMEOUT_BIT_MASK_V2 = 0x01
+PROTECTION_SUPPORTED_REPORT_LEVEL_EXCLUSIVE_CONTROL_BIT_MASK_V2 = 0x02
+PROTECTION_SUPPORTED_REPORT_LEVEL_RESERVED_MASK_V2 = 0xFC
+PROTECTION_SUPPORTED_REPORT_LEVEL_RESERVED_SHIFT_V2 = 0x02
+
+
+class ZW_PROTECTION_GET_FRAME(ZW_COMMON_FRAME):
+    _fields_ = []
+
+
+class ZW_PROTECTION_REPORT_FRAME(ZW_COMMON_FRAME):
+    _fields_ = [('protectionState', uint8_t)]
+
+
+class ZW_PROTECTION_SET_FRAME(ZW_COMMON_FRAME):
+    _fields_ = [('protectionState', uint8_t)]
+
+
+class ZW_PROTECTION_EC_GET_V2_FRAME(ZW_COMMON_FRAME):
+    _fields_ = []
+
+
+class ZW_PROTECTION_EC_REPORT_V2_FRAME(ZW_COMMON_FRAME):
+    _fields_ = [('nodeId', uint8_t)]
+
+
+class ZW_PROTECTION_EC_SET_V2_FRAME(ZW_COMMON_FRAME):
+    _fields_ = [('nodeId', uint8_t)]
+
+
+class ZW_PROTECTION_GET_V2_FRAME(ZW_PROTECTION_GET_FRAME):
+    _fields_ = []
+
+
+class ZW_PROTECTION_REPORT_V2_FRAME(ZW_PROTECTION_REPORT_FRAME):
+    _fields_ = [
+        ('level', uint8_t),
+        ('level2', uint8_t),
+    ]
+
+
+class ZW_PROTECTION_SET_V2_FRAME(ZW_PROTECTION_SET_FRAME):
+    _fields_ = [
+        ('level', uint8_t),
+        ('level2', uint8_t),
+    ]
+
+
+class ZW_PROTECTION_SUPPORTED_GET_V2_FRAME(ZW_COMMON_FRAME):
+    _fields_ = []
+
+
+class ZW_PROTECTION_SUPPORTED_REPORT_V2_FRAME(ZW_COMMON_FRAME):
+    _fields_ = [
+        ('level', uint8_t),
+        ('localProtectionState1', uint8_t),
+        ('localProtectionState2', uint8_t),
+        ('rfProtectionState1', uint8_t),
+        ('rfProtectionState2', uint8_t),
+    ]
+
+
+class ZW_PROTECTION_TIMEOUT_GET_V2_FRAME(ZW_COMMON_FRAME):
+    _fields_ = []
+
+
+class ZW_PROTECTION_TIMEOUT_REPORT_V2_FRAME(ZW_COMMON_FRAME):
+    _fields_ = [('timeout', uint8_t)]
+
+
+class ZW_PROTECTION_TIMEOUT_SET_V2_FRAME(ZW_COMMON_FRAME):
+    _fields_ = [('timeout', uint8_t)]
+

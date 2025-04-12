@@ -1,0 +1,182 @@
+# Mailbox Command Class
+# Network-Protocol
+# ==============================
+COMMAND_CLASS_MAILBOX = 0x69
+
+MAILBOX_VERSION = 0x01
+# Mailbox Configuration Get
+MAILBOX_CONFIGURATION_GET = 0x01
+# Mailbox Configuration Set
+MAILBOX_CONFIGURATION_SET = 0x02
+# Mailbox Configuration Report
+MAILBOX_CONFIGURATION_REPORT = 0x03
+# Mailbox Queue
+MAILBOX_QUEUE = 0x04
+# Mailbox Wake Up Notification
+MAILBOX_WAKEUP_NOTIFICATION = 0x05
+# Mailbox Failling Node
+MAILBOX_NODE_FAILING = 0x06
+
+# Values used for Mailbox Configuration Set command
+MAILBOX_CONFIGURATION_SET_PROPERTIES1_MODE_MASK = 0x07
+MAILBOX_CONFIGURATION_SET_MODE_DISABLE = 0x00
+MAILBOX_CONFIGURATION_SET_MODE_ENABLE_MAILBOX_SERVICE = 0x01
+MAILBOX_CONFIGURATION_SET_MODE_ENABLE_MAILBOX_PROXY = 0x02
+MAILBOX_CONFIGURATION_SET_PROPERTIES1_RESERVED_MASK = 0xF8
+MAILBOX_CONFIGURATION_SET_PROPERTIES1_RESERVED_SHIFT = 0x03
+# Values used for Mailbox Configuration Report command
+MAILBOX_CONFIGURATION_REPORT_PROPERTIES1_MODE_MASK = 0x07
+MAILBOX_CONFIGURATION_REPORT_MODE_DISABLE = 0x00
+MAILBOX_CONFIGURATION_REPORT_MODE_ENABLE_MAILBOX_SERVICE = 0x01
+MAILBOX_CONFIGURATION_REPORT_MODE_ENABLE_MAILBOX_PROXY = 0x02
+MAILBOX_CONFIGURATION_REPORT_PROPERTIES1_SUPPORTED_MODES_MASK = 0x18
+MAILBOX_CONFIGURATION_REPORT_PROPERTIES1_SUPPORTED_MODES_SHIFT = 0x03
+MAILBOX_CONFIGURATION_REPORT_SUPPORTED_MODES_MAILBOX_SERVICE_SUPPORTED = 0x00
+MAILBOX_CONFIGURATION_REPORT_SUPPORTED_MODES_MAILBOX_PROXY_SUPPORTED = 0x01
+MAILBOX_CONFIGURATION_REPORT_PROPERTIES1_RESERVED_MASK = 0xE0
+MAILBOX_CONFIGURATION_REPORT_PROPERTIES1_RESERVED_SHIFT = 0x05
+# Values used for Mailbox Queue command
+MAILBOX_QUEUE_PROPERTIES1_OPERATION_MASK = 0x07
+MAILBOX_QUEUE_OPERATION_PUSH = 0x00
+MAILBOX_QUEUE_OPERATION_POP = 0x01
+MAILBOX_QUEUE_OPERATION_WAITING = 0x02
+MAILBOX_QUEUE_OPERATION_PING = 0x03
+MAILBOX_QUEUE_OPERATION_ACK = 0x04
+MAILBOX_QUEUE_OPERATION_NACK = 0x05
+MAILBOX_QUEUE_OPERATION_QUEUE_FULL = 0x06
+MAILBOX_QUEUE_PROPERTIES1_LAST_BIT_MASK = 0x08
+MAILBOX_QUEUE_PROPERTIES1_RESERVED_MASK = 0xF0
+MAILBOX_QUEUE_PROPERTIES1_RESERVED_SHIFT = 0x04
+
+MAILBOX_VERSION_V2 = 0x02
+MAILBOX_CONFIGURATION_GET_V2 = 0x01
+MAILBOX_CONFIGURATION_SET_V2 = 0x02
+MAILBOX_CONFIGURATION_REPORT_V2 = 0x03
+MAILBOX_QUEUE_V2 = 0x04
+MAILBOX_WAKEUP_NOTIFICATION_V2 = 0x05
+MAILBOX_NODE_FAILING_V2 = 0x06
+# Values used for Mailbox Configuration Set command
+MAILBOX_CONFIGURATION_SET_PROPERTIES1_MODE_MASK_V2 = 0x07
+MAILBOX_CONFIGURATION_SET_MODE_DISABLE_V2 = 0x00
+MAILBOX_CONFIGURATION_SET_MODE_ENABLE_MAILBOX_SERVICE_V2 = 0x01
+MAILBOX_CONFIGURATION_SET_MODE_ENABLE_MAILBOX_PROXY_V2 = 0x02
+MAILBOX_CONFIGURATION_SET_PROPERTIES1_RESERVED_MASK_V2 = 0xF8
+MAILBOX_CONFIGURATION_SET_PROPERTIES1_RESERVED_SHIFT_V2 = 0x03
+# Values used for Mailbox Configuration Report command
+MAILBOX_CONFIGURATION_REPORT_PROPERTIES1_MODE_MASK_V2 = 0x07
+MAILBOX_CONFIGURATION_REPORT_MODE_DISABLE_V2 = 0x00
+MAILBOX_CONFIGURATION_REPORT_MODE_ENABLE_MAILBOX_SERVICE_V2 = 0x01
+MAILBOX_CONFIGURATION_REPORT_MODE_ENABLE_MAILBOX_PROXY_V2 = 0x02
+MAILBOX_CONFIGURATION_REPORT_PROPERTIES1_SUPPORTED_MODES_MASK_V2 = 0x18
+MAILBOX_CONFIGURATION_REPORT_PROPERTIES1_SUPPORTED_MODES_SHIFT_V2 = 0x03
+MAILBOX_CONFIGURATION_REPORT_SUPPORTED_MODES_MAILBOX_SERVICE_SUPPORTED_V2 = 0x00
+MAILBOX_CONFIGURATION_REPORT_SUPPORTED_MODES_MAILBOX_PROXY_SUPPORTED_V2 = 0x01
+MAILBOX_CONFIGURATION_REPORT_PROPERTIES1_RESERVED_MASK_V2 = 0xE0
+MAILBOX_CONFIGURATION_REPORT_PROPERTIES1_RESERVED_SHIFT_V2 = 0x05
+# Values used for Mailbox Queue command
+MAILBOX_QUEUE_PROPERTIES1_OPERATION_MASK_V2 = 0x07
+MAILBOX_QUEUE_OPERATION_PUSH_V2 = 0x00
+MAILBOX_QUEUE_OPERATION_POP_V2 = 0x01
+MAILBOX_QUEUE_OPERATION_WAITING_V2 = 0x02
+MAILBOX_QUEUE_OPERATION_PING_V2 = 0x03
+MAILBOX_QUEUE_OPERATION_ACK_V2 = 0x04
+MAILBOX_QUEUE_OPERATION_NACK_V2 = 0x05
+MAILBOX_QUEUE_OPERATION_QUEUE_FULL_V2 = 0x06
+MAILBOX_QUEUE_PROPERTIES1_LAST_BIT_MASK_V2 = 0x08
+MAILBOX_QUEUE_PROPERTIES1_RESERVED_MASK_V2 = 0xF0
+MAILBOX_QUEUE_PROPERTIES1_RESERVED_SHIFT_V2 = 0x04
+
+class ZW_MAILBOX_CONFIGURATION_GET_FRAME(ZW_COMMON_FRAME):
+    _fields_ = []
+
+
+class ZW_MAILBOX_CONFIGURATION_SET_FRAME(ZW_COMMON_FRAME):
+    _fields_ = [
+        ('properties1', uint8_t),
+        ('forwardingDestinationIpv6Address1', uint8_t),
+        ('forwardingDestinationIpv6Address2', uint8_t),
+        ('forwardingDestinationIpv6Address3', uint8_t),
+        ('forwardingDestinationIpv6Address4', uint8_t),
+        ('forwardingDestinationIpv6Address5', uint8_t),
+        ('forwardingDestinationIpv6Address6', uint8_t),
+        ('forwardingDestinationIpv6Address7', uint8_t),
+        ('forwardingDestinationIpv6Address8', uint8_t),
+        ('forwardingDestinationIpv6Address9', uint8_t),
+        ('forwardingDestinationIpv6Address10', uint8_t),
+        ('forwardingDestinationIpv6Address11', uint8_t),
+        ('forwardingDestinationIpv6Address12', uint8_t),
+        ('forwardingDestinationIpv6Address13', uint8_t),
+        ('forwardingDestinationIpv6Address14', uint8_t),
+        ('forwardingDestinationIpv6Address15', uint8_t),
+        ('forwardingDestinationIpv6Address16', uint8_t),
+        ('udpPortNumber1', uint8_t),
+        ('udpPortNumber2', uint8_t),
+    ]
+
+
+class ZW_MAILBOX_CONFIGURATION_REPORT_FRAME(ZW_COMMON_FRAME):
+    _fields_ = [
+        ('properties1', uint8_t),
+        ('mailboxCapacity1', uint8_t),
+        ('mailboxCapacity2', uint8_t),
+        ('forwardingDestinationIpv6Address1', uint8_t),
+        ('forwardingDestinationIpv6Address2', uint8_t),
+        ('forwardingDestinationIpv6Address3', uint8_t),
+        ('forwardingDestinationIpv6Address4', uint8_t),
+        ('forwardingDestinationIpv6Address5', uint8_t),
+        ('forwardingDestinationIpv6Address6', uint8_t),
+        ('forwardingDestinationIpv6Address7', uint8_t),
+        ('forwardingDestinationIpv6Address8', uint8_t),
+        ('forwardingDestinationIpv6Address9', uint8_t),
+        ('forwardingDestinationIpv6Address10', uint8_t),
+        ('forwardingDestinationIpv6Address11', uint8_t),
+        ('forwardingDestinationIpv6Address12', uint8_t),
+        ('forwardingDestinationIpv6Address13', uint8_t),
+        ('forwardingDestinationIpv6Address14', uint8_t),
+        ('forwardingDestinationIpv6Address15', uint8_t),
+        ('forwardingDestinationIpv6Address16', uint8_t),
+        ('udpPortNumber1', uint8_t),
+        ('udpPortNumber2', uint8_t),
+    ]
+
+
+class ZW_MAILBOX_QUEUE_FRAME(ZW_COMMON_FRAME):
+    _fields_ = [
+        ('sequenceNumber', uint8_t),
+        ('properties1', uint8_t),
+        ('queueHandle', uint8_t),
+        ('mailboxEntry1', uint8_t),
+    ]
+
+
+class ZW_MAILBOX_WAKEUP_NOTIFICATION_FRAME(ZW_COMMON_FRAME):
+    _fields_ = [('queueHandle', uint8_t)]
+
+
+class ZW_MAILBOX_NODE_FAILING_FRAME(ZW_COMMON_FRAME):
+    _fields_ = [('queueHandle', uint8_t)]
+
+
+class ZW_MAILBOX_CONFIGURATION_GET_V2_FRAME(ZW_MAILBOX_CONFIGURATION_GET_FRAME):
+    _fields_ = []
+
+
+class ZW_MAILBOX_CONFIGURATION_SET_V2_FRAME(ZW_MAILBOX_CONFIGURATION_SET_FRAME):
+    _fields_ = []
+
+
+class ZW_MAILBOX_CONFIGURATION_REPORT_V2_FRAME(ZW_MAILBOX_CONFIGURATION_REPORT_FRAME):
+    _fields_ = []
+
+
+class ZW_MAILBOX_QUEUE_V2_FRAME(ZW_MAILBOX_QUEUE_FRAME):
+    _fields_ = []
+
+
+class ZW_MAILBOX_WAKEUP_NOTIFICATION_V2_FRAME(ZW_MAILBOX_WAKEUP_NOTIFICATION_FRAME):
+    _fields_ = []
+
+
+class ZW_MAILBOX_NODE_FAILING_V2_FRAME(ZW_MAILBOX_NODE_FAILING_FRAME):
+    _fields_ = []
+

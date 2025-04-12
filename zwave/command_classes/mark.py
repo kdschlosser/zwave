@@ -1,0 +1,5 @@
+# Mark Command Class
+# N/A
+COMMAND_CLASS_MARK = 0xEF
+
+MARK_VERSION = 0x01

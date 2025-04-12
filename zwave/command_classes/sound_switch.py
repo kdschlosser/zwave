@@ -1,0 +1,130 @@
+# Sound Switch Command Class
+# Application
+# ==============================
+COMMAND_CLASS_SOUND_SWITCH = 0x79
+
+SOUND_SWITCH_VERSION = 0x01
+# Sound Switch Tones Number Get
+SOUND_SWITCH_TONES_NUMBER_GET = 0x01
+# Sound Switch Tones Number Report
+SOUND_SWITCH_TONES_NUMBER_REPORT = 0x02
+# Sound Switch Tone Info Get
+SOUND_SWITCH_TONE_INFO_GET = 0x03
+# Sound Switch Tone Info Report
+SOUND_SWITCH_TONE_INFO_REPORT = 0x04
+# Sound Switch Configuration Set
+SOUND_SWITCH_CONFIGURATION_SET = 0x05
+# Sound Switch Configuration Get
+SOUND_SWITCH_CONFIGURATION_GET = 0x06
+# Sound Switch Configuration Report
+SOUND_SWITCH_CONFIGURATION_REPORT = 0x07
+# Sound Switch Tone Play Set
+SOUND_SWITCH_TONE_PLAY_SET = 0x08
+# Sound Switch Tone Play Get
+SOUND_SWITCH_TONE_PLAY_GET = 0x09
+# Sound Switch Tone Play Report
+SOUND_SWITCH_TONE_PLAY_REPORT = 0x0A
+
+SOUND_SWITCH_VERSION_V2 = 0x02
+SOUND_SWITCH_TONES_NUMBER_GET_V2 = 0x01
+SOUND_SWITCH_TONES_NUMBER_REPORT_V2 = 0x02
+SOUND_SWITCH_TONE_INFO_GET_V2 = 0x03
+SOUND_SWITCH_TONE_INFO_REPORT_V2 = 0x04
+SOUND_SWITCH_CONFIGURATION_SET_V2 = 0x05
+SOUND_SWITCH_CONFIGURATION_GET_V2 = 0x06
+SOUND_SWITCH_CONFIGURATION_REPORT_V2 = 0x07
+SOUND_SWITCH_TONE_PLAY_SET_V2 = 0x08
+SOUND_SWITCH_TONE_PLAY_GET_V2 = 0x09
+SOUND_SWITCH_TONE_PLAY_REPORT_V2 = 0x0A
+
+class ZW_SOUND_SWITCH_TONES_NUMBER_GET_FRAME(ZW_COMMON_FRAME):
+    _fields_ = []
+
+
+class ZW_SOUND_SWITCH_TONES_NUMBER_REPORT_FRAME(ZW_COMMON_FRAME):
+    _fields_ = [('supportedTones', uint8_t)]
+
+
+class ZW_SOUND_SWITCH_TONE_INFO_GET_FRAME(ZW_COMMON_FRAME):
+    _fields_ = [('toneIdentifier', uint8_t)]
+
+
+class ZW_SOUND_SWITCH_TONE_INFO_REPORT_FRAME(ZW_COMMON_FRAME):
+    _fields_ = [
+        ('toneIdentifier', uint8_t),
+        ('toneDuration1', uint8_t),
+        ('toneDuration2', uint8_t),
+        ('nameLength', uint8_t),
+        ('name1', uint8_t),
+    ]
+
+
+class ZW_SOUND_SWITCH_CONFIGURATION_SET_FRAME(ZW_COMMON_FRAME):
+    _fields_ = [
+        ('volume', uint8_t),
+        ('defaultToneIdentifier', uint8_t),
+    ]
+
+
+class ZW_SOUND_SWITCH_CONFIGURATION_GET_FRAME(ZW_COMMON_FRAME):
+    _fields_ = []
+
+
+class ZW_SOUND_SWITCH_CONFIGURATION_REPORT_FRAME(ZW_COMMON_FRAME):
+    _fields_ = [
+        ('volume', uint8_t),
+        ('defaultToneIdentifer', uint8_t),
+    ]
+
+
+class ZW_SOUND_SWITCH_TONE_PLAY_SET_FRAME(ZW_COMMON_FRAME):
+    _fields_ = [('toneIdentifier', uint8_t)]
+
+
+class ZW_SOUND_SWITCH_TONE_PLAY_GET_FRAME(ZW_COMMON_FRAME):
+    _fields_ = []
+
+
+class ZW_SOUND_SWITCH_TONE_PLAY_REPORT_FRAME(ZW_COMMON_FRAME):
+    _fields_ = [('toneIdentifier', uint8_t)]
+
+
+class ZW_SOUND_SWITCH_TONES_NUMBER_GET_V2_FRAME(ZW_SOUND_SWITCH_TONES_NUMBER_GET_FRAME):
+    _fields_ = []
+
+
+class ZW_SOUND_SWITCH_TONES_NUMBER_REPORT_V2_FRAME(ZW_SOUND_SWITCH_TONES_NUMBER_REPORT_FRAME):
+    _fields_ = []
+
+
+class ZW_SOUND_SWITCH_TONE_INFO_GET_V2_FRAME(ZW_SOUND_SWITCH_TONE_INFO_GET_FRAME):
+    _fields_ = []
+
+
+class ZW_SOUND_SWITCH_TONE_INFO_REPORT_V2_FRAME(ZW_SOUND_SWITCH_TONE_INFO_REPORT_FRAME):
+    _fields_ = []
+
+
+class ZW_SOUND_SWITCH_CONFIGURATION_SET_V2_FRAME(ZW_SOUND_SWITCH_CONFIGURATION_SET_FRAME):
+    _fields_ = []
+
+
+class ZW_SOUND_SWITCH_CONFIGURATION_GET_V2_FRAME(ZW_SOUND_SWITCH_CONFIGURATION_GET_FRAME):
+    _fields_ = []
+
+
+class ZW_SOUND_SWITCH_CONFIGURATION_REPORT_V2_FRAME(ZW_SOUND_SWITCH_CONFIGURATION_REPORT_FRAME):
+    _fields_ = []
+
+
+class ZW_SOUND_SWITCH_TONE_PLAY_SET_V2_FRAME(ZW_SOUND_SWITCH_TONE_PLAY_SET_FRAME):
+    _fields_ = [('playCommandToneVolume', uint8_t)]
+
+
+class ZW_SOUND_SWITCH_TONE_PLAY_GET_V2_FRAME(ZW_SOUND_SWITCH_TONE_PLAY_GET_FRAME):
+    _fields_ = []
+
+
+class ZW_SOUND_SWITCH_TONE_PLAY_REPORT_V2_FRAME(ZW_SOUND_SWITCH_TONE_PLAY_REPORT_FRAME):
+    _fields_ = [('playCommandToneVolume', uint8_t)]
+

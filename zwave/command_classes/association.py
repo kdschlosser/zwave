@@ -1,0 +1,178 @@
+from . import CommandClass, CommandClassCommands
+
+
+# Association Command Class
+# Management
+# ==============================
+
+class ASSOCIATION_V1_COMMANDS(CommandClassCommands):
+    version = 0x01
+    VERSION = 0x01
+    SET = 0x01
+    GET = 0x02
+    REPORT = 0x03
+    REMOVE = 0x04
+    GROUPINGS_GET = 0x05
+    GROUPINGS_REPORT = 0x06
+
+
+class ASSOCIATION_V2_COMMANDS(ASSOCIATION_V1_COMMANDS):
+    version = 0x02
+    GROUP_GET = 0x0B
+    GROUP_REPORT = 0x0C
+
+
+class ASSOCIATION_V3_COMMANDS(ASSOCIATION_V2_COMMANDS):
+    version = 0x03
+
+
+class ASSOCIATION_V4_COMMANDS(ASSOCIATION_V3_COMMANDS):
+    version = 0x05
+
+
+class COMMAND_CLASS_ASSOCIATION(CommandClass):
+    id = 0x85
+    versions = [
+        ASSOCIATION_V1_COMMANDS,
+        ASSOCIATION_V2_COMMANDS,
+        ASSOCIATION_V3_COMMANDS,
+        ASSOCIATION_V4_COMMANDS
+    ]
+
+
+
+
+
+class ZW_ASSOCIATION_GET_FRAME(ZW_COMMON_FRAME):
+    _fields_ = [('groupingIdentifier', uint8_t)]
+
+
+class ZW_ASSOCIATION_GROUPINGS_GET_FRAME(ZW_COMMON_FRAME):
+    _fields_ = []
+
+
+class ZW_ASSOCIATION_GROUPINGS_REPORT_FRAME(ZW_COMMON_FRAME):
+    _fields_ = [('supportedGroupings', uint8_t)]
+
+
+class ZW_ASSOCIATION_REMOVE_FRAME(ZW_COMMON_FRAME):
+    _fields_ = [
+        ('groupingIdentifier', uint8_t),
+        ('nodeId1', uint8_t),
+    ]
+
+
+class ZW_ASSOCIATION_REPORT_FRAME(ZW_COMMON_FRAME):
+    _fields_ = [
+        ('groupingIdentifier', uint8_t),
+        ('maxNodesSupported', uint8_t),
+        ('reportsToFollow', uint8_t),
+        ('nodeid1', uint8_t),
+    ]
+
+
+class ZW_ASSOCIATION_SET_FRAME(ZW_COMMON_FRAME):
+    _fields_ = [
+        ('groupingIdentifier', uint8_t),
+        ('nodeId1', uint8_t),
+    ]
+
+
+class ZW_ASSOCIATION_GET_V2_FRAME(ZW_ASSOCIATION_GET_FRAME):
+    _fields_ = []
+
+
+class ZW_ASSOCIATION_GROUPINGS_GET_V2_FRAME(ZW_ASSOCIATION_GROUPINGS_GET_FRAME):
+    _fields_ = []
+
+
+class ZW_ASSOCIATION_GROUPINGS_REPORT_V2_FRAME(ZW_ASSOCIATION_GROUPINGS_REPORT_FRAME):
+    _fields_ = []
+
+
+class ZW_ASSOCIATION_REMOVE_V2_FRAME(ZW_ASSOCIATION_REMOVE_FRAME):
+    _fields_ = []
+
+
+class ZW_ASSOCIATION_REPORT_V2_FRAME(ZW_ASSOCIATION_REPORT_FRAME):
+    _fields_ = []
+
+
+class ZW_ASSOCIATION_SET_V2_FRAME(ZW_ASSOCIATION_SET_FRAME):
+    _fields_ = []
+
+
+class ZW_ASSOCIATION_SPECIFIC_GROUP_GET_V2_FRAME(ZW_COMMON_FRAME):
+    _fields_ = []
+
+
+class ZW_ASSOCIATION_SPECIFIC_GROUP_REPORT_V2_FRAME(ZW_COMMON_FRAME):
+    _fields_ = [('group', uint8_t)]
+
+
+class ZW_ASSOCIATION_GET_V3_FRAME(ZW_ASSOCIATION_GET_V2_FRAME):
+    _fields_ = []
+
+
+class ZW_ASSOCIATION_GROUPINGS_GET_V3_FRAME(ZW_ASSOCIATION_GROUPINGS_GET_V2_FRAME):
+    _fields_ = []
+
+
+class ZW_ASSOCIATION_GROUPINGS_REPORT_V3_FRAME(ZW_ASSOCIATION_GROUPINGS_REPORT_V2_FRAME):
+    _fields_ = []
+
+
+class ZW_ASSOCIATION_REMOVE_V3_FRAME(ZW_ASSOCIATION_REMOVE_V2_FRAME):
+    _fields_ = []
+
+
+class ZW_ASSOCIATION_REPORT_V3_FRAME(ZW_ASSOCIATION_REPORT_V2_FRAME):
+    _fields_ = []
+
+
+class ZW_ASSOCIATION_SET_V3_FRAME(ZW_ASSOCIATION_SET_V2_FRAME):
+    _fields_ = []
+
+
+class ZW_ASSOCIATION_SPECIFIC_GROUP_GET_V3_FRAME(ZW_ASSOCIATION_SPECIFIC_GROUP_GET_V2_FRAME):
+    _fields_ = []
+
+
+class ZW_ASSOCIATION_SPECIFIC_GROUP_REPORT_V3_FRAME(ZW_ASSOCIATION_SPECIFIC_GROUP_REPORT_V2_FRAME):
+    _fields_ = []
+
+
+class ZW_ASSOCIATION_GET_V4_FRAME(ZW_ASSOCIATION_GET_V3_FRAME):
+    _fields_ = []
+
+
+class ZW_ASSOCIATION_GROUPINGS_GET_V4_FRAME(ZW_ASSOCIATION_GROUPINGS_GET_V3_FRAME):
+    _fields_ = []
+
+
+class ZW_ASSOCIATION_GROUPINGS_REPORT_V4_FRAME(ZW_ASSOCIATION_GROUPINGS_REPORT_V3_FRAME):
+    _fields_ = []
+
+
+class ZW_ASSOCIATION_REMOVE_V4_FRAME(ZW_ASSOCIATION_REMOVE_V3_FRAME):
+    _fields_ = []
+
+
+class ZW_ASSOCIATION_REPORT_V4_FRAME(ZW_ASSOCIATION_REPORT_V3_FRAME):
+    _fields_ = []
+
+
+class ZW_ASSOCIATION_SET_V4_FRAME(ZW_ASSOCIATION_SET_V3_FRAME):
+    _fields_ = []
+
+
+class ZW_ASSOCIATION_SPECIFIC_GROUP_GET_V4_FRAME(ZW_ASSOCIATION_SPECIFIC_GROUP_GET_V3_FRAME):
+    _fields_ = []
+
+
+class ZW_ASSOCIATION_SPECIFIC_GROUP_REPORT_V4_FRAME(ZW_ASSOCIATION_SPECIFIC_GROUP_REPORT_V3_FRAME):
+    _fields_ = []
+
+
+
+

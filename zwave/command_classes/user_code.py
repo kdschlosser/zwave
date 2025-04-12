@@ -1,0 +1,275 @@
+# User Code Command Class
+# Application
+# ==============================
+COMMAND_CLASS_USER_CODE = 0x63
+
+USER_CODE_VERSION = 0x01
+# User Code Set
+USER_CODE_SET = 0x01
+# User Code Get
+USER_CODE_GET = 0x02
+# User Code Report
+USER_CODE_REPORT = 0x03
+# Users Number Get
+USERS_NUMBER_GET = 0x04
+# Users Number Report
+USERS_NUMBER_REPORT = 0x05
+
+# Values used for User Code Report command
+USER_CODE_REPORT_AVAILABLE_NOT_SET = 0x00
+USER_CODE_REPORT_OCCUPIED = 0x01
+USER_CODE_REPORT_RESERVED_BY_ADMINISTRATOR = 0x02
+USER_CODE_REPORT_STATUS_NOT_AVAILABLE = 0xFE
+# Values used for User Code Set command
+USER_CODE_SET_AVAILABLE_NOT_SET = 0x00
+USER_CODE_SET_OCCUPIED = 0x01
+USER_CODE_SET_RESERVED_BY_ADMINISTRATOR = 0x02
+USER_CODE_SET_STATUS_NOT_AVAILABLE = 0xFE
+
+USER_CODE_VERSION_V2 = 0x02
+USER_CODE_GET_V2 = 0x02
+USER_CODE_REPORT_V2 = 0x03
+USER_CODE_SET_V2 = 0x01
+USERS_NUMBER_GET_V2 = 0x04
+USERS_NUMBER_REPORT_V2 = 0x05
+# User Code Capabilities Get
+USER_CODE_CAPABILITIES_GET_V2 = 0x06
+# User Code Capabilities Report
+USER_CODE_CAPABILITIES_REPORT_V2 = 0x07
+# User Code Keypad Mode Set
+USER_CODE_KEYPAD_MODE_SET_V2 = 0x08
+# User Code Keypad Mode Get
+USER_CODE_KEYPAD_MODE_GET_V2 = 0x09
+# User Code Keypad Mode Report
+USER_CODE_KEYPAD_MODE_REPORT_V2 = 0x0A
+# Extended User Code Set
+EXTENDED_USER_CODE_SET_V2 = 0x0B
+# Extended User Code Get
+EXTENDED_USER_CODE_GET_V2 = 0x0C
+# Extended User Code Report
+EXTENDED_USER_CODE_REPORT_V2 = 0x0D
+# Admin Code Set
+ADMIN_CODE_SET_V2 = 0x0E
+# Admin Code Get
+ADMIN_CODE_GET_V2 = 0x0F
+# Admin Code Report
+ADMIN_CODE_REPORT_V2 = 0x10
+# User Code Checksum Get
+USER_CODE_CHECKSUM_GET_V2 = 0x11
+# User Code Checksum Report
+USER_CODE_CHECKSUM_REPORT_V2 = 0x12
+
+# Values used for User Code Report command
+USER_CODE_REPORT_AVAILABLE_V2 = 0x00
+USER_CODE_REPORT_ENABLED_GRANT_ACCESS_V2 = 0x01
+USER_CODE_REPORT_DISABLED_V2 = 0x02
+USER_CODE_REPORT_MESSAGING_V2 = 0x03
+USER_CODE_REPORT_PASSAGE_MODE_V2 = 0x04
+USER_CODE_REPORT_STATUS_NOT_AVAILABLE_V2 = 0xFE
+# Values used for User Code Set command
+USER_CODE_SET_AVAILABLE_V2 = 0x00
+USER_CODE_SET_ENABLED_GRANT_ACCESS_V2 = 0x01
+USER_CODE_SET_DISABLED_V2 = 0x02
+USER_CODE_SET_MESSAGING_V2 = 0x03
+USER_CODE_SET_PASSAGE_MODE_V2 = 0x04
+USER_CODE_SET_STATUS_NOT_AVAILABLE_V2 = 0xFE
+# Values used for Extended User Code Set command
+EXTENDED_USER_CODE_SET_AVAILABLE_V2 = 0x00
+EXTENDED_USER_CODE_SET_ENABLED_GRANT_ACCESS_V2 = 0x01
+EXTENDED_USER_CODE_SET_DISABLED_V2 = 0x02
+EXTENDED_USER_CODE_SET_MESSAGING_V2 = 0x03
+EXTENDED_USER_CODE_SET_PASSAGE_MODE_V2 = 0x04
+EXTENDED_USER_CODE_SET_STATUS_NOT_AVAILABLE_V2 = 0xFE
+# Values used for Extended User Code Get command
+EXTENDED_USER_CODE_GET_PROPERTIES1_REPORT_MORE_BIT_MASK_V2 = 0x01
+EXTENDED_USER_CODE_GET_PROPERTIES1_RESERVED_MASK_V2 = 0xFE
+EXTENDED_USER_CODE_GET_PROPERTIES1_RESERVED_SHIFT_V2 = 0x01
+# Values used for Extended User Code Report command
+EXTENDED_USER_CODE_REPORT_AVAILABLE_V2 = 0x00
+EXTENDED_USER_CODE_REPORT_ENABLED_GRANT_ACCESS_V2 = 0x01
+EXTENDED_USER_CODE_REPORT_DISABLED_V2 = 0x02
+EXTENDED_USER_CODE_REPORT_MESSAGING_V2 = 0x03
+EXTENDED_USER_CODE_REPORT_PASSAGE_MODE_V2 = 0x04
+EXTENDED_USER_CODE_REPORT_STATUS_NOT_AVAILABLE_V2 = 0xFE
+# Values used for User Code Capabilities Report command
+USER_CODE_CAPABILITIES_REPORT_PROPERTIES1_SUPPORTED_USER_ID_STATUS_BIT_MASK_LENGTH_MASK_V2 = 0x1F
+USER_CODE_CAPABILITIES_REPORT_PROPERTIES1_RESERVED1_BIT_MASK_V2 = 0x20
+USER_CODE_CAPABILITIES_REPORT_PROPERTIES1_ACD_SUPPORT_BIT_MASK_V2 = 0x40
+USER_CODE_CAPABILITIES_REPORT_PROPERTIES1_AC_SUPPORT_BIT_MASK_V2 = 0x80
+USER_CODE_CAPABILITIES_REPORT_PROPERTIES2_SUPPORTED_KEYPAD_MODES_BIT_MASK_LENGTH_MASK_V2 = 0x1F
+USER_CODE_CAPABILITIES_REPORT_PROPERTIES2_MUCS_SUPPORT_BIT_MASK_V2 = 0x20
+USER_CODE_CAPABILITIES_REPORT_PROPERTIES2_MUCR_SUPPORT_BIT_MASK_V2 = 0x40
+USER_CODE_CAPABILITIES_REPORT_PROPERTIES2_UCC_SUPPORT_BIT_MASK_V2 = 0x80
+USER_CODE_CAPABILITIES_REPORT_PROPERTIES3_SUPPORTED_KEYS_BIT_MASK_LENGTH_MASK_V2 = 0x1F
+USER_CODE_CAPABILITIES_REPORT_PROPERTIES3_RESERVED2_MASK_V2 = 0xE0
+USER_CODE_CAPABILITIES_REPORT_PROPERTIES3_RESERVED2_SHIFT_V2 = 0x05
+# Values used for User Code Keypad Mode Set command
+USER_CODE_KEYPAD_MODE_SET_NORMAL_MODE_V2 = 0x00
+USER_CODE_KEYPAD_MODE_SET_VACATION_MODE_V2 = 0x01
+USER_CODE_KEYPAD_MODE_SET_PRIVACY_MODE_V2 = 0x02
+USER_CODE_KEYPAD_MODE_SET_LOCKED_OUT_MODE_V2 = 0x03
+# Values used for User Code Keypad Mode Report command
+USER_CODE_KEYPAD_MODE_REPORT_NORMAL_MODE_V2 = 0x00
+USER_CODE_KEYPAD_MODE_REPORT_VACATION_MODE_V2 = 0x01
+USER_CODE_KEYPAD_MODE_REPORT_PRIVACY_MODE_V2 = 0x02
+USER_CODE_KEYPAD_MODE_REPORT_LOCKED_OUT_MODE_V2 = 0x03
+# Values used for Admin Code Set command
+ADMIN_CODE_SET_PROPERTIES1_ADMIN_CODE_LENGTH_MASK_V2 = 0x0F
+ADMIN_CODE_SET_PROPERTIES1_RESERVED_MASK_V2 = 0xF0
+ADMIN_CODE_SET_PROPERTIES1_RESERVED_SHIFT_V2 = 0x04
+# Values used for Admin Code Report command
+ADMIN_CODE_REPORT_PROPERTIES1_ADMIN_CODE_LENGTH_MASK_V2 = 0x0F
+ADMIN_CODE_REPORT_PROPERTIES1_RESERVED_MASK_V2 = 0xF0
+ADMIN_CODE_REPORT_PROPERTIES1_RESERVED_SHIFT_V2 = 0x04
+
+
+class ZW_USER_CODE_GET_FRAME(ZW_COMMON_FRAME):
+    _fields_ = [('userIdentifier', uint8_t)]
+
+
+class ZW_USER_CODE_REPORT_FRAME(ZW_COMMON_FRAME):
+    _fields_ = [
+        ('userIdentifier', uint8_t),
+        ('userIdStatus', uint8_t),
+        ('userCode1', uint8_t),
+    ]
+
+
+class ZW_USER_CODE_SET_FRAME(ZW_COMMON_FRAME):
+    _fields_ = [
+        ('userIdentifier', uint8_t),
+        ('userIdStatus', uint8_t),
+        ('userCode1', uint8_t),
+    ]
+
+
+class ZW_USERS_NUMBER_GET_FRAME(ZW_COMMON_FRAME):
+    _fields_ = []
+
+
+class ZW_USERS_NUMBER_REPORT_FRAME(ZW_COMMON_FRAME):
+    _fields_ = [('supportedUsers', uint8_t)]
+
+
+class ZW_USER_CODE_GET_V2_FRAME(ZW_USER_CODE_GET_FRAME):
+    _fields_ = []
+
+
+class ZW_USER_CODE_REPORT_V2_FRAME(ZW_USER_CODE_REPORT_FRAME):
+    _fields_ = []
+
+
+class ZW_USER_CODE_SET_V2_FRAME(ZW_USER_CODE_SET_FRAME):
+    _fields_ = []
+
+
+class ZW_USERS_NUMBER_GET_V2_FRAME(ZW_USERS_NUMBER_GET_FRAME):
+    _fields_ = []
+
+
+class ZW_USERS_NUMBER_REPORT_V2_FRAME(ZW_USERS_NUMBER_REPORT_FRAME):
+    _fields_ = [
+        ('extendedSupportedUsers1', uint8_t),
+        ('extendedSupportedUsers2', uint8_t),
+    ]
+
+
+
+class VG_EXTENDED_USER_CODE_SET_V2_VG(ctypes.Structure):
+    _fields_ = [
+        ('userIdentifier1', uint8_t),
+        ('userIdentifier2', uint8_t),
+        ('userIdStatus', uint8_t),
+        ('properties1', uint8_t),
+        ('userCode1', uint8_t),
+    ]
+
+
+class ZW_EXTENDED_USER_CODE_SET_V2_FRAME(ZW_COMMON_FRAME):
+    _fields_ = [
+        ('numberOfUserCodes', uint8_t),
+        ('variantgroup1', VG_EXTENDED_USER_CODE_SET_V2_VG),
+    ]
+
+
+class ZW_EXTENDED_USER_CODE_GET_V2_FRAME(ZW_COMMON_FRAME):
+    _fields_ = [
+        ('userIdentifier1', uint8_t),
+        ('userIdentifier2', uint8_t),
+        ('properties1', uint8_t),
+    ]
+
+
+class VG_EXTENDED_USER_CODE_REPORT_V2_VG(ctypes.Structure):
+    _fields_ = [
+        ('userIdentifier1', uint8_t),
+        ('userIdentifier2', uint8_t),
+        ('userIdStatus', uint8_t),
+        ('properties1', uint8_t),
+        ('userCode1', uint8_t),
+    ]
+
+
+class ZW_EXTENDED_USER_CODE_REPORT_V2_FRAME(ZW_COMMON_FRAME):
+    _fields_ = [
+        ('numberOfUserCodes', uint8_t),
+        ('variantgroup1', VG_EXTENDED_USER_CODE_REPORT_V2_VG),
+        ('nextUserIdentifier1', uint8_t),
+        ('nextUserIdentifier2', uint8_t),
+    ]
+
+
+class ZW_USER_CODE_CAPABILITIES_GET_V2_FRAME(ZW_COMMON_FRAME):
+    _fields_ = []
+
+
+class ZW_USER_CODE_CAPABILITIES_REPORT_V2_FRAME(ZW_COMMON_FRAME):
+    _fields_ = [
+        ('properties1', uint8_t),
+        ('supportedUserIdStatusBitMask1', uint8_t),
+        ('properties2', uint8_t),
+        ('supportedKeypadModesBitMask1', uint8_t),
+        ('properties3', uint8_t),
+        ('supportedKeysBitMask1', uint8_t),
+    ]
+
+
+class ZW_USER_CODE_KEYPAD_MODE_SET_V2_FRAME(ZW_COMMON_FRAME):
+    _fields_ = [('keypadMode', uint8_t)]
+
+
+class ZW_USER_CODE_KEYPAD_MODE_GET_V2_FRAME(ZW_COMMON_FRAME):
+    _fields_ = []
+
+
+class ZW_USER_CODE_KEYPAD_MODE_REPORT_V2_FRAME(ZW_COMMON_FRAME):
+    _fields_ = [('keypadMode', uint8_t)]
+
+
+class ZW_ADMIN_CODE_SET_V2_FRAME(ZW_COMMON_FRAME):
+    _fields_ = [
+        ('properties1', uint8_t),
+        ('adminCode1', uint8_t),
+    ]
+
+
+class ZW_ADMIN_CODE_GET_V2_FRAME(ZW_COMMON_FRAME):
+    _fields_ = []
+
+
+class ZW_ADMIN_CODE_REPORT_V2_FRAME(ZW_COMMON_FRAME):
+    _fields_ = [
+        ('properties1', uint8_t),
+        ('adminCode1', uint8_t),
+    ]
+
+
+class ZW_USER_CODE_CHECKSUM_GET_V2_FRAME(ZW_COMMON_FRAME):
+    _fields_ = []
+
+
+class ZW_USER_CODE_CHECKSUM_REPORT_V2_FRAME(ZW_COMMON_FRAME):
+    _fields_ = [
+        ('userCodeChecksum1', uint8_t),
+        ('userCodeChecksum2', uint8_t),
+    ]
