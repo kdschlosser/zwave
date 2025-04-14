@@ -69,3 +69,6 @@ control the data being received and transmitted. This allowed the stack to do
 whatever internal processing it needed to do without causing communications to 
 the nodes on the network to stop. There is no reason why communications with 
 the network should have to stop while a UI processes a state change for a node.
+
+
+4.7.4 Bridge Application Command Handler Command
