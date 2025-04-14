@@ -71,4 +71,4 @@ the nodes on the network to stop. There is no reason why communications with
 the network should have to stop while a UI processes a state change for a node.
 
 
-4.7.4 Bridge Application Command Handler Command
+4.9.2 Controller Node Send Data Multicast Command
