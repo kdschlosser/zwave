@@ -1,4 +1,10 @@
-from . import DATA_FRAME, FRAME_TYPE_REQUEST, FRAME_TYPE_ACK, uint8_t
+from . import (
+    DATA_FRAME,
+    FRAME_TYPE_REQUEST,
+    FRAME_TYPE_ACK,
+    uint8_t
+)
+
 from ..enums import appl_slave_node_information
 from .. import zw_types
 from ..command_classes import COMMAND_CLASS

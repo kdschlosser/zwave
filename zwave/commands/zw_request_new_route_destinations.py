@@ -1,4 +1,12 @@
-from . import DATA_FRAME, FRAME_TYPE_REQUEST, DATA_FRAME, FRAME_TYPE_ACK, FRAME_TYPE_RESPONSE, FRAME_TYPE_CALLBACK, uint8_t
+from . import (
+    DATA_FRAME,
+    FRAME_TYPE_REQUEST,
+    FRAME_TYPE_RESPONSE,
+    FRAME_TYPE_CALLBACK,
+    FRAME_TYPE_ACK,
+    uint8_t
+)
+
 from ..enums import request_new_route_destinations
 
 
@@ -6,26 +14,41 @@ class ZwRequestNewRouteDestinations(DATA_FRAME):
     id = 0x5C
     frame_type = FRAME_TYPE_REQUEST | FRAME_TYPE_ACK
 
+    _packet_length = 0
+
     _fields_ = [
-        ('_data', uint8_t * 200)
+        ('_data', uint8_t * 256),
     ]
 
     @property
     def packet_length(self):
-        return 0
+        return self._packet_length + 1
 
-    def nodes(self, value: list[Node]):
-        for i, node in enumerate(value):
-            self._data[i] = node.id
+    @property
+    def node_ids(self) -> list[int]:
+        if self._packet_length == 0:
+            return []
 
-        self._nodes_len = len(value)
+        return [self._data[i] for i in range(self._packet_length - 1)]
 
-    nodes = property(fset=nodes)
+    @node_ids.setter
+    def node_ids(self, value: list[int]):
+        session_id = self.session_id
 
-    def session_id(self, value):
-        self._data[self._nodes_len] = value
+        self._packet_length = len(value)
 
-    session_id = property(fset=session_id)
+        for i, item in enumerate(value):
+            self._data[i] = item
+
+        self._data[len(value)] = session_id
+
+    @property
+    def session_id(self) -> int:
+        return self._data[self._packet_length]
+
+    @session_id.setter
+    def session_id(self, value: int):
+        self._data[self._packet_length] = value
 
 
 class ZwRequestNewRouteDestinationsResponse(DATA_FRAME):

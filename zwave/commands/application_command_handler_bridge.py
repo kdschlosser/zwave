@@ -8,6 +8,7 @@ from . import (
     uint8_t,
     uint16_t
 )
+
 from ..enums import application_command_handler_bridge
 from .. import _utils
 

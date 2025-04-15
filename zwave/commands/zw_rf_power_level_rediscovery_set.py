@@ -1,4 +1,9 @@
-from . import DATA_FRAME, FRAME_TYPE_REQUEST, FRAME_TYPE_ACK, uint8_t
+from . import (
+    DATA_FRAME,
+    FRAME_TYPE_REQUEST,
+    FRAME_TYPE_ACK,
+    uint8_t
+)
 
 
 class ZwRfPowerLevelRediscoverySet(DATA_FRAME):
@@ -10,7 +15,7 @@ class ZwRfPowerLevelRediscoverySet(DATA_FRAME):
 
     @property
     def packet_length(self):
-        return 0
+        return 1
 
     @property
     def power_level(self) -> int:

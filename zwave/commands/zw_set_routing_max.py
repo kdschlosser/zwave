@@ -1,4 +1,10 @@
-from . import DATA_FRAME, FRAME_TYPE_REQUEST, FRAME_TYPE_RESPONSE, FRAME_TYPE_CALLBACK, FRAME_TYPE_ACK, uint8_t
+from . import (
+    DATA_FRAME,
+    FRAME_TYPE_REQUEST,
+    FRAME_TYPE_RESPONSE,
+    FRAME_TYPE_ACK,
+    uint8_t
+)
 
 
 class ZwSetRoutingMax(DATA_FRAME):
@@ -9,7 +15,7 @@ class ZwSetRoutingMax(DATA_FRAME):
 
     @property
     def packet_length(self):
-        return 0
+        return 1
 
     @property
     def max_retries(self) -> int:
@@ -24,8 +30,8 @@ class ZwSetRoutingMaxResponse(DATA_FRAME):
     id = 0xD4
     frame_type = FRAME_TYPE_RESPONSE | FRAME_TYPE_ACK
 
-    _fields_ = [('_status', uint8_t)]
+    _fields_ = [('_command_status', uint8_t)]
 
     @property
-    def status(self) -> int:
-        return self._status
+    def command_status(self) -> int:
+        return self._command_status

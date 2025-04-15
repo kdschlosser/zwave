@@ -15,8 +15,6 @@ from .. import zw_types
 
 
 # this command is a bit tricky because it can be formatted 3 different ways.
-
-
 class ZwApplicationUpdate(DATA_FRAME):
     id = 0x49
     frame_type = FRAME_TYPE_UNSOLICITED | FRAME_TYPE_ACK

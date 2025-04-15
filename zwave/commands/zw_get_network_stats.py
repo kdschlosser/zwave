@@ -1,4 +1,9 @@
-from . import DATA_FRAME, FRAME_TYPE_REQUEST, FRAME_TYPE_ACK, FRAME_TYPE_RESPONSE, uint8_t, uint16_t
+from . import (
+    DATA_FRAME,
+    FRAME_TYPE_REQUEST,
+    FRAME_TYPE_RESPONSE,
+    FRAME_TYPE_ACK,
+)
 
 
 class ZwGetNetworkStats(DATA_FRAME):
@@ -46,4 +51,3 @@ class ZwGetNetworkStatsResponse(DATA_FRAME):
     @property
     def rx_foreign_home_id(self) -> int:
         return self._rx_foreign_home_id
-

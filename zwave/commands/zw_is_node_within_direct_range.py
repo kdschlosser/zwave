@@ -6,7 +6,7 @@ from . import (
     NODE_ID_8_FRAME,
     NODE_ID_16_FRAME,
     NODE_ID_FIELDS,
-    uint8_t,
+    uint8_t
 )
 
 
@@ -51,5 +51,3 @@ class ZwIsNodeWithinDirectRangeResponse(DATA_FRAME):
     @property
     def direct_range_status(self):
         return self._direct_range_status
-
-

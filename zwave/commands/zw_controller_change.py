@@ -1,4 +1,11 @@
-from . import DATA_FRAME, FRAME_TYPE_REQUEST, FRAME_TYPE_ACK, FRAME_TYPE_CALLBACK, uint8_t
+from . import (
+    DATA_FRAME,
+    FRAME_TYPE_REQUEST,
+    FRAME_TYPE_CALLBACK,
+    FRAME_TYPE_ACK,
+    uint8_t
+)
+
 from ..enums import controller_change
 from ..command_classes import COMMAND_CLASS
 from .. import zw_types
@@ -135,4 +142,3 @@ class ZwControllerChangeCallback(DATA_FRAME):
             res.append(COMMAND_CLASS.from_id(self._data[i]))
 
         return res
-

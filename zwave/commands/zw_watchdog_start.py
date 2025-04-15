@@ -8,5 +8,3 @@ class ZwWatchdogStart(DATA_FRAME):
     @property
     def packet_length(self):
         return 0
-
-

@@ -1,4 +1,11 @@
-from . import DATA_FRAME, FRAME_TYPE_REQUEST, FRAME_TYPE_RESPONSE,  FRAME_TYPE_ACK, uint8_t
+from . import (
+    DATA_FRAME,
+    FRAME_TYPE_REQUEST,
+    FRAME_TYPE_RESPONSE,
+    FRAME_TYPE_ACK,
+    uint8_t
+)
+
 from ..enums import get_protocol_status
 
 
@@ -22,4 +29,3 @@ class ZwGetProtocolStatusResponse(DATA_FRAME):
     @property
     def status(self) -> statuses:
         return self.statuses(self._status)
-

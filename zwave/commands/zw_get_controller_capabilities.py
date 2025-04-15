@@ -1,4 +1,10 @@
-from . import DATA_FRAME, FRAME_TYPE_REQUEST, FRAME_TYPE_ACK, FRAME_TYPE_RESPONSE, uint8_t
+from . import (
+    DATA_FRAME,
+    FRAME_TYPE_REQUEST,
+    FRAME_TYPE_RESPONSE,
+    FRAME_TYPE_ACK,
+    uint8_t
+)
 
 
 class ZwGetControllerCapabilities(DATA_FRAME):
@@ -43,9 +49,3 @@ class ZwGetControllerCapabilitiesResponse(DATA_FRAME):
     @property
     def has_included_nodes(self):
         return bool(self._no_nodes_included)
-
-
-
-
-
-

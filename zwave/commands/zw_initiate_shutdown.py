@@ -1,4 +1,10 @@
-from . import DATA_FRAME, FRAME_TYPE_REQUEST, FRAME_TYPE_RESPONSE, FRAME_TYPE_ACK, uint8_t
+from . import (
+    DATA_FRAME,
+    FRAME_TYPE_REQUEST,
+    FRAME_TYPE_RESPONSE,
+    FRAME_TYPE_ACK,
+    uint8_t
+)
 
 
 class ZwInitiateShutdown(DATA_FRAME):
@@ -19,5 +25,3 @@ class ZwInitiateShutdownResponse(DATA_FRAME):
     @property
     def status(self) -> int:
         return self._status
-
-

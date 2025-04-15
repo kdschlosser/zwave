@@ -1,5 +1,41 @@
-from . import DATA_FRAME, FRAME_TYPE_REQUEST, DATA_FRAME, FRAME_TYPE_ACK, FRAME_TYPE_RESPONSE, FRAME_TYPE_CALLBACK, uint8_t
+from . import (
+    DATA_FRAME,
+    FRAME_TYPE_REQUEST,
+    FRAME_TYPE_RESPONSE,
+    FRAME_TYPE_CALLBACK,
+    FRAME_TYPE_ACK,
+    NODE_ID_8_FRAME,
+    NODE_ID_16_FRAME,
+    NODE_ID_FIELDS,
+    uint8_t,
+    uint16_t
+)
+
 from ..enums import send_slave_node_information
+
+
+class _NodeID8(NODE_ID_8_FRAME):
+
+    _fields_ = [
+        ('dst_node_id', uint8_t),
+        ('tx_option', uint8_t),
+        ('session_id', uint8_t),
+    ]
+
+
+class _NodeID16(NODE_ID_16_FRAME):
+    _fields_ = [
+        ('dst_node_id', uint16_t),
+        ('tx_option', uint8_t),
+        ('session_id', uint8_t),
+    ]
+
+
+class _ZwSendNodeInformationFields(NODE_ID_FIELDS):
+    _fields_ = [
+        ('_node_id_8', _NodeID8),
+        ('_node_id_16', _NodeID16),
+    ]
 
 
 class ZwSendSlaveNodeInformation(DATA_FRAME):
@@ -7,72 +43,48 @@ class ZwSendSlaveNodeInformation(DATA_FRAME):
     frame_type = FRAME_TYPE_REQUEST | FRAME_TYPE_ACK
 
     _fields_ = [
-        ('_data', uint8_t * 6)
+        ('_anon_union', _ZwSendNodeInformationFields),
     ]
 
-    options = send_slave_node_information.command.option
+    _anonymous_ = ('_anon_union',)
+
+    tx_options = send_slave_node_information.command.tx_option
 
     @property
     def packet_length(self):
-        return 0
+        return self._node_id_len * 2 + 2
 
     @property
     def src_node_id(self) -> int:
-        if self._node_id_len == 1:
-            return self._data[0]
-        else:
-            return (self._data[0] << 8) | self._data[1]
+        return self._fields.node_id
 
     @src_node_id.setter
     def src_node_id(self, value: int):
-        if self._node_id_len == 1:
-            self._data[0] = value
-        else:
-            self._data[0] = (value << 8) & 0xFF
-            self._data[1] = value & 0xFF
+        self._fields.node_id = value
 
     @property
     def dst_node_id(self) -> int:
-        if self._node_id_len == 1:
-            return self._data[1]
-        else:
-            return (self._data[2] << 8) | self._data[3]
+        return self._fields.dst_node_id
 
     @dst_node_id.setter
     def dst_node_id(self, value: int):
-        if self._node_id_len == 1:
-            self._data[1] = value
-        else:
-            self._data[2] = (value << 8) & 0xFF
-            self._data[3] = value & 0xFF
+        self._fields.dst_node_id = value
 
     @property
-    def option(self) -> options:
-        if self._node_id_len == 1:
-            return self.options(self._data[2])
-        else:
-            return self.options(self._data[4])
+    def tx_option(self) -> tx_options:
+        return self.tx_options(self._fields.tx_option)
 
-    @option.setter
-    def option(self, value: options):
-        if self._node_id_len == 1:
-            self._data[2] = value.value  # NOQA
-        else:
-            self._data[4] = value.value  # NOQA
+    @tx_option.setter
+    def tx_option(self, value: tx_options):
+        self._fields.tx_option = value.value  # NOQA
 
     @property
     def session_id(self) -> int:
-        if self._node_id_len == 1:
-            return self._data[3]
-        else:
-            return self._data[5]
+        return self._fields.session_id
 
     @session_id.setter
     def session_id(self, value: int):
-        if self._node_id_len == 1:
-            self._data[3] = value  # NOQA
-        else:
-            self._data[5] = value  # NOQA
+        self._fields.session_id = value
 
 
 class ZwSendSlaveNodeInformationResponse(DATA_FRAME):
@@ -80,12 +92,12 @@ class ZwSendSlaveNodeInformationResponse(DATA_FRAME):
     frame_type = FRAME_TYPE_RESPONSE | FRAME_TYPE_ACK
 
     _fields_ = [
-        ('_status', uint8_t),
+        ('_response_status', uint8_t),
     ]
 
     @property
-    def status(self):
-        return self._status
+    def response_status(self):
+        return self._response_status
 
 
 class ZwSendSlaveNodeInformationCallback(DATA_FRAME):
@@ -94,17 +106,15 @@ class ZwSendSlaveNodeInformationCallback(DATA_FRAME):
 
     _fields_ = [
         ('_sesion_id', uint8_t),
-        ('_status', uint8_t),
-        ('_original_node_id', uint8_t),
-        ('_new_node_id', uint8_t),
+        ('_tx_status', uint8_t),
     ]
 
-    statuses = send_slave_node_information.callback.status
+    tx_statuses = send_slave_node_information.callback.tx_status
 
     @property
     def session_id(self):
         return self._session_id
 
     @property
-    def status(self) -> statuses:
-        return self.statuses(self._status)
+    def tx_status(self) -> tx_statuses:
+        return self.tx_statuses(self._tx_status)

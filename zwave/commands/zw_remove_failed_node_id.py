@@ -15,7 +15,6 @@ from ..command_classes import COMMAND_CLASS
 from .. import zw_types
 
 
-
 class _NodeID8(NODE_ID_8_FRAME):
 
     _fields_ = [

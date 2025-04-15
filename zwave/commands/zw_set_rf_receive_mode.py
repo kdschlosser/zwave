@@ -1,4 +1,11 @@
-from . import DATA_FRAME, FRAME_TYPE_REQUEST, FRAME_TYPE_RESPONSE, FRAME_TYPE_CALLBACK, FRAME_TYPE_ACK, uint8_t
+from . import (
+    DATA_FRAME,
+    FRAME_TYPE_REQUEST,
+    FRAME_TYPE_RESPONSE,
+    FRAME_TYPE_ACK,
+    uint8_t
+)
+
 from ..enums import set_rf_receive_mode
 
 
@@ -12,7 +19,7 @@ class ZwSetRfReceiveMode(DATA_FRAME):
 
     @property
     def packet_length(self):
-        return 0
+        return 1
 
     @property
     def mode(self) -> modes:

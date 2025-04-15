@@ -7,7 +7,7 @@ from . import (
     NODE_ID_8_FRAME,
     NODE_ID_16_FRAME,
     NODE_ID_FIELDS,
-    uint8_t,
+    uint8_t
 )
 from ..enums import send_test_frame
 

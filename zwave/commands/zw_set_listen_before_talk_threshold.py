@@ -1,4 +1,12 @@
-from . import DATA_FRAME, FRAME_TYPE_REQUEST, FRAME_TYPE_RESPONSE, FRAME_TYPE_CALLBACK, FRAME_TYPE_ACK, uint8_t
+from . import (
+    DATA_FRAME,
+    FRAME_TYPE_REQUEST,
+    FRAME_TYPE_RESPONSE,
+    FRAME_TYPE_ACK,
+    uint8_t
+)
+
+from ..enums import set_listen_before_talk_threshold
 from .. import _utils
 
 
@@ -11,20 +19,19 @@ class ZwSetListenBeforeTalkThreshold(DATA_FRAME):
         ('_rssi_thresh', uint8_t)
     ]
 
+    channels = set_listen_before_talk_threshold.command.channel
+
     @property
     def packet_length(self):
-        return 0
+        return 2
 
     @property
-    def channel(self):
-        return self._channel
+    def channel(self) -> channels:
+        return self.channels(self._channel)
 
     @channel.setter
-    def channel(self, value):
-        if value < 0 or value > 3:
-            raise ValueError
-
-        self._channel = value  # NOQA
+    def channel(self, value: channels):
+        self._channel = value.value  # NOQA
 
     @property
     def rssi_thresh(self) -> str:
@@ -32,14 +39,7 @@ class ZwSetListenBeforeTalkThreshold(DATA_FRAME):
 
     @rssi_thresh.setter
     def rssi_thresh(self, value: int | str):
-        if isinstance(value, str):
-            value = value.replace('dBm', '')
-            value = int(value)
-
-        if value < 0:
-            value += 128
-
-        self._rssi_thresh = value  # NOQA
+        self._rssi_thresh = _utils.from_rssi(value)  # NOQA
 
 
 class ZwSetListenBeforeTalkThresholdResponse(DATA_FRAME):

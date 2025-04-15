@@ -1,8 +1,12 @@
-from . import DATA_FRAME, FRAME_TYPE_ACK, FRAME_TYPE_UNSOLICITED, uint8_t
+from . import (
+    DATA_FRAME,
+    FRAME_TYPE_UNSOLICITED,
+    FRAME_TYPE_ACK,
+    uint8_t
+)
+
 from ..enums import serial_api_started
-
 from ..command_classes import COMMAND_CLASS
-
 from .. import zw_types
 
 
@@ -59,4 +63,3 @@ class SerialApiStarted(DATA_FRAME):
     @property
     def supports_lr(self) -> bool:
         return bool(self._command_classes[self._command_class_list_len])
-

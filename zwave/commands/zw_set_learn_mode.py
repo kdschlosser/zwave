@@ -1,4 +1,15 @@
-from . import DATA_FRAME, FRAME_TYPE_REQUEST, DATA_FRAME, FRAME_TYPE_ACK, FRAME_TYPE_RESPONSE, FRAME_TYPE_CALLBACK, uint8_t
+from . import (
+    DATA_FRAME,
+    FRAME_TYPE_REQUEST,
+    FRAME_TYPE_RESPONSE,
+    FRAME_TYPE_CALLBACK,
+    FRAME_TYPE_ACK,
+    NODE_ID_8_FRAME,
+    NODE_ID_16_FRAME,
+    NODE_ID_FIELDS,
+    uint8_t
+)
+
 from ..enums import set_learn_mode
 
 
@@ -15,7 +26,7 @@ class ZwSetLearnMode(DATA_FRAME):
 
     @property
     def packet_length(self):
-        return 0
+        return 2
 
     @property
     def learn_mode(self) -> learn_modes:
@@ -35,7 +46,7 @@ class ZwSetLearnMode(DATA_FRAME):
 
 
 class ZwSetLearnModeResponse(DATA_FRAME):
-    id = 0x60
+    id = 0x50
     frame_type = FRAME_TYPE_RESPONSE | FRAME_TYPE_ACK
 
     _fields_ = [('_response_status', uint8_t)]
@@ -45,34 +56,35 @@ class ZwSetLearnModeResponse(DATA_FRAME):
         return self._response_status
 
 
+class _ZwSetLearnModeCallbackFields(NODE_ID_FIELDS):
+    _fields_ = [
+        ('_node_id_8', NODE_ID_8_FRAME),
+        ('_node_id_16', NODE_ID_16_FRAME),
+    ]
+
+
 class ZwSetLearnModeCallback(DATA_FRAME):
-    id = 0x60
+    id = 0x50
     frame_type = FRAME_TYPE_CALLBACK | FRAME_TYPE_ACK
 
     _fields_ = [
         ('_session_id', uint8_t),
-        ('_status', uint8_t),
-        ('_node_id', uint8_t * 2)
+        ('_learn_mode_status', uint8_t),
+        ('_anon_union', _ZwSetLearnModeCallbackFields),
     ]
 
-    statuses = set_learn_mode.callback.status
+    _anonymous_ = ('_anon_union',)
+
+    learn_mode_statuses = set_learn_mode.callback.learn_mode_status
 
     @property
     def session_id(self) -> int:
         return self._session_id
 
     @property
-    def status(self) -> statuses:
-        return self.statuses(self._learn_mode_status)
+    def learn_mode_status(self) -> learn_mode_statuses:
+        return self.learn_mode_statuses(self._learn_mode_status)
 
     @property
     def node_id(self) -> int:
-        if self._node_id_len == 1:
-            return self._node_id[0]
-        else:
-            return (self._node_id[0] << 8) | self._node_id[1]
-
-
-
-
-
+        return self._fields.node_id

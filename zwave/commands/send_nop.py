@@ -9,6 +9,7 @@ from . import (
     NODE_ID_FIELDS,
     uint8_t
 )
+
 from ..enums import send_nop
 from .. import tx_report
 

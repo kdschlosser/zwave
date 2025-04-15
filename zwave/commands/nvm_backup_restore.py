@@ -6,6 +6,7 @@ from . import (
     uint8_t,
     uint16_t
 )
+
 from ..enums import nvm_backup_restore
 
 

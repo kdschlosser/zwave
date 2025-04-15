@@ -88,7 +88,7 @@ def from_twos_complement(value, bits):
     return value
 
 
-def to_rssi(value):
+def to_rssi(value: int) -> str:
     if 0x80 <= value <= 0xFF:
         value -= 256
         value = f'{value}dBm'
@@ -100,5 +100,29 @@ def to_rssi(value):
         value = '+∞dBm'
     elif value == 0x7F:
         value = None
+
+    return value
+
+
+def from_rssi(value: str | int) -> int:
+    if value is None:
+        return None
+
+    if isinstance(value, str):
+        value = value.replace('dBm', '')
+
+        if value in ('-∞', '+∞'):
+            return None
+
+        value = int(value)
+
+    if value in (0x7D, 0x7E):
+        return None
+
+    # clamp the value into the allowed range
+    value = max(-128, min(124, value))
+
+    if value < 0:
+        value += 256
 
     return value

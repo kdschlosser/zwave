@@ -1,4 +1,14 @@
-from . import DATA_FRAME, FRAME_TYPE_REQUEST, FRAME_TYPE_ACK, FRAME_TYPE_CALLBACK, uint8_t
+from . import (
+    DATA_FRAME,
+    FRAME_TYPE_REQUEST,
+    FRAME_TYPE_ACK,
+    FRAME_TYPE_CALLBACK,
+    NODE_ID_8_FRAME,
+    NODE_ID_16_FRAME,
+    NODE_ID_FIELDS,
+    uint8_t
+)
+
 from ..enums import remove_node_from_network
 from ..command_classes import COMMAND_CLASS
 from .. import zw_types
@@ -63,6 +73,34 @@ class ZwRemoveNodeFromNetwork(DATA_FRAME):
         self._session_id = value  # NOQA
 
 
+class _NodeID8(NODE_ID_8_FRAME):
+
+    _fields_ = [
+        ('command_class_list_len', uint8_t),
+        ('basic_type', uint8_t),
+        ('generic_type', uint8_t),
+        ('specific_type', uint8_t),
+        ('command_classes', uint8_t * 256),
+    ]
+
+
+class _NodeID16(NODE_ID_16_FRAME):
+    _fields_ = [
+        ('command_class_list_len', uint8_t),
+        ('basic_type', uint8_t),
+        ('generic_type', uint8_t),
+        ('specific_type', uint8_t),
+        ('command_classes', uint8_t * 256),
+    ]
+
+
+class _ZwRemoveNodeFromNetworkCallbackFields(NODE_ID_FIELDS):
+    _fields_ = [
+        ('_node_id_8', _NodeID8),
+        ('_node_id_16', _NodeID16),
+    ]
+
+
 class ZwRemoveNodeFromNetworkCallback(DATA_FRAME):
     id = 0x4B
     frame_type = FRAME_TYPE_CALLBACK | FRAME_TYPE_ACK
@@ -70,8 +108,10 @@ class ZwRemoveNodeFromNetworkCallback(DATA_FRAME):
     _fields_ = [
         ('_session_id', uint8_t),
         ('_status', uint8_t),
-        ('_data', uint8_t * 256),
+        ('_anon_union', _ZwRemoveNodeFromNetworkCallbackFields),
     ]
+
+    _anonymous_ = ('_anon_union',)
 
     statuses = remove_node_from_network.callback.status
 
@@ -84,56 +124,24 @@ class ZwRemoveNodeFromNetworkCallback(DATA_FRAME):
         return self.statuses(self._status)
 
     @property
-    def node_id(self):
-        if self._node_id_len == 1:
-            return self._data[0]
-        else:
-            return (self._data[0] << 8) | self._data[1]
+    def node_id(self) -> int:
+        return self._fields.node_id
 
     @property
-    def command_class_list_len(self):
-        if self._node_id_len == 1:
-            return self._data[1]
-        else:
-            return self._data[2]
+    def basic_type(self) -> zw_types.BASIC_TYPE:
+        return zw_types.BASIC_TYPE(self._fields.basic_type)
 
     @property
-    def basic_device_type(self) -> zw_types.BASIC_TYPE:
-        if self._node_id_len == 1:
-            return zw_types.BASIC_TYPE(self._data[2])
-        else:
-            return zw_types.BASIC_TYPE(self._data[3])
+    def generic_type(self) -> zw_types.GENERIC_TYPE:
+        return zw_types.GENERIC_TYPE(self._fields.generic_type)
 
     @property
-    def generic_device_type(self) -> zw_types.GENERIC_TYPE:
-        if self._node_id_len == 1:
-            return zw_types.GENERIC_TYPE(self._data[3])
-        else:
-            return zw_types.GENERIC_TYPE(self._data[4])
-
-    @property
-    def specific_device_type(self) -> zw_types.SPECIFIC_TYPES:
-        generic_type = self.generic_device_type
-
-        if self._node_id_len == 1:
-            return generic_type(self._data[4])
-        else:
-            return generic_type(self._data[5])
+    def specific_type(self) -> zw_types.SPECIFIC_TYPES:
+        return self.generic_type(self._fields.specific_type)
 
     @property
     def command_classes(self) -> list[COMMAND_CLASS]:
-        if self._node_id_len == 1:
-            start = 5
-        else:
-            start = 6
-
-        stop = start + self.command_class_list_len
-
-        res = []
-
-        for i in range(start, stop, 1):
-            res.append(COMMAND_CLASS.from_id(self._data[i]))
-
-        return res
-
-
+        return [
+            COMMAND_CLASS.from_id(self._fields.command_classes[i])
+            for i in range(self._fields.command_class_list_len)
+        ]

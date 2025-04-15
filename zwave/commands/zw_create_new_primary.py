@@ -1,4 +1,11 @@
-from . import FRAME_TYPE_REQUEST, DATA_FRAME, FRAME_TYPE_ACK, FRAME_TYPE_CALLBACK, uint8_t
+from . import (
+    DATA_FRAME,
+    FRAME_TYPE_REQUEST,
+    FRAME_TYPE_CALLBACK,
+    FRAME_TYPE_ACK,
+    uint8_t
+)
+
 from ..enums import create_new_primary
 from ..command_classes import COMMAND_CLASS
 from .. import zw_types

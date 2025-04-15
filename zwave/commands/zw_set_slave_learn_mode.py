@@ -1,4 +1,12 @@
-from . import DATA_FRAME, FRAME_TYPE_REQUEST, DATA_FRAME, FRAME_TYPE_ACK, FRAME_TYPE_RESPONSE, FRAME_TYPE_CALLBACK, uint8_t
+from . import (
+    DATA_FRAME,
+    FRAME_TYPE_REQUEST,
+    FRAME_TYPE_RESPONSE,
+    FRAME_TYPE_CALLBACK,
+    FRAME_TYPE_ACK,
+    uint8_t
+)
+
 from ..enums import set_slave_learn_mode
 
 
@@ -7,57 +15,40 @@ class ZwSetSlaveLearnMode(DATA_FRAME):
     frame_type = FRAME_TYPE_REQUEST | FRAME_TYPE_ACK
 
     _fields_ = [
-        ('_data', uint8_t * 6)
+        ('_node_id', uint8_t),
+        ('_mode', uint8_t),
+        ('_session_id', uint8_t),
     ]
 
     modes = set_slave_learn_mode.command.mode
 
     @property
     def packet_length(self):
-        return 0
+        return 3
 
     @property
     def node_id(self) -> int:
-        if self._node_id_len == 1:
-            return self._data[0]
-        else:
-            return (self._data[0] << 8) | self._data[1]
+        return self._node_id
 
     @node_id.setter
     def node_id(self, value: int):
-        if self._node_id_len == 1:
-            self._data[0] = value
-        else:
-            self._data[0] = (value << 8) & 0xFF
-            self._data[1] = value & 0xFF
+        self._node_id = value  # NOQA
 
     @property
     def mode(self) -> modes:
-        if self._node_id_len == 1:
-            return self.modes(self._data[1])
-        else:
-            return self.modes(self._data[2])
+        return self.modes(self._mode)
 
     @mode.setter
     def mode(self, value: modes):
-        if self._node_id_len == 1:
-            self._data[1] = value.value  # NOQA
-        else:
-            self._data[2] = value.value  # NOQA
+        self._mode = value.value  # NOQA
 
     @property
     def session_id(self) -> int:
-        if self._node_id_len == 1:
-            return self._data[2]
-        else:
-            return self._data[3]
+        return self._session_id
 
     @session_id.setter
     def session_id(self, value: int):
-        if self._node_id_len == 1:
-            self._data[2] = value  # NOQA
-        else:
-            self._data[3] = value  # NOQA
+        self._session_id = value  # NOQA
 
 
 class ZwSetSlaveLearnModeResponse(DATA_FRAME):
@@ -65,12 +56,12 @@ class ZwSetSlaveLearnModeResponse(DATA_FRAME):
     frame_type = FRAME_TYPE_RESPONSE | FRAME_TYPE_ACK
 
     _fields_ = [
-        ('_status', uint8_t),
+        ('_response_status', uint8_t),
     ]
 
     @property
-    def status(self):
-        return self._status
+    def response_status(self):
+        return self._response_status
 
 
 class ZwSetSlaveLearnModeCallback(DATA_FRAME):

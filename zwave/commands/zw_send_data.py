@@ -1,6 +1,39 @@
-from . import DATA_FRAME, FRAME_TYPE_REQUEST, FRAME_TYPE_RESPONSE, FRAME_TYPE_CALLBACK, FRAME_TYPE_ACK, uint8_t
+from . import (
+    DATA_FRAME,
+    FRAME_TYPE_REQUEST,
+    FRAME_TYPE_RESPONSE,
+    FRAME_TYPE_CALLBACK,
+    FRAME_TYPE_ACK,
+    NODE_ID_8_FRAME,
+    NODE_ID_16_FRAME,
+    NODE_ID_FIELDS,
+    uint8_t
+)
+
 from ..enums import send_data
 from .. import tx_report
+
+
+class _NodeID8(NODE_ID_8_FRAME):
+
+    _fields_ = [
+        ('data_len', uint8_t),
+        ('data', uint8_t * 257),
+    ]
+
+
+class _NodeID16(NODE_ID_16_FRAME):
+    _fields_ = [
+        ('data_len', uint8_t),
+        ('data', uint8_t * 257),
+    ]
+
+
+class _ZwSendDataFields(NODE_ID_FIELDS):
+    _fields_ = [
+        ('_node_id_8', _NodeID8),
+        ('_node_id_16', _NodeID16),
+    ]
 
 
 class ZwSendData(DATA_FRAME):
@@ -8,101 +41,56 @@ class ZwSendData(DATA_FRAME):
     frame_type = FRAME_TYPE_REQUEST | FRAME_TYPE_ACK
 
     _fields_ = [
-        ('_data', uint8_t * 256)
+        ('_anon_union', _ZwSendDataFields),
     ]
+
+    _anonymous_ = ('_anon_union',)
 
     options = send_data.command.option
 
     @property
     def packet_length(self):
-        return 0
+        return self._fields.data_len + self._node_id_len + 2
 
     @property
     def node_id(self) -> int:
-        if self._node_id_len == 1:
-            return self._data[0]
-        else:
-            return (self._data[0] << 8) | self._data[1]
+        return self._fields.node_id
 
     @node_id.setter
     def node_id(self, value: int):
-        if self._node_id_len == 1:
-            self._data[0] = value
-        else:
-            self._data[0] = (value >> 8) & 0xFF
-            self._data[1] = value & 0xFF
+        self._fields.node_id = value
 
     @property
     def data(self) -> bytearray:
-        if self._node_id_len == 1:
-            offset = 1
-        else:
-            offset = 2
-
-        data_len = self._data[offset]
-        offset += 1
-        res = bytearray(data_len)
-        for i in range(data_len):
-            res[i] = self._data[offset + i]
-
-        return res
+        return bytearray(self._data[:self._fields.data_len])
 
     @data.setter
     def data(self, value: bytearray):
-        if self._node_id_len == 1:
-            offset = 1
-        else:
-            offset = 2
+        session_id = self.session_id
+        option = self.option
 
-        self._data[offset] = len(value)
-
-        offset += 1
         for i, item in enumerate(value):
-            self._data[offset + i] = item
+            self._fields.data[i] = value
+
+        self._fields.data_len = len(value)
+        self.option = option
+        self.session_id = session_id
 
     @property
     def option(self) -> options:
-        if self._node_id_len == 1:
-            offset = 1
-        else:
-            offset = 2
-
-        data_len = self._data[offset]
-        offset += 2 + data_len
-        return self.options(self._data[offset])
+        return self.options(self._fields.data[self._fields.data_len])
 
     @option.setter
     def option(self, value: options):
-        if self._node_id_len == 1:
-            offset = 1
-        else:
-            offset = 2
-
-        data_len = self._data[offset]
-        offset += 2 + data_len
-        self._data[offset] = value.value
+        self._fields.data[self._fields.data_len] = value.value
 
     @property
     def session_id(self) -> int:
-        if self._node_id_len == 1:
-            offset = 1
-        else:
-            offset = 2
-
-        data_len = self._data[offset]
-        offset += 3 + data_len
-        return self._data[offset]
+        return self._fields.data[self._fields.data_len + 1]
 
     @session_id.setter
     def session_id(self, value: int):
-        if self._node_id_len == 1:
-            offset = 1
-        else:
-            offset = 2
-
-        data_len = self._data[offset]
-        offset += 3 + data_len
-        self._data[offset] = value
+        self._fields.data[self._fields.data_len + 1] = value
 
 
 class ZwSendDataResponse(DATA_FRAME):

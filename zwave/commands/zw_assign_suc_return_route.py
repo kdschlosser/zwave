@@ -7,8 +7,7 @@ from . import (
     NODE_ID_8_FRAME,
     NODE_ID_16_FRAME,
     NODE_ID_FIELDS,
-    uint8_t,
-    uint16_t
+    uint8_t
 )
 
 from ..enums import suc_return_route
@@ -96,5 +95,3 @@ class ZwAssignSucReturnRouteCallback(DATA_FRAME):
     @property
     def status(self) -> statuses:
         return self.statuses(self._status)
-
-

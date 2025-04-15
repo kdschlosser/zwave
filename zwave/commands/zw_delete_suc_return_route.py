@@ -13,7 +13,6 @@ from . import (
 from ..enums import delete_suc_return_route
 
 
-
 class _NodeID8(NODE_ID_8_FRAME):
 
     _fields_ = [

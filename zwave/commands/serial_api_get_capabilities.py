@@ -55,5 +55,3 @@ class SerialApiGetCapabilitiesResponse(DATA_FRAME):
                     res.append(DATA_FRAME.from_id((i * 8) + bit + 1))
 
         return res
-
-

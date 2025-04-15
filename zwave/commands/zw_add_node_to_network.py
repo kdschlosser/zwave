@@ -6,6 +6,7 @@ from . import (
     uint8_t,
     uint32_t
 )
+
 from ..enums import add_node_to_network
 from ..command_classes import COMMAND_CLASS
 from .. import zw_types

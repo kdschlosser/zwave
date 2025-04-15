@@ -20,7 +20,7 @@ class response(HOST_CLASS):
 
 class callback(HOST_CLASS):
 
-    class status(HOST_ENUM):
+    class learn_mode_status(HOST_ENUM):
         Started = 0x01
         Completed = 0x06
         Failed = 0x07

@@ -3,7 +3,7 @@ from . import HOST_CLASS, TXOption, TXStatus
 
 class command(HOST_CLASS):
 
-    class option(TXOption):
+    class tx_option(TXOption):
         pass
 
 
@@ -13,7 +13,7 @@ class response(HOST_CLASS):
 
 class callback(HOST_CLASS):
 
-    class status(TXStatus):
+    class tx_status(TXStatus):
         pass
 
 

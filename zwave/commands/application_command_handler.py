@@ -7,6 +7,7 @@ from . import (
     NODE_ID_FIELDS,
     uint8_t
 )
+
 from ..enums import application_command_handler
 from .. import _utils
 

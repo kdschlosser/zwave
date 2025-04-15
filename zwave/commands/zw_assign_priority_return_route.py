@@ -129,5 +129,3 @@ class ZwAssignPriorityReturnRouteCallback(DATA_FRAME):
     @property
     def status(self) -> statuses:
         return self.statuses(self._status)
-
-

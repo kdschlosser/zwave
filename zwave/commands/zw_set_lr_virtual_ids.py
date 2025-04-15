@@ -1,8 +1,16 @@
-from . import DATA_FRAME, FRAME_TYPE_REQUEST, FRAME_TYPE_ACK, uint8_t
+from . import (
+    DATA_FRAME,
+    FRAME_TYPE_REQUEST,
+    FRAME_TYPE_ACK,
+    uint8_t
+)
+
 from ..enums import set_lr_virtual_ids
 
 
-class ZwSetLrVirtualIds(DATA_FRAME):
+class ZwSetLRVirtualIds(DATA_FRAME):
+    # TODO: get more information on this
+
     id = 0xDD
     frame_type = FRAME_TYPE_REQUEST | FRAME_TYPE_ACK
 
@@ -12,7 +20,7 @@ class ZwSetLrVirtualIds(DATA_FRAME):
 
     @property
     def packet_length(self):
-        return 0
+        return 1
 
     @property
     def node_ids(self) -> nodes:
