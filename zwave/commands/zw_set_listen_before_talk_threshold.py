@@ -12,6 +12,10 @@ class ZwSetListenBeforeTalkThreshold(DATA_FRAME):
     ]
 
     @property
+    def packet_length(self):
+        return 0
+
+    @property
     def channel(self):
         return self._channel
 

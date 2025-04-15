@@ -72,3 +72,7 @@ the network should have to stop while a UI processes a state change for a node.
 
 
 4.9.2 Controller Node Send Data Multicast Command
+4.9.3 End Node Send Data Command
+4.9.4 End Node Send Data Multicast Command
+4.9.5 Bridge Controller Node Send Data Command
+4.9.6 Bridge Controller Node Send Data Multicast Command

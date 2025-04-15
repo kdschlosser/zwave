@@ -6,6 +6,10 @@ class ZwGetProtocolVersion(DATA_FRAME):
     id = 0x09
     frame_type = FRAME_TYPE_REQUEST | FRAME_TYPE_ACK
 
+    @property
+    def packet_length(self):
+        return 0
+
 
 class ZwGetProtocolVersionResponse(DATA_FRAME):
     id = 0x09

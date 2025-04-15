@@ -1,5 +1,44 @@
-from . import DATA_FRAME, FRAME_TYPE_REQUEST, FRAME_TYPE_ACK, FRAME_TYPE_RESPONSE, FRAME_TYPE_CALLBACK, uint8_t
+from . import (
+    DATA_FRAME,
+    FRAME_TYPE_REQUEST,
+    FRAME_TYPE_RESPONSE,
+    FRAME_TYPE_CALLBACK,
+    FRAME_TYPE_ACK,
+    NODE_ID_8_FRAME,
+    NODE_ID_16_FRAME,
+    NODE_ID_FIELDS,
+    uint8_t,
+    uint16_t,
+    uint32_t
+)
+
 from ..enums import assign_priority_suc_return_route
+
+
+class _NodeID8(NODE_ID_8_FRAME):
+
+    _fields_ = [
+        ('dst_node_id', uint8_t),
+        ('repeater', uint32_t),
+        ('route_speed', uint8_t),
+        ('session_id', uint8_t),
+    ]
+
+
+class _NodeID16(NODE_ID_16_FRAME):
+    _fields_ = [
+        ('dst_node_id', uint16_t),
+        ('repeater', uint32_t),
+        ('route_speed', uint8_t),
+        ('session_id', uint8_t),
+    ]
+
+
+class _ZwAssignPriorityReturnRouteFields(NODE_ID_FIELDS):
+    _fields_ = [
+        ('_node_id_8', _NodeID8),
+        ('_node_id_16', _NodeID16),
+    ]
 
 
 class ZwAssignPrioritySucReturnRoute(DATA_FRAME):
@@ -7,98 +46,56 @@ class ZwAssignPrioritySucReturnRoute(DATA_FRAME):
     frame_type = FRAME_TYPE_REQUEST | FRAME_TYPE_ACK
 
     _fields_ = [
-        ('_data', uint8_t * 9)
+        ('_anon_union', _ZwAssignPriorityReturnRouteFields),
     ]
+
+    _anonymous_ = ('_anon_union',)
 
     route_speeds = assign_priority_suc_return_route.command.route_speed
 
     @property
-    def node_id(self):
-        if self._node_id_len == 1:
-            return self._data[0]
-        else:
-            return (self._data[0] << 8) | self._data[1]
-
-    @node_id.setter
-    def node_id(self, value):
-        if self._node_id_len == 1:
-            self._data[0] = value
-        else:
-            self._data[0] = (value << 8) & 0xFF
-            self._data[1] = value & 0xFF
+    def packet_length(self):
+        return self._node_id_len * 2 + 6
 
     @property
-    def dest_node_id(self) -> int:
-        if self._node_id_len == 1:
-            return self._data[1]
-        else:
-            return (self._data[2] << 8) | self._data[3]
+    def src_node_id(self) -> int:
+        return self._fields.node_id
 
-    @dest_node_id.setter
-    def dest_node_id(self, value: int):
-        if self._node_id_len == 1:
-            self._data[1] = value
-        else:
-            self._data[2] = (value << 8) & 0xFF
-            self._data[3] = value & 0xFF
+    @src_node_id.setter
+    def src_node_id(self, value: int):
+        self._fields.node_id = value
+
+    @property
+    def dst_node_id(self) -> int:
+        return self._fields.dst_node_id
+
+    @dst_node_id.setter
+    def dst_node_id(self, value: int):
+        self._fields.dst_node_id = value
 
     @property
     def repeater(self) -> int:
-        if self._node_id_len == 1:
-            return (
-                (self._data[2] << 24) |
-                (self._data[3] << 16) |
-                (self._data[4] << 8) |
-                self._data[5]
-            )
-        else:
-            return (
-                (self._data[4] << 24) |
-                (self._data[5] << 16) |
-                (self._data[6] << 8) |
-                self._data[7]
-            )
+        return self._fields.repeater
 
     @repeater.setter
     def repeater(self, value: int):
-        if self._node_id_len == 1:
-            self._data[2] = (value >> 24) & 0xFF
-            self._data[3] = (value >> 16) & 0xFF
-            self._data[4] = (value >> 8) & 0xFF
-            self._data[5] = value & 0xFF
-        else:
-            self._data[4] = (value >> 24) & 0xFF
-            self._data[5] = (value >> 16) & 0xFF
-            self._data[6] = (value >> 8) & 0xFF
-            self._data[7] = value & 0xFF
+        self._fields.repeater = value
 
     @property
     def route_speed(self) -> route_speeds:
-        if self._node_id_len == 1:
-            return self.route_speeds(self._data[6])
-        else:
-            return self.route_speeds(self._data[8])
+        return self.route_speeds(self._fields.route_speed)
 
     @route_speed.setter
     def route_speed(self, value: route_speeds):
-        if self._node_id_len == 1:
-            self._data[6] = value.value
-        else:
-            self._data[8] = value.value
+        self._fields.route_speed = value.value
 
     @property
     def session_id(self) -> int:
-        if self._node_id_len == 1:
-            return self._data[7]
-        else:
-            return self._data[9]
+        return self._fields.session_id
 
     @session_id.setter
     def session_id(self, value: int):
-        if self._node_id_len == 1:
-            self._data[7] = value
-        else:
-            self._data[9] = value
+        self._fields.session_id = value
 
 
 class ZwAssignPrioritySucReturnRouteResponse(DATA_FRAME):

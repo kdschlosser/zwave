@@ -5,6 +5,10 @@ class ZwExploreRequestInclusion(DATA_FRAME):
     id = 0x5E
     frame_type = FRAME_TYPE_REQUEST | FRAME_TYPE_ACK
 
+    @property
+    def packet_length(self):
+        return 0
+
 
 class ZwExploreRequestInclusionResponse(DATA_FRAME):
     id = 0x5E

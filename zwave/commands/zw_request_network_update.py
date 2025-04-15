@@ -11,6 +11,10 @@ class ZwRequestNetworkUpdate(DATA_FRAME):
     ]
 
     @property
+    def packet_length(self):
+        return 0
+
+    @property
     def session_id(self):
         return self._session_id
 

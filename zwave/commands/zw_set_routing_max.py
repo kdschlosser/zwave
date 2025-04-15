@@ -8,6 +8,10 @@ class ZwSetRoutingMax(DATA_FRAME):
     _fields_ = [('_max_retries', uint8_t)]
 
     @property
+    def packet_length(self):
+        return 0
+
+    @property
     def max_retries(self) -> int:
         return self._max_retries
 

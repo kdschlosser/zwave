@@ -8,6 +8,10 @@ class ZwSetDefault(DATA_FRAME):
     _fields_ = [('_session_id', uint8_t)]
 
     @property
+    def packet_length(self):
+        return 0
+
+    @property
     def session_id(self) -> int:
         return self._session_id
 

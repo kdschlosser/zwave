@@ -8,6 +8,10 @@ class SerialApiGetLRNodes(DATA_FRAME):
     _fields_ = [('_offset', uint8_t)]
 
     @property
+    def packet_length(self):
+        return 1
+
+    @property
     def offset(self):
         return self._offset
 

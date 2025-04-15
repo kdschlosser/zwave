@@ -11,6 +11,10 @@ class SerialApiSetTimeouts(DATA_FRAME):
     ]
 
     @property
+    def packet_length(self):
+        return 2
+
+    @property
     def rx_ack_timeout(self):
         return self._rx_ack_timeout * 10
 

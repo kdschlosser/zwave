@@ -24,6 +24,10 @@ class SerialApiStarted(DATA_FRAME):
     options = serial_api_started.unsolicited.option
 
     @property
+    def packet_length(self):
+        return self._command_class_list_len + 6
+
+    @property
     def wakeup_reason(self) -> wakeup_reasons:
         return self.wakeup_reasons(self._wakeup_reason)
 

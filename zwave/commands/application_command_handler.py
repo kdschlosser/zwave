@@ -1,61 +1,73 @@
-from . import DATA_FRAME, FRAME_TYPE_UNSOLICITED, uint8_t
+from . import (
+    DATA_FRAME,
+    FRAME_TYPE_UNSOLICITED,
+    FRAME_TYPE_ACK,
+    NODE_ID_8_FRAME,
+    NODE_ID_16_FRAME,
+    NODE_ID_FIELDS,
+    uint8_t
+)
 from ..enums import application_command_handler
-
 from .. import _utils
+
+
+class _NodeID8(NODE_ID_8_FRAME):
+
+    _fields_ = [
+        ('payload_len', uint8_t),
+        ('data', uint8_t * 256),
+    ]
+
+
+class _NodeID16(NODE_ID_16_FRAME):
+    _fields_ = [
+        ('payload_len', uint8_t),
+        ('data', uint8_t * 256),
+    ]
+
+
+class _ApplicationCommandHandlerFields(NODE_ID_FIELDS):
+    _fields_ = [
+        ('_node_id_8', _NodeID8),
+        ('_node_id_16', _NodeID16),
+    ]
 
 
 class ApplicationCommandHandler(DATA_FRAME):
     id = 0x04
-    frame_type = FRAME_TYPE_REQUEST | FRAME_TYPE_ACK
-    frame_type = FRAME_TYPE_RESPONSE | FRAME_TYPE_ACK
-    frame_type = FRAME_TYPE_CALLBACK | FRAME_TYPE_ACK
+    frame_type = FRAME_TYPE_UNSOLICITED | FRAME_TYPE_ACK
 
     _fields_ = [
         ('_rx_status', uint8_t),
-        ('_data', uint8_t * 246)
+        ('_anon_union', _ApplicationCommandHandlerFields)
     ]
 
+    _anonymous_ = ('_anon_union',)
+
     rx_statuses = application_command_handler.unsolicited.rx_status
+
+    @property
+    def packet_length(self):
+        return self._fields.payload_len + self._node_id_len + 2
 
     @property
     def rx_status(self) -> rx_statuses:
         return self.rx_statuses(self._rx_status)
 
     @property
-    def node_id(self):
-        if self._node_id_len == 1:
-            return self._data[0]
-        else:
-            return (self._data[0] << 8) | self._data[1]
-
-    @property
-    def __payload_len(self) -> int:
-        if self._node_id_len == 1:
-            return self._data[1]
-        else:
-            return self._data[2]
+    def node_id(self) -> int:
+        return self._fields.node_id  # NOQA
 
     @property
     def payload(self) -> bytearray:
-        res = bytearray(self.__payload_len)
+        res = bytearray(self._fields.payload_len)
 
-        if self._node_id_len == 1:
-            offset = 2
-        else:
-            offset = 3
-
-        for i in range(self.__payload_len):
-            res[i] = self._data[i + offset]
+        for i in range(self._fields.payload_len):
+            res[i] = self._fields.data[i]
 
         return res
 
     @property
     def rx_rssi(self) -> str:
-        if self._node_id_len == 1:
-            offset = 2
-        else:
-            offset = 3
-
-        offset += self.__payload_len
-
-        return _utils.to_rssi(self._data[offset + 1])
+        index = self._fields.payload_len + 1
+        return _utils.to_rssi(self._fields.data[index])

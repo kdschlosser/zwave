@@ -10,6 +10,10 @@ class ZwNetworkManagementSetMaxInclusionRequestIntervals(DATA_FRAME):
     ]
 
     @property
+    def packet_length(self):
+        return 1
+
+    @property
     def requested_intervals(self) -> int:
         return self._requested_intervals
 

@@ -19,6 +19,10 @@ class ZwControllerChange(DATA_FRAME):
     modes = controller_change.command.mode
 
     @property
+    def packet_length(self):
+        return 2
+
+    @property
     def power(self):
         return self._power
 

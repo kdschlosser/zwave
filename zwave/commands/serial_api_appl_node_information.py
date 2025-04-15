@@ -42,16 +42,11 @@ class SerialApiApplNodeInformation(DATA_FRAME):
         self._specific_device_type = value.value  # NOQA
 
     @property
-    def command_class_list_len(self):
-        return self._command_class_list_len
-
-    @property
     def command_class_list(self) -> list[command_classes.COMMAND_CLASS]:
-        res = []
-        for i in range(self.command_class_list_len):
-            res.append(command_classes.COMMAND_CLASS.from_id(self._command_class_list[i]))
-
-        return res
+        return [
+            command_classes.COMMAND_CLASS.from_id(item)
+            for item in bytearray(self._command_class_list[:self.command_class_list_len])
+        ]
 
     @command_class_list.setter
     def command_class_list(self, value: list[command_classes.COMMAND_CLASS]):

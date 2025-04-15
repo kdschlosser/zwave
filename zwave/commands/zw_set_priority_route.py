@@ -13,6 +13,10 @@ class ZwSetPriorityRoute(DATA_FRAME):
     route_speeds = set_priority_route.command.route_speed
 
     @property
+    def packet_length(self):
+        return 0
+
+    @property
     def node_id(self):
         if self._node_id_len == 1:
             return self._data[0]

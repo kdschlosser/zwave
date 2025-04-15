@@ -12,6 +12,10 @@ class SetLRChannel(DATA_FRAME):
     long_range_channels = set_lr_channel.command.long_range
 
     @property
+    def packet_length(self):
+        return 1
+
+    @property
     def long_range_channel(self) -> long_range_channels:
         return self.long_range_channels(self._zwave_lr_channel)
 

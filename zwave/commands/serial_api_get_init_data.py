@@ -5,6 +5,10 @@ class SerialApiGetInitData(DATA_FRAME):
     id = 0x02
     frame_type = FRAME_TYPE_REQUEST | FRAME_TYPE_ACK
 
+    @property
+    def packet_length(self):
+        return 0
+
 
 class SerialApiGetInitDataResponse(DATA_FRAME):
     id = 0x02

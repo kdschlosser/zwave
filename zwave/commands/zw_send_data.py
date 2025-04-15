@@ -14,6 +14,10 @@ class ZwSendData(DATA_FRAME):
     options = send_data.command.option
 
     @property
+    def packet_length(self):
+        return 0
+
+    @property
     def node_id(self) -> int:
         if self._node_id_len == 1:
             return self._data[0]

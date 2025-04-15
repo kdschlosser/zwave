@@ -8,6 +8,10 @@ class ZwRequestNodeInfo(DATA_FRAME):
     _fields_ = [('_node_id', uint8_t * 2)]
 
     @property
+    def packet_length(self):
+        return 0
+
+    @property
     def destination_node_id(self):
         if self._node_id_len == 1:
             return self._node_id[0]

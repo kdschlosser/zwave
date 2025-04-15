@@ -15,6 +15,10 @@ class ZwSetSucNodeId(DATA_FRAME):
     suc_states = set_suc_node_id.command.suc_state
 
     @property
+    def packet_length(self):
+        return 0
+
+    @property
     def node_id(self):
         if self._node_id_len == 1:
             return self._data[0]

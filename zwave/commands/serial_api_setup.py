@@ -28,6 +28,10 @@ class SerialApiSetupGetSupportedCommands(SerialApiSetup):
     id = 0x0B
     sub_command_id = 0x01
 
+    @property
+    def packet_length(self):
+        return 0
+
 
 class SerialApiSetupGetSupportedCommandsResponse(SerialApiSetupResponse):
     id = 0x0B
@@ -95,6 +99,10 @@ class SerialApiSetupSetTXStatusReport(SerialApiSetup):
     sub_command_id = 0x02
 
     @property
+    def packet_length(self):
+        return 1
+
+    @property
     def enable_tx_status_report(self) -> bool:
         return bool(self._data[0])
 
@@ -115,8 +123,13 @@ class SerialApiSetupSetTXStatusReportResponse(SerialApiSetupResponse):
 
 
 class SerialApiSetupSetPowerlevel(SerialApiSetup):
+    # TODO: Fix data indexes & fix packet_length
     id = 0x0B
     sub_command_id = 0x04
+
+    @property
+    def packet_length(self):
+        return 1
 
     @property
     def normal_power_level(self) -> int:
@@ -314,6 +327,10 @@ class SerialApiSetupGetPowerlevel(SerialApiSetup):
     id = 0x0B
     sub_command_id = 0x08
 
+    @property
+    def packet_length(self):
+        return 0
+
 
 class SerialApiSetupGetPowerlevelResponse(SerialApiSetupResponse):
     id = 0x0B
@@ -332,6 +349,10 @@ class SerialApiSetupGetMaximumPayloadSize(SerialApiSetup):
     id = 0x0B
     sub_command_id = 0x10
 
+    @property
+    def packet_length(self):
+        return 0
+
 
 class SerialApiSetupGetMaximumPayloadSizeResponse(SerialApiSetupResponse):
     id = 0x0B
@@ -346,6 +367,10 @@ class SerialApiSetupGetLRMaximumPayloadSize(SerialApiSetup):
     id = 0x0B
     sub_command_id = 0x11
 
+    @property
+    def packet_length(self):
+        return 0
+
 
 class SerialApiSetupGetLRMaximumPayloadSizeResponse(SerialApiSetupResponse):
     id = 0x0B
@@ -359,6 +384,10 @@ class SerialApiSetupGetLRMaximumPayloadSizeResponse(SerialApiSetupResponse):
 class SerialApiSetupGetRFRegion(SerialApiSetup):
     id = 0x0B
     sub_command_id = 0x20
+
+    @property
+    def packet_length(self):
+        return 0
 
 
 class SerialApiSetupGetRFRegionResponse(SerialApiSetupResponse):
@@ -381,6 +410,10 @@ class SerialApiSetupSetRFRegion(SerialApiSetup):
     sub_command_id = 0x40
 
     rf_regions = serial_api_setup.command.rf_region
+
+    @property
+    def packet_length(self):
+        return 1
 
     @property
     def rf_region(self) -> rf_regions:
@@ -407,6 +440,10 @@ class SerialApiSetupSetNodeIDBaseType(SerialApiSetup):
     sub_command_id = 0x80
 
     node_id_base_types = serial_api_setup.command.node_id_base_type
+
+    @property
+    def packet_length(self):
+        return 1
 
     @property
     def node_id_base_type(self) -> node_id_base_types:

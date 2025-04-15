@@ -19,6 +19,10 @@ class ZwCreateNewPrimary(DATA_FRAME):
     modes = create_new_primary.command.mode
 
     @property
+    def packet_length(self):
+        return 2
+
+    @property
     def power(self):
         return self._power
 

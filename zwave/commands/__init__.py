@@ -2,6 +2,9 @@ import ctypes
 
 
 uint8_t = ctypes.c_uint8
+uint16_t = ctypes.c_uint16
+uint32_t = ctypes.c_uint32
+
 
 FRAME_TYPE_REQUEST = 0x00
 FRAME_TYPE_RESPONSE = 0x01
@@ -20,6 +23,7 @@ REQUEST_FRAMES = []
 RESPONSE_FRAMES = []
 CALLBACK_FRAMES = []
 UNSOLICITED_FRAMES = []
+
 
 class _FrameMeta(type(ctypes.Structure)):
     frame_type = 0x00
@@ -53,6 +57,17 @@ class _FrameMeta(type(ctypes.Structure)):
         return super().__call__(*args, **kwargs)
 
 
+class NODE_ID_8_FRAME(ctypes.Structure):
+    _fields_ = [('node_id', uint8_t)]
+
+
+class NODE_ID_16_FRAME(ctypes.Structure):
+    _fields_ = [('node_id', uint16_t)]
+
+
+class NODE_ID_FIELDS(ctypes.Union):
+    _fields_ = []
+
 
 class DATA_FRAME(ctypes.Structure, metaclass=_FrameMeta):
     id = 0x00
@@ -67,6 +82,13 @@ class DATA_FRAME(ctypes.Structure, metaclass=_FrameMeta):
     ]
 
     @property
+    def _fields(self) -> NODE_ID_8_FRAME | NODE_ID_16_FRAME:
+        if self._node_id_len == 1:
+            return self._node_id_8
+        else:
+            return self._node_id_16
+
+    @property
     def node_id_len(self):
         return self._node_id_len
 
@@ -75,7 +97,7 @@ class DATA_FRAME(ctypes.Structure, metaclass=_FrameMeta):
         self._node_id_len = value
 
     @property
-    def payload_length(self):
+    def packet_length(self):
         raise NotImplementedError
 
     @classmethod

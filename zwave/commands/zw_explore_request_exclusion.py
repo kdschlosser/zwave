@@ -5,6 +5,10 @@ class ZwExploreRequestExclusion(DATA_FRAME):
     id = 0x5F
     frame_type = FRAME_TYPE_REQUEST | FRAME_TYPE_ACK
 
+    @property
+    def packet_length(self):
+        return 0
+
 
 class ZwExploreRequestExclusionResponse(DATA_FRAME):
     id = 0x5F

@@ -13,6 +13,10 @@ class LockUnlockLastRoute(DATA_FRAME):
     lock_modes = lock_unlock_last_route.command.lock_mode
 
     @property
+    def packet_length(self):
+        return 1
+
+    @property
     def lock_mode(self) -> lock_modes:
         return self.lock_modes(self._lock_mode)
 

@@ -21,6 +21,10 @@ class SerialApiApplSlaveNodeInformation(DATA_FRAME):
     options = appl_slave_node_information.command.option
 
     @property
+    def packet_length(self):
+        return self._command_class_list_len + 5
+
+    @property
     def node_id(self) -> int:
         return self._node_id
 
@@ -54,11 +58,10 @@ class SerialApiApplSlaveNodeInformation(DATA_FRAME):
 
     @property
     def command_classes(self) -> list[COMMAND_CLASS]:
-        res = []
-        for i in range(self._command_class_list_len):
-            res.append(COMMAND_CLASS.from_id(self._command_classes[i]))
-
-        return res
+        return [
+            COMMAND_CLASS.from_id(self._command_classes[i])
+            for i in range(self._command_class_list_len)
+        ]
 
     @command_classes.setter
     def command_classes(self, value: list[COMMAND_CLASS]):

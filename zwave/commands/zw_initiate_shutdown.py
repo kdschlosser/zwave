@@ -5,6 +5,10 @@ class ZwInitiateShutdown(DATA_FRAME):
     id = 0xD9
     frame_type = FRAME_TYPE_REQUEST | FRAME_TYPE_ACK
 
+    @property
+    def packet_length(self):
+        return 0
+
 
 class ZwInitiateShutdownResponse(DATA_FRAME):
     id = 0xD9

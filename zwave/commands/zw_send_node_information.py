@@ -9,6 +9,10 @@ class ZwSendNodeInformation(DATA_FRAME):
     _fields_ = [('_data', uint8_t * 4)]
 
     @property
+    def packet_length(self):
+        return 0
+
+    @property
     def node_id(self):
         if self._node_id_len == 1:
             return self._data[0]

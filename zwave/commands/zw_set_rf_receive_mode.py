@@ -11,6 +11,10 @@ class ZwSetRfReceiveMode(DATA_FRAME):
     modes = set_rf_receive_mode.command.mode
 
     @property
+    def packet_length(self):
+        return 0
+
+    @property
     def mode(self) -> modes:
         return self.modes(self._mode)
 

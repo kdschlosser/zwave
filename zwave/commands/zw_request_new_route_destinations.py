@@ -10,6 +10,10 @@ class ZwRequestNewRouteDestinations(DATA_FRAME):
         ('_data', uint8_t * 200)
     ]
 
+    @property
+    def packet_length(self):
+        return 0
+
     def nodes(self, value: list[Node]):
         for i, node in enumerate(value):
             self._data[i] = node.id

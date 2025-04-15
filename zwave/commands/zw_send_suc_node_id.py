@@ -13,6 +13,10 @@ class ZwSendSucNodeId(DATA_FRAME):
     options = send_suc_node_id.command.option
 
     @property
+    def packet_length(self):
+        return 0
+
+    @property
     def node_id(self):
         if self._node_id_len == 1:
             return self._data[0]

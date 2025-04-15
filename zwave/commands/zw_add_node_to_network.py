@@ -1,4 +1,11 @@
-from . import DATA_FRAME, FRAME_TYPE_REQUEST, FRAME_TYPE_ACK, FRAME_TYPE_CALLBACK, uint8_t
+from . import (
+    DATA_FRAME,
+    FRAME_TYPE_REQUEST,
+    FRAME_TYPE_ACK,
+    FRAME_TYPE_CALLBACK,
+    uint8_t,
+    uint32_t
+)
 from ..enums import add_node_to_network
 from ..command_classes import COMMAND_CLASS
 from .. import zw_types
@@ -14,17 +21,15 @@ class ZwAddNodeToNetwork(DATA_FRAME):
         ('_protocol', uint8_t, 1),
         ('_mode', uint8_t, 5),
         ('_session_id', uint8_t),
-        ('_home_id_1', uint8_t),
-        ('_home_id_2', uint8_t),
-        ('_home_id_3', uint8_t),
-        ('_home_id_4', uint8_t),
-        ('_auth_home_id_1', uint8_t),
-        ('_auth_home_id_2', uint8_t),
-        ('_auth_home_id_3', uint8_t),
-        ('_auth_home_id_4', uint8_t),
+        ('_home_id', uint32_t),
+        ('_auth_home_id', uint32_t),
     ]
 
     modes = add_node_to_network.command.mode
+
+    @property
+    def packet_length(self):
+        return 10
 
     @property
     def power(self) -> int:

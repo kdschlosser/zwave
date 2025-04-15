@@ -1,4 +1,11 @@
-from . import DATA_FRAME, FRAME_TYPE_REQUEST, FRAME_TYPE_ACK, FRAME_TYPE_RESPONSE, uint8_t
+from . import (
+    DATA_FRAME,
+    FRAME_TYPE_REQUEST,
+    FRAME_TYPE_ACK,
+    FRAME_TYPE_RESPONSE,
+    uint8_t,
+    uint16_t
+)
 from ..enums import nvm_backup_restore
 
 
@@ -9,12 +16,15 @@ class NVMBackupRestore(DATA_FRAME):
     _fields_ = [
         ('_sub_command', uint8_t),
         ('_firmware_data_len', uint8_t),
-        ('_address_offset_h', uint8_t),
-        ('_address_offset_l', uint8_t),
+        ('_address_offset', uint16_t),
         ('_data', uint8_t * 256)
     ]
 
     sub_commands = nvm_backup_restore.command.sub_command
+
+    @property
+    def packet_length(self):
+        return self._firmware_data_len + 4
 
     @property
     def sub_command(self) -> sub_commands:
@@ -26,12 +36,11 @@ class NVMBackupRestore(DATA_FRAME):
 
     @property
     def address_offset(self) -> int:
-        return self._address_offset_h << 8 | self._address_offset_l
+        return self._address_offset
 
     @address_offset.setter
     def address_offset(self, value: int):
-        self._address_offset_h = (value >> 8) & 0xFF  # NOQA
-        self._address_offset_l = value & 0xFF  # NOQA
+        self._address_offset = value  # NOQA
 
     @property
     def data(self) -> bytearray:

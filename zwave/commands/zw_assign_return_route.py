@@ -1,5 +1,39 @@
-from . import DATA_FRAME, FRAME_TYPE_REQUEST, FRAME_TYPE_ACK, FRAME_TYPE_RESPONSE, FRAME_TYPE_CALLBACK, uint8_t
+from . import (
+    DATA_FRAME,
+    FRAME_TYPE_REQUEST,
+    FRAME_TYPE_RESPONSE,
+    FRAME_TYPE_CALLBACK,
+    FRAME_TYPE_ACK,
+    NODE_ID_8_FRAME,
+    NODE_ID_16_FRAME,
+    NODE_ID_FIELDS,
+    uint8_t,
+    uint16_t
+)
+
 from ..enums import assign_return_route
+
+
+class _NodeID8(NODE_ID_8_FRAME):
+
+    _fields_ = [
+        ('dst_node_id', uint8_t),
+        ('session_id', uint8_t),
+    ]
+
+
+class _NodeID16(NODE_ID_16_FRAME):
+    _fields_ = [
+        ('dst_node_id', uint16_t),
+        ('session_id', uint8_t),
+    ]
+
+
+class _ZwAssignReturnRouteFields(NODE_ID_FIELDS):
+    _fields_ = [
+        ('_node_id_8', _NodeID8),
+        ('_node_id_16', _NodeID16),
+    ]
 
 
 class ZwAssignReturnRoute(DATA_FRAME):
@@ -7,45 +41,38 @@ class ZwAssignReturnRoute(DATA_FRAME):
     frame_type = FRAME_TYPE_REQUEST | FRAME_TYPE_ACK
 
     _fields_ = [
-        ('_data', uint8_t * 5)
+        ('_anon_union', _ZwAssignReturnRouteFields),
     ]
 
-    @property
-    def node_id(self):
-        if self._node_id_len == 1:
-            return self._data[0]
-        else:
-            return (self._data[0] << 8) | self._data[1]
-
-    @node_id.setter
-    def node_id(self, value):
-        if self._node_id_len == 1:
-            self._data[0] = value
-        else:
-            self._data[0] = (value << 8) & 0xFF
-            self._data[1] = value & 0xFF
+    _anonymous_ = ('_anon_union',)
 
     @property
-    def dest_node_id(self):
-        if self._node_id_len == 1:
-            return self._data[1]
-        else:
-            return (self._data[2] << 8) | self._data[3]
-
-    @dest_node_id.setter
-    def dest_node_id(self, value):
-        if self._node_id_len == 1:
-            self._data[1] = value
-        else:
-            self._data[2] = (value << 8) & 0xFF
-            self._data[3] = value & 0xFF
+    def packet_length(self):
+        return self._node_id_len * 2 + 1
 
     @property
-    def session_id(self):
-        if self._node_id_len == 1:
-            return self._data[2]
-        else:
-            return self._data[4]
+    def src_node_id(self) -> int:
+        return self._fields.node_id
+
+    @src_node_id.setter
+    def src_node_id(self, value: int):
+        self._fields.node_id = value
+
+    @property
+    def dst_node_id(self) -> int:
+        return self._fields.dst_node_id
+
+    @dst_node_id.setter
+    def dst_node_id(self, value: int):
+        self._fields.dst_node_id = value
+
+    @property
+    def session_id(self) -> int:
+        return self._fields.session_id
+
+    @session_id.setter
+    def session_id(self, value: int):
+        self._fields.session_id = value
 
 
 class ZwAssignReturnRouteResponse(DATA_FRAME):

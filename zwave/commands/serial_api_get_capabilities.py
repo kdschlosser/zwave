@@ -1,4 +1,11 @@
-from . import DATA_FRAME, FRAME_TYPE_REQUEST, FRAME_TYPE_ACK, FRAME_TYPE_RESPONSE, uint8_t
+from . import (
+    DATA_FRAME,
+    FRAME_TYPE_REQUEST,
+    FRAME_TYPE_ACK,
+    FRAME_TYPE_RESPONSE,
+    uint8_t,
+    uint16_t
+)
 from .. import mfg_ids
 
 
@@ -12,32 +19,32 @@ class SerialApiGetCapabilitiesResponse(DATA_FRAME):
     frame_type = FRAME_TYPE_RESPONSE | FRAME_TYPE_ACK
 
     _fields_ = [
-        ('_zwave_api_version1', uint8_t),
-        ('_zwave_api_version2', uint8_t),
-        ('_zwave_api_mfg_id1', uint8_t),
-        ('_zwave_api_mfg_id2', uint8_t),
-        ('_zwave_api_product_type1', uint8_t),
-        ('_zwave_api_product_type2', uint8_t),
-        ('_zwave_api_product_id1', uint8_t),
-        ('_zwave_api_product_id2', uint8_t),
+        ('_zwave_api_version', uint16_t),
+        ('_zwave_api_mfg_id', uint16_t),
+        ('_zwave_api_product_type', uint16_t),
+        ('_zwave_api_product_id', uint16_t),
         ('_zwave_api_supported_commands', uint8_t * 32)
     ]
 
     @property
-    def api_version(self):
-        return self._zwave_api_version1 << 8 | self._zwave_api_version2
+    def packet_length(self):
+        return 40
+
+    @property
+    def api_version(self) -> int:
+        return self._zwave_api_version
 
     @property
     def mfg_version(self):
-        return mfg_ids.MFG_ID(self._zwave_api_mfg_id1 << 8 | self._zwave_api_mfg_id2)
+        return mfg_ids.MFG_ID(self._zwave_api_mfg_id)
 
     @property
-    def product_type(self):
-        return self._zwave_api_product_type1 << 8 | self._zwave_api_product_type2
+    def product_type(self) -> int:
+        return self._zwave_api_product_type
 
     @property
-    def product_id(self):
-        return self._zwave_api_product_id1 << 8 | self._zwave_api_product_id2
+    def product_id(self) -> int:
+        return self._zwave_api_product_id
 
     @property
     def supported_commands(self) -> list[DATA_FRAME]:

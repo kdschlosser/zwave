@@ -10,6 +10,10 @@ class ZwRfPowerLevelSet(DATA_FRAME):
     _fields_ = [('_power_level', uint8_t)]
 
     @property
+    def packet_length(self):
+        return 0
+
+    @property
     def power_level(self):
         return self._power_level
 

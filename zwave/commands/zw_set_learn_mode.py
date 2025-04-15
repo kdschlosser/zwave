@@ -14,6 +14,10 @@ class ZwSetLearnMode(DATA_FRAME):
     learn_modes = set_learn_mode.command.learn_mode
 
     @property
+    def packet_length(self):
+        return 0
+
+    @property
     def learn_mode(self) -> learn_modes:
         return self.learn_modes(self._learn_mode)
 

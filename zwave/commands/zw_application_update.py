@@ -1,4 +1,14 @@
-from . import DATA_FRAME, FRAME_TYPE_ACK, FRAME_TYPE_UNSOLICITED, uint8_t
+from . import (
+    DATA_FRAME,
+    FRAME_TYPE_ACK,
+    FRAME_TYPE_UNSOLICITED,
+    NODE_ID_8_FRAME,
+    NODE_ID_16_FRAME,
+    NODE_ID_FIELDS,
+    uint32_t,
+    uint8_t
+)
+
 from ..enums import application_update
 from ..command_classes import COMMAND_CLASS
 from .. import zw_types
@@ -13,12 +23,15 @@ class ZwApplicationUpdate(DATA_FRAME):
     min_bytes = 256
 
     _fields_ = [
-        ('_event', uint8_t),
-        ('_data', uint8_t * 256)
+        ('_event', uint8_t)
     ]
 
     events = application_update.unsolicited.event
     rx_statuses = application_update.unsolicited.rx_status
+
+    @property
+    def packet_length(self):
+        return 0
 
     @property
     def _offset(self):
@@ -33,91 +46,129 @@ class ZwApplicationUpdate(DATA_FRAME):
 
     @property
     def node_id(self) -> int:
-        if self._node_id_len == 1:
-            return self._data[0]
-        else:
-            return (self._data[0] << 8) | self._data[1]
+        return self._fields.node_id
 
-    def __init__(self, command, event, node_id):
-        super().__init__(command=command)
+
+class _GenericNodeID8(NODE_ID_8_FRAME):
+
+    _fields_ = [
+        ('command_class_list_len', uint8_t),
+        ('basic_type', uint8_t),
+        ('generic_type', uint8_t),
+        ('specific_type', uint8_t),
+        ('command_classes', uint8_t * 256)
+    ]
+
+
+class _GenericNodeID16(NODE_ID_16_FRAME):
+    _fields_ = [
+        ('command_class_list_len', uint8_t),
+        ('basic_type', uint8_t),
+        ('generic_type', uint8_t),
+        ('specific_type', uint8_t),
+        ('command_classes', uint8_t * 256)
+    ]
+
+
+class _GenericFields(NODE_ID_FIELDS):
+    _fields_ = [
+        ('_node_id_8', _GenericNodeID8),
+        ('_node_id_16', _GenericNodeID16),
+    ]
 
 
 class ZwApplicationUpdateGeneric(ZwApplicationUpdate):
     min_bytes = 10
 
-    @property
-    def __command_class_list_len(self) -> int:
-        return self._data[self._offset]
+    _fields_ = [
+        ('_anon_union', _GenericFields),
+    ]
+
+    _anonymous_ = ('_anon_union',)
 
     @property
     def basic_type(self) -> zw_types.BASIC_TYPE:
-        return zw_types.BASIC_TYPE(self._data[self._offset + 1])
+        return zw_types.BASIC_TYPE(self._fields.basic_type)
 
     @property
     def generic_type(self) -> zw_types.GENERIC_TYPE:
-        return zw_types.GENERIC_TYPE(self._data[self._offset + 2])
+        return zw_types.GENERIC_TYPE(self._fields.generic_type)
 
     @property
     def specific_type(self) -> zw_types.SPECIFIC_TYPES:
-        return self.generic_type(self._data[self._offset + 3])
+        return self.generic_type(self._fields.specific_type)
 
     @property
     def command_classes(self) -> list[COMMAND_CLASS]:
-        offset = self._offset + 4
-        res = []
+        return [
+            COMMAND_CLASS.from_id(self._fields.command_classes[i])
+            for i in range(self._fields.command_class_list_len)
+        ]
 
-        for i in range(self.__command_class_list_len):
-            res.append(COMMAND_CLASS.from_id(self._data[i + offset]))
 
-        return res
+class _SmartStartNodeID8(NODE_ID_8_FRAME):
 
+    _fields_ = [
+        ('rx_status', uint8_t),
+        ('home_id', uint32_t),
+        ('command_class_list_len', uint8_t),
+        ('basic_type', uint8_t),
+        ('generic_type', uint8_t),
+        ('specific_type', uint8_t),
+        ('command_classes', uint8_t * 256)
+    ]
+
+
+class _SmartStartNodeID16(NODE_ID_16_FRAME):
+    _fields_ = [
+        ('rx_status', uint8_t),
+        ('home_id', uint32_t),
+        ('command_class_list_len', uint8_t),
+        ('basic_type', uint8_t),
+        ('generic_type', uint8_t),
+        ('specific_type', uint8_t),
+        ('command_classes', uint8_t * 256)
+    ]
+
+
+class _SmartStartFields(NODE_ID_FIELDS):
+    _fields_ = [
+        ('_node_id_8', _SmartStartNodeID8),
+        ('_node_id_16', _SmartStartNodeID16),
+    ]
 
 
 class ZwApplicationUpdateSmartStart(ZwApplicationUpdate):
-    min_bytes = 10
+    _anonymous_ = ('_anon_union',)
 
     rx_statuses = ZwApplicationUpdate.rx_statuses
 
     @property
     def rx_status(self) -> rx_statuses:
-        return self.rx_statuses(self._data[self._offset])
+        return self.rx_statuses(self._fields.rx_status)
 
     @property
     def nwi_home_id(self) -> int:
-        offset = self._offset + 1
-
-        return (
-            (self._data[offset] << 24) |
-            (self._data[offset + 1] << 16) |
-            (self._data[offset + 2] << 8) |
-            self._data[offset + 3]
-        )
-
-    @property
-    def __command_class_list_len(self) -> int:
-        return self._data[self._offset + 5]
+        return self._fields.home_id
 
     @property
     def basic_type(self) -> zw_types.BASIC_TYPE:
-        return zw_types.BASIC_TYPE(self._data[self._offset + 6])
+        return zw_types.BASIC_TYPE(self._fields.basic_type)
 
     @property
     def generic_type(self) -> zw_types.GENERIC_TYPE:
-        return zw_types.GENERIC_TYPE(self._data[self._offset + 7])
+        return zw_types.GENERIC_TYPE(self._fields.generic_type)
 
     @property
     def specific_type(self) -> zw_types.SPECIFIC_TYPES:
-        return self.generic_type(self._data[self._offset + 8])
+        return self.generic_type(self._fields.specific_type)
 
     @property
     def command_classes(self) -> list[COMMAND_CLASS]:
-        offset = self._offset + 9
-        res = []
-
-        for i in range(self.__command_class_list_len):
-            res.append(COMMAND_CLASS.from_id(self._data[i + offset]))
-
-        return res
+        return [
+            COMMAND_CLASS.from_id(self._fields.command_classes[i])
+            for i in range(self._fields.command_class_list_len)
+        ]
 
     def __init__(self, *data):
         super().__init__(*data)
@@ -129,30 +180,50 @@ class ZwApplicationUpdateSmartStart(ZwApplicationUpdate):
             raise ValueError
 
 
+class _IncludeNodeID8(NODE_ID_8_FRAME):
+
+    _fields_ = [
+        ('reserved', uint8_t),
+        ('rx_status', uint8_t),
+        ('home_id', uint32_t),
+    ]
+
+
+class _IncludeNodeID16(NODE_ID_16_FRAME):
+    _fields_ = [
+        ('reserved', uint8_t),
+        ('rx_status', uint8_t),
+        ('home_id', uint32_t),
+    ]
+
+
+class _IncludeFields(NODE_ID_FIELDS):
+    _fields_ = [
+        ('_node_id_8', _IncludeNodeID8),
+        ('_node_id_16', _IncludeNodeID16),
+    ]
+
+
 class ZwApplicationUpdateIncludeNode(ZwApplicationUpdate):
-    min_bytes = 10
+
+    _fields_ = [
+        ('_anon_union', _IncludeFields),
+    ]
+
+    _anonymous_ = ('_anon_union',)
 
     rx_statuses = ZwApplicationUpdate.rx_statuses
 
-    def __init__(self, *data):
-        super().__init__(*data)
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
 
         if self.event != self.events.IncludedNodeInfoReceived:
             raise ValueError
 
     @property
     def rx_status(self) -> rx_statuses:
-        return self.rx_statuses(self._data[self._offset + 1])
+        return self.rx_statuses(self._fields.rx_status)
 
     @property
     def nwi_home_id(self) -> int:
-        offset = self._offset + 2
-
-        return (
-            (self._data[offset] << 24) |
-            (self._data[offset + 1] << 16) |
-            (self._data[offset + 2] << 8) |
-            self._data[offset + 3]
-        )
-
-
+        return self._fields.home_id

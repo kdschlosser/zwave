@@ -11,6 +11,10 @@ class ZwSetLrVirtualIds(DATA_FRAME):
     nodes = set_lr_virtual_ids.command.node_ids
 
     @property
+    def packet_length(self):
+        return 0
+
+    @property
     def node_ids(self) -> nodes:
         return self.lr_shadow(self._node_ids)
 

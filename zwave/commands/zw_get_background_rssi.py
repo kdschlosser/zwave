@@ -6,6 +6,10 @@ class ZwGetBackgroundRssi(DATA_FRAME):
     id = 0x3B
     frame_type = FRAME_TYPE_REQUEST | FRAME_TYPE_ACK
 
+    @property
+    def packet_length(self):
+        return 0
+
 
 class ZwGetBackgroundRssiResponse(DATA_FRAME):
     id = 0x3B

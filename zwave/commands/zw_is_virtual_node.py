@@ -8,6 +8,10 @@ class ZwIsVirtualNode(DATA_FRAME):
     _fields_ = [('_node_id', uint8_t)]
 
     @property
+    def packet_length(self):
+        return 1
+
+    @property
     def node_id(self) -> int:
         return self._node_id
 

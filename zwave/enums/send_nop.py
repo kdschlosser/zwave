@@ -1,8 +1,10 @@
-from . import HOST_CLASS, RouteDataRate
+from . import HOST_CLASS, TXStatus, TXOption
 
 
 class command(HOST_CLASS):
-    pass
+
+    class tx_option(TXOption):
+        pass
 
 
 class response(HOST_CLASS):
@@ -10,5 +12,6 @@ class response(HOST_CLASS):
 
 
 class callback(HOST_CLASS):
-    class route_speed(RouteDataRate):
+
+    class tx_status(TXStatus):
         pass

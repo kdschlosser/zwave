@@ -19,6 +19,10 @@ class ZwRemoveNodeIdFromNetwork(DATA_FRAME):
     modes = remove_node_id_from_network.command.mode
 
     @property
+    def packet_length(self):
+        return 0
+
+    @property
     def power(self):
         return self._power
 

@@ -13,6 +13,10 @@ class ZwSendSlaveNodeInformation(DATA_FRAME):
     options = send_slave_node_information.command.option
 
     @property
+    def packet_length(self):
+        return 0
+
+    @property
     def src_node_id(self) -> int:
         if self._node_id_len == 1:
             return self._data[0]
