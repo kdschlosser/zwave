@@ -9,7 +9,9 @@ from .. import zw_types
 from .. import command_classes
 
 
-class SerialApiApplNodeInformation(DATA_FRAME):
+class FUNC_SERIAL_API_APPL_NODE_INFORMATION_CMD(DATA_FRAME):
+    """
+    """
     id = 0x03
     frame_type = FRAME_TYPE_REQUEST | FRAME_TYPE_ACK
 

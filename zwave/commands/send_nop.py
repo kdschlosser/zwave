@@ -1,3 +1,10 @@
+"""
+Z-Wave Host API Specification
+0.7.2
+2021.09.02
+
+"""
+
 from . import (
     DATA_FRAME,
     FRAME_TYPE_REQUEST,
@@ -29,18 +36,23 @@ class _NodeID16(NODE_ID_16_FRAME):
     ]
 
 
-class _SendNOPFields(NODE_ID_FIELDS):
+class _Fields(NODE_ID_FIELDS):
     _fields_ = [
         ('_node_id_8', _NodeID8),
         ('_node_id_16', _NodeID16),
     ]
 
 
-class SendNOP(DATA_FRAME):
+class FUNC_SEND_NOP_CMD(DATA_FRAME):
+    """
+    This command is used to send NOP Commands a destination to verify if it is responsive. This command
+    SHOULD NOT be used by a host application for NL Nodes outside their Wake Up period. Refer to the
+    "Z-Wave Alliance, ZWA_Z-Wave and Z-Wave Long Range Network Layer Specification_SPE" for details.
+    """
     id = 0xE9
     frame_type = FRAME_TYPE_REQUEST | FRAME_TYPE_ACK
 
-    _fields_ = [('_anon_union', _SendNOPFields)]
+    _fields_ = [('_anon_union', _Fields)]
 
     _anonymous_ = ('_anon_union',)
 
@@ -75,7 +87,7 @@ class SendNOP(DATA_FRAME):
         self._fields.session_id = value
 
 
-class SendNOPResponse(DATA_FRAME):
+class FUNC_SEND_NOP_RSP(DATA_FRAME):
     id = 0xE9
     frame_type = FRAME_TYPE_RESPONSE | FRAME_TYPE_ACK
 
@@ -86,7 +98,7 @@ class SendNOPResponse(DATA_FRAME):
         return self._response_status
 
 
-class SendNOPCallback(DATA_FRAME):
+class FUNC_SEND_NOP_CB(DATA_FRAME):
     id = 0xE9
     frame_type = FRAME_TYPE_CALLBACK | FRAME_TYPE_ACK
 

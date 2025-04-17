@@ -7,7 +7,10 @@ from . import (
 )
 
 
-class MemoryGetId(DATA_FRAME):
+class FUNC_ZW_MEMORY_GET_ID_CMD(DATA_FRAME):
+    """
+    Not in specification
+    """
     id = 0x20
     frame_type = FRAME_TYPE_REQUEST | FRAME_TYPE_ACK
 

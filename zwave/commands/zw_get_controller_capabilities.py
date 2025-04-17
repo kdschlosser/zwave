@@ -7,7 +7,9 @@ from . import (
 )
 
 
-class ZwGetControllerCapabilities(DATA_FRAME):
+class FUNC_ZW_GET_CONTROLLER_CAPABILITIES_CMD(DATA_FRAME):
+    """
+    """
     id = 0x05
     frame_type = FRAME_TYPE_REQUEST | FRAME_TYPE_ACK
 
@@ -16,7 +18,7 @@ class ZwGetControllerCapabilities(DATA_FRAME):
         return 0
 
 
-class ZwGetControllerCapabilitiesResponse(DATA_FRAME):
+class FUNC_ZW_GET_CONTROLLER_CAPABILITIES_RSP(DATA_FRAME):
     id = 0x05
     frame_type = FRAME_TYPE_RESPONSE | FRAME_TYPE_ACK
 

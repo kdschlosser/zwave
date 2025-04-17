@@ -1,3 +1,9 @@
+"""
+Serial API Host Appl. Prg. Guide
+INS12350
+2022-12-01
+"""
+
 from . import (
     DATA_FRAME,
     FRAME_TYPE_REQUEST,
@@ -8,7 +14,12 @@ from . import (
 from .. import command_classes
 
 
-class SerialApiApplNodeInformationCmdClasses(DATA_FRAME):
+class FUNC_SERIAL_API_APPL_NODE_INFORMATION_CMD_CLASSES_CMD(DATA_FRAME):
+    """
+    HOSTs connected to Serial API modules based on the End Device Routing or
+    End Device Enhanced 232 library can set the Command Classes which should be supported in NOT
+    Included, Insecurely Included, and Securely Included inclusion states.
+    """
     id = 0x0C
     frame_type = FRAME_TYPE_REQUEST | FRAME_TYPE_ACK
 
@@ -86,7 +97,7 @@ class SerialApiApplNodeInformationCmdClasses(DATA_FRAME):
         self._data[offset] = len(value)  # NOQA
 
 
-class SerialApiApplNodeInformationCmdClassesResponse(DATA_FRAME):
+class FUNC_SERIAL_API_APPL_NODE_INFORMATION_CMD_CLASSES_RSP(DATA_FRAME):
     id = 0x0C
 
     frame_type = FRAME_TYPE_RESPONSE | FRAME_TYPE_ACK

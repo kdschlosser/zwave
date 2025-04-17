@@ -10,19 +10,22 @@ from . import (
 )
 
 
-class _ZwGetNodeProtocolInfoFields(NODE_ID_FIELDS):
+class _Fields(NODE_ID_FIELDS):
     _fields_ = [
         ('_node_id_8', NODE_ID_8_FRAME),
         ('_node_id_16', NODE_ID_16_FRAME),
     ]
 
 
-class ZwGetNodeProtocolInfo(DATA_FRAME):
+class FUNC_ZW_GET_NODE_PROTOCOL_INFO_CMD(DATA_FRAME):
+    """
+    Get protocol info (baud rate, listening, etc.) for a given node
+    """
     id = 0x41
     frame_type = FRAME_TYPE_REQUEST | FRAME_TYPE_ACK
 
     _fields_ = [
-        ('_anon_union', _ZwGetNodeProtocolInfoFields),
+        ('_anon_union', _Fields),
     ]
 
     _anonymous_ = ('_anon_union',)
@@ -40,7 +43,7 @@ class ZwGetNodeProtocolInfo(DATA_FRAME):
         self._fields.node_id = value
 
 
-class ZwGetNodeProtocolInfoResponse(DATA_FRAME):
+class FUNC_ZW_GET_NODE_PROTOCOL_INFO_RSP(DATA_FRAME):
     id = 0x41
     frame_type = FRAME_TYPE_RESPONSE | FRAME_TYPE_ACK
 

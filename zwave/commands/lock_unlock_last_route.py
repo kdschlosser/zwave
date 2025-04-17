@@ -8,7 +8,10 @@ from . import (
 from ..enums import lock_unlock_last_route
 
 
-class LockUnlockLastRoute(DATA_FRAME):
+class FUNC_LOCK_ROUTE_RESPONSE_CMD(DATA_FRAME):
+    """
+    Lock or unlock all last working routes
+    """
     id = 0x90
     frame_type = FRAME_TYPE_REQUEST | FRAME_TYPE_ACK
 

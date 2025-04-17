@@ -7,7 +7,10 @@ from . import (
 )
 
 
-class ZwSetRoutingMax(DATA_FRAME):
+class FUNC_ZW_SET_ROUTING_MAX_CMD(DATA_FRAME):
+    """
+    Set the maximum number of source routing attempts
+    """
     id = 0xD4
     frame_type = FRAME_TYPE_REQUEST | FRAME_TYPE_ACK
 
@@ -26,7 +29,7 @@ class ZwSetRoutingMax(DATA_FRAME):
         self._max_retries = value  # NOQA
 
 
-class ZwSetRoutingMaxResponse(DATA_FRAME):
+class FUNC_ZW_SET_ROUTING_MAX_RSP(DATA_FRAME):
     id = 0xD4
     frame_type = FRAME_TYPE_RESPONSE | FRAME_TYPE_ACK
 

@@ -11,7 +11,10 @@ from . import (
 )
 
 
-class ZwSetPromiscuousMode(DATA_FRAME):
+class FUNC_ZW_SET_PROMISCUOUS_MODE_CMD(DATA_FRAME):
+    """
+    Set controller into promiscuous mode to listen to all messages
+    """
     id = 0xD0
     frame_type = FRAME_TYPE_REQUEST | FRAME_TYPE_ACK
     frame_type = FRAME_TYPE_RESPONSE | FRAME_TYPE_ACK

@@ -11,7 +11,9 @@ from . import (
 )
 
 
-class ProprietaryE(DATA_FRAME):
+class FUNC_PROPRIETARY_E_CMD(DATA_FRAME):
+    """
+    """
     id = 0xFE
     frame_type = FRAME_TYPE_REQUEST | FRAME_TYPE_ACK
     frame_type = FRAME_TYPE_RESPONSE | FRAME_TYPE_ACK

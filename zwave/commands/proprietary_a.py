@@ -11,7 +11,10 @@ from . import (
 )
 
 
-class ProprietaryA(DATA_FRAME):
+class FUNC_PROPRIETARY_A_CMD(DATA_FRAME):
+    """
+
+    """
     id = 0xFA
     frame_type = FRAME_TYPE_REQUEST | FRAME_TYPE_ACK
     frame_type = FRAME_TYPE_RESPONSE | FRAME_TYPE_ACK

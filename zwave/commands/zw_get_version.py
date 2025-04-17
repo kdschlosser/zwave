@@ -9,7 +9,9 @@ from . import (
 from ..enums import get_version
 
 
-class ZwGetVersion(DATA_FRAME):
+class FUNC_ZW_GET_VERSION_CMD(DATA_FRAME):
+    """
+    """
     id = 0x15
     frame_type = FRAME_TYPE_REQUEST | FRAME_TYPE_ACK
 
@@ -18,7 +20,7 @@ class ZwGetVersion(DATA_FRAME):
         return 0
 
 
-class ZwGetVersionResponse(DATA_FRAME):
+class FUNC_ZW_GET_VERSION_RSP(DATA_FRAME):
     id = 0x15
     frame_type = FRAME_TYPE_RESPONSE | FRAME_TYPE_ACK
 

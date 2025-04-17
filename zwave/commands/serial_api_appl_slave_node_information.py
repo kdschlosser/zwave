@@ -10,7 +10,10 @@ from .. import zw_types
 from ..command_classes import COMMAND_CLASS
 
 
-class SerialApiApplSlaveNodeInformation(DATA_FRAME):
+class FUNC_SERIAL_API_APPL_SLAVE_NODE_INFORMATION_CMD(DATA_FRAME):
+    """
+    Set node info of virtual nodes owned by the Z-Wave API module
+    """
     id = 0xA0
     frame_type = FRAME_TYPE_REQUEST | FRAME_TYPE_ACK
 

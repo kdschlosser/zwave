@@ -29,19 +29,22 @@ class _NodeID16(NODE_ID_16_FRAME):
     ]
 
 
-class _ZwSendDataFields(NODE_ID_FIELDS):
+class _Fields(NODE_ID_FIELDS):
     _fields_ = [
         ('_node_id_8', _NodeID8),
         ('_node_id_16', _NodeID16),
     ]
 
 
-class ZwSendData(DATA_FRAME):
+class FUNC_ZW_SEND_DATA_CMD(DATA_FRAME):
+    """
+    Send data
+    """
     id = 0x13
     frame_type = FRAME_TYPE_REQUEST | FRAME_TYPE_ACK
 
     _fields_ = [
-        ('_anon_union', _ZwSendDataFields),
+        ('_anon_union', _Fields),
     ]
 
     _anonymous_ = ('_anon_union',)
@@ -93,7 +96,7 @@ class ZwSendData(DATA_FRAME):
         self._fields.data[self._fields.data_len + 1] = value
 
 
-class ZwSendDataResponse(DATA_FRAME):
+class FUNC_ZW_SEND_DATA_RSP(DATA_FRAME):
     id = 0x13
     frame_type = FRAME_TYPE_RESPONSE | FRAME_TYPE_ACK
 

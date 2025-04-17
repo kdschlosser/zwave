@@ -12,6 +12,10 @@ from . import (
 
 
 class GetRadioPTI(DATA_FRAME):
+    """
+    Radio debugging data. similiar to using a Zniffer
+    """
+
     id = 0xE8
     frame_type = FRAME_TYPE_REQUEST | FRAME_TYPE_ACK
     frame_type = FRAME_TYPE_RESPONSE | FRAME_TYPE_ACK

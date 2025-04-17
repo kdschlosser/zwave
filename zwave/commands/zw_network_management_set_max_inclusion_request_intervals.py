@@ -1,3 +1,10 @@
+"""
+Z-Wave Host API Specification
+0.7.2
+2021.09.02
+"""
+
+
 from . import (
     DATA_FRAME,
     FRAME_TYPE_REQUEST,
@@ -8,6 +15,9 @@ from . import (
 
 
 class ZwNetworkManagementSetMaxInclusionRequestIntervals(DATA_FRAME):
+    """
+    Set the maximum interval between SmartStart inclusion requests
+    """
     id = 0xD6
     frame_type = FRAME_TYPE_REQUEST | FRAME_TYPE_ACK
 

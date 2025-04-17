@@ -1,3 +1,9 @@
+"""
+Serial API Host Appl. Prg. Guide
+INS12350
+2022-12-01
+"""
+
 from . import (
     DATA_FRAME,
     FRAME_TYPE_REQUEST,
@@ -7,7 +13,10 @@ from . import (
 )
 
 
-class SerialApiGetLRNodes(DATA_FRAME):
+class FUNC_SERIAL_API_GET_LR_NODES_CMD(DATA_FRAME):
+    """
+    Used after GetSerialApiInitData to get the nodes with IDs > 0xFF
+    """
     id = 0xDA
     frame_type = FRAME_TYPE_REQUEST | FRAME_TYPE_ACK
 
@@ -26,7 +35,7 @@ class SerialApiGetLRNodes(DATA_FRAME):
         self.offset = value
 
 
-class SerialApiGetLRNodesResponse(DATA_FRAME):
+class FUNC_SERIAL_API_GET_LR_NODES_RSP(DATA_FRAME):
     id = 0xDA
     frame_type = FRAME_TYPE_RESPONSE | FRAME_TYPE_ACK
 
@@ -65,7 +74,7 @@ class SerialApiGetLRNodesResponse(DATA_FRAME):
 
         if offset == 0:
             while more_nodes:
-                request = SerialApiGetLRNodes(self._serial)
+                request = FUNC_SERIAL_API_GET_LR_NODES_CMD(self._serial)
                 request.offset = offset + 1
                 response = request.send_wait()
 

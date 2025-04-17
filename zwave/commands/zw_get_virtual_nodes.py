@@ -7,7 +7,10 @@ from . import (
 )
 
 
-class ZwGetVirtualNodes(DATA_FRAME):
+class FUNC_ZW_GET_VIRTUAL_NODES_CMD(DATA_FRAME):
+    """
+    Return all virtual nodes
+    """
     id = 0xA5
     frame_type = FRAME_TYPE_REQUEST | FRAME_TYPE_ACK
 
@@ -16,7 +19,7 @@ class ZwGetVirtualNodes(DATA_FRAME):
         return 0
 
 
-class ZwGetVirtualNodesResponse(DATA_FRAME):
+class FUNC_ZW_GET_VIRTUAL_NODES_RSP(DATA_FRAME):
     # TODO: docs don't make any sense
 
     id = 0xA5

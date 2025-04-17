@@ -12,7 +12,10 @@ from ..command_classes import COMMAND_CLASS
 from .. import zw_types
 
 
-class ZwAddNodeToNetwork(DATA_FRAME):
+class FUNC_ZW_ADD_NODE_TO_NETWORK_CMD(DATA_FRAME):
+    """
+    Control the addnode (or addcontroller) process...start, stop, etc.
+    """
     id = 0x4A
     frame_type = FRAME_TYPE_REQUEST | FRAME_TYPE_ACK
 
@@ -105,7 +108,7 @@ class ZwAddNodeToNetwork(DATA_FRAME):
         self._auth_home_id_4 = value & 0xFF  # NOQA
 
 
-class ZwAddNodeToNetworkCallback(DATA_FRAME):
+class FUNC_ZW_ADD_NODE_TO_NETWORK_CB(DATA_FRAME):
     id = 0x4A
     frame_type = FRAME_TYPE_CALLBACK | FRAME_TYPE_ACK
 

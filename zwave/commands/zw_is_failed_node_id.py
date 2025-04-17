@@ -10,19 +10,22 @@ from . import (
 )
 
 
-class _ZwIsFailedNodeIdFields(NODE_ID_FIELDS):
+class _Fields(NODE_ID_FIELDS):
     _fields_ = [
         ('_node_id_8', NODE_ID_8_FRAME),
         ('_node_id_16', NODE_ID_16_FRAME),
     ]
 
 
-class ZwIsFailedNodeId(DATA_FRAME):
+class FUNC_ZW_IS_FAILED_NODE_ID_CMD(DATA_FRAME):
+    """
+    Check to see if a specified node has failed
+    """
     id = 0x62
     frame_type = FRAME_TYPE_REQUEST | FRAME_TYPE_ACK
 
     _fields_ = [
-        ('_anon_union', _ZwIsFailedNodeIdFields),
+        ('_anon_union', _Fields),
     ]
 
     _anonymous_ = ('_anon_union',)
@@ -40,7 +43,7 @@ class ZwIsFailedNodeId(DATA_FRAME):
         self._fields.node_id = value
 
 
-class ZwIsFailedNodeIdResponse(DATA_FRAME):
+class FUNC_ZW_IS_FAILED_NODE_ID_RSP(DATA_FRAME):
     id = 0x62
     frame_type = FRAME_TYPE_RESPONSE | FRAME_TYPE_ACK
 

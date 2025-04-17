@@ -7,7 +7,10 @@ from . import (
 )
 
 
-class ZwExploreRequestInclusion(DATA_FRAME):
+class FUNC_ZW_EXPLORE_REQUEST_INCLUSION_CMD(DATA_FRAME):
+    """
+    Initiate network wide inclusion while in learn mode
+    """
     id = 0x5E
     frame_type = FRAME_TYPE_REQUEST | FRAME_TYPE_ACK
 
@@ -16,7 +19,7 @@ class ZwExploreRequestInclusion(DATA_FRAME):
         return 0
 
 
-class ZwExploreRequestInclusionResponse(DATA_FRAME):
+class FUNC_ZW_EXPLORE_REQUEST_INCLUSION_RSP(DATA_FRAME):
     id = 0x5E
     frame_type = FRAME_TYPE_RESPONSE | FRAME_TYPE_ACK
 

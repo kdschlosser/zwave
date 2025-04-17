@@ -11,7 +11,10 @@ from ..command_classes import COMMAND_CLASS
 from .. import zw_types
 
 
-class ZwCreateNewPrimary(DATA_FRAME):
+class FUNC_ZW_CREATE_NEW_PRIMARY_CMD(DATA_FRAME):
+    """
+    Include a controller node and assign it the primary controller role. ONLY use from a secondary controller that is SUC.
+    """
     id = 0x4C
     frame_type = FRAME_TYPE_REQUEST | FRAME_TYPE_ACK
 
@@ -70,7 +73,7 @@ class ZwCreateNewPrimary(DATA_FRAME):
         self._session_id = value  # NOQA
 
 
-class ZwCreateNewPrimaryCallback(DATA_FRAME):
+class FUNC_ZW_CREATE_NEW_PRIMARY_CB(DATA_FRAME):
     id = 0x4C
     frame_type = FRAME_TYPE_CALLBACK | FRAME_TYPE_ACK
 

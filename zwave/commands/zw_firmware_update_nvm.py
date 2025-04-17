@@ -10,7 +10,11 @@ from . import (
     uint8_t
 )
 
+
 class ZwFirmwareUpdateNvm(DATA_FRAME):
+    """
+    Access the NVM section for 500 series OTW firmware updates
+    """
     id = 0x78
     frame_type = FRAME_TYPE_REQUEST | FRAME_TYPE_ACK
     frame_type = FRAME_TYPE_RESPONSE | FRAME_TYPE_ACK

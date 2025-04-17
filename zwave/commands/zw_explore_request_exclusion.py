@@ -8,6 +8,9 @@ from . import (
 
 
 class ZwExploreRequestExclusion(DATA_FRAME):
+    """
+    Initiate network wide exclusion while in learn mode
+    """
     id = 0x5F
     frame_type = FRAME_TYPE_REQUEST | FRAME_TYPE_ACK
 

@@ -9,6 +9,7 @@ from . import (
     uint16_t
 )
 
+
 from ..enums import application_command_handler_bridge
 from .. import _utils
 
@@ -23,28 +24,32 @@ class _NodeID8(NODE_ID_8_FRAME):
 
 
 class _NodeID16(NODE_ID_16_FRAME):
+
     _fields_ = [
         ('dst_node_id', uint16_t),
         ('payload_len', uint8_t),
         ('data', uint8_t * 256)
-
     ]
 
 
-class _ApplicationCommandHandlerBridgeFields(NODE_ID_FIELDS):
+class _Fields(NODE_ID_FIELDS):
+
     _fields_ = [
         ('_node_id_8', _NodeID8),
         ('_node_id_16', _NodeID16)
     ]
 
 
-class ApplicationCommandHandlerBridge(DATA_FRAME):
+class FUNC_APPLICATION_COMMAND_HANDLER_BRIDGE_CMD(DATA_FRAME):
+    """
+    A message from another node using the Bridge API
+    """
     id = 0xA8
     frame_type = FRAME_TYPE_UNSOLICITED | FRAME_TYPE_ACK
 
     _fields_ = [
         ('_rx_status', uint8_t),
-        ('_anon_union', _ApplicationCommandHandlerBridgeFields)
+        ('_anon_union', _Fields)
     ]
 
     _anonymous_ = ('_anon_union',)

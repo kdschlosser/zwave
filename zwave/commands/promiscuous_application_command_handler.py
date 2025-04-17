@@ -11,7 +11,12 @@ from . import (
 )
 
 
-class PromiscuousApplicationCommandHandler(DATA_FRAME):
+class FUNC_PROMISCUOUS_APPLICATION_COMMAND_HANDLER_CMD(DATA_FRAME):
+    """
+    deprecated, replaced with a flag for the ApplicationCommandHandler
+
+    Not in specification
+    """
     id = 0xD1
     frame_type = FRAME_TYPE_REQUEST | FRAME_TYPE_ACK
     frame_type = FRAME_TYPE_RESPONSE | FRAME_TYPE_ACK

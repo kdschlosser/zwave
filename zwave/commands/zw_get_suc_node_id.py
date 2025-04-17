@@ -9,7 +9,10 @@ from . import (
 )
 
 
-class ZwGetSucNodeId(DATA_FRAME):
+class FUNC_ZW_GET_SUC_NODE_ID_CMD(DATA_FRAME):
+    """
+    Try to retrieve a Static Update Controller node id (zero if no SUC present)
+    """
     id = 0x56
     frame_type = FRAME_TYPE_REQUEST | FRAME_TYPE_ACK
 
@@ -18,19 +21,19 @@ class ZwGetSucNodeId(DATA_FRAME):
         return 0
 
 
-class _ZwGetSucNodeIdResponseFields(NODE_ID_FIELDS):
+class _Fields(NODE_ID_FIELDS):
     _fields_ = [
         ('_node_id_8', NODE_ID_8_FRAME),
         ('_node_id_16', NODE_ID_16_FRAME),
     ]
 
 
-class ZwGetSucNodeIdResponse(DATA_FRAME):
+class FUNC_ZW_GET_SUC_NODE_ID_RSP(DATA_FRAME):
     id = 0x56
     frame_type = FRAME_TYPE_RESPONSE | FRAME_TYPE_ACK
 
     _fields_ = [
-        ('_anon_union', _ZwGetSucNodeIdResponseFields),
+        ('_anon_union', _Fields),
     ]
 
     _anonymous_ = ('_anon_union',)

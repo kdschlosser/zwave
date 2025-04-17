@@ -6,6 +6,9 @@ from . import (
 
 
 class ClearTXTimers(DATA_FRAME):
+    """
+    Reset the Z-Wave module's internal TX timers
+    """
     id = 0x37
     frame_type = FRAME_TYPE_REQUEST | FRAME_TYPE_ACK
 

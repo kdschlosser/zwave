@@ -13,7 +13,10 @@ from . import (
 from ..enums import set_learn_mode
 
 
-class ZwSetLearnMode(DATA_FRAME):
+class FUNC_ZW_SET_LEARN_MODE_CMD(DATA_FRAME):
+    """
+    Put a controller into learn mode for replication/ receipt of configuration info
+    """
     id = 0x50
     frame_type = FRAME_TYPE_REQUEST | FRAME_TYPE_ACK
 
@@ -45,7 +48,7 @@ class ZwSetLearnMode(DATA_FRAME):
         self._session_id = value  # NOQA
 
 
-class ZwSetLearnModeResponse(DATA_FRAME):
+class FUNC_ZW_SET_LEARN_MODE_RSP(DATA_FRAME):
     id = 0x50
     frame_type = FRAME_TYPE_RESPONSE | FRAME_TYPE_ACK
 
@@ -56,21 +59,21 @@ class ZwSetLearnModeResponse(DATA_FRAME):
         return self._response_status
 
 
-class _ZwSetLearnModeCallbackFields(NODE_ID_FIELDS):
+class _Fields(NODE_ID_FIELDS):
     _fields_ = [
         ('_node_id_8', NODE_ID_8_FRAME),
         ('_node_id_16', NODE_ID_16_FRAME),
     ]
 
 
-class ZwSetLearnModeCallback(DATA_FRAME):
+class FUNC_ZW_SET_LEARN_MODE_CB(DATA_FRAME):
     id = 0x50
     frame_type = FRAME_TYPE_CALLBACK | FRAME_TYPE_ACK
 
     _fields_ = [
         ('_session_id', uint8_t),
         ('_learn_mode_status', uint8_t),
-        ('_anon_union', _ZwSetLearnModeCallbackFields),
+        ('_anon_union', _Fields),
     ]
 
     _anonymous_ = ('_anon_union',)

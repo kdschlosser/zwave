@@ -3,10 +3,14 @@ from . import (
     FRAME_TYPE_REQUEST,
     FRAME_TYPE_RESPONSE,
     FRAME_TYPE_ACK,
+    uint16_t
 )
 
 
 class ZwGetNetworkStats(DATA_FRAME):
+    """
+    Request the current Network Statistics from the Z-Wave API Module
+    """
     id = 0x3A
     frame_type = FRAME_TYPE_REQUEST | FRAME_TYPE_ACK
 

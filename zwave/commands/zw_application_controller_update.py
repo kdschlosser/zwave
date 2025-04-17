@@ -11,7 +11,10 @@ from . import (
 )
 
 
-class ZwApplicationControllerUpdate(DATA_FRAME):
+class FUNC_ZW_APPLICATION_CONTROLLER_UPDATE_CMD(DATA_FRAME):
+    """
+    ???
+    """
     id = 0x49
     frame_type = FRAME_TYPE_REQUEST | FRAME_TYPE_ACK
     frame_type = FRAME_TYPE_RESPONSE | FRAME_TYPE_ACK

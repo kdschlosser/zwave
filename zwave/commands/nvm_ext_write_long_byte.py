@@ -12,6 +12,9 @@ from . import (
 
 
 class NVMExtWriteLongByte(DATA_FRAME):
+    """
+    Writes a byte to the external NVM
+    """
     id = 0x2D
     frame_type = FRAME_TYPE_REQUEST | FRAME_TYPE_ACK
     frame_type = FRAME_TYPE_RESPONSE | FRAME_TYPE_ACK

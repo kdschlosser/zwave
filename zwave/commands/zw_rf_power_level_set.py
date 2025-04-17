@@ -7,7 +7,10 @@ from . import (
 )
 
 
-class ZwRfPowerLevelSet(DATA_FRAME):
+class FUNC_ZW_R_F_POWER_LEVEL_SET_CMD(DATA_FRAME):
+    """
+    Set RF Power level
+    """
     # TODO: Values for power level enum
 
     id = 0x17
@@ -28,7 +31,7 @@ class ZwRfPowerLevelSet(DATA_FRAME):
         self._power_level = value  # NOQA
 
 
-class ZwRfPowerLevelSetResponse(DATA_FRAME):
+class FUNC_ZW_R_F_POWER_LEVEL_SET_RSP(DATA_FRAME):
     id = 0x17
     frame_type = FRAME_TYPE_RESPONSE | FRAME_TYPE_ACK
 

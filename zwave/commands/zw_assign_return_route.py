@@ -29,19 +29,22 @@ class _NodeID16(NODE_ID_16_FRAME):
     ]
 
 
-class _ZwAssignReturnRouteFields(NODE_ID_FIELDS):
+class _Fields(NODE_ID_FIELDS):
     _fields_ = [
         ('_node_id_8', _NodeID8),
         ('_node_id_16', _NodeID16),
     ]
 
 
-class ZwAssignReturnRoute(DATA_FRAME):
+class FUNC_ZW_ASSIGN_RETURN_ROUTE_CMD(DATA_FRAME):
+    """
+    Assign a return route from the source node to the destination node
+    """
     id = 0x46
     frame_type = FRAME_TYPE_REQUEST | FRAME_TYPE_ACK
 
     _fields_ = [
-        ('_anon_union', _ZwAssignReturnRouteFields),
+        ('_anon_union', _Fields),
     ]
 
     _anonymous_ = ('_anon_union',)
@@ -75,7 +78,7 @@ class ZwAssignReturnRoute(DATA_FRAME):
         self._fields.session_id = value
 
 
-class ZwAssignReturnRouteResponse(DATA_FRAME):
+class FUNC_ZW_ASSIGN_RETURN_ROUTE_RSP(DATA_FRAME):
     id = 0x46
     frame_type = FRAME_TYPE_RESPONSE | FRAME_TYPE_ACK
 
@@ -88,7 +91,7 @@ class ZwAssignReturnRouteResponse(DATA_FRAME):
         return self._status
 
 
-class ZwAssignReturnRouteCallback(DATA_FRAME):
+class FUNC_ZW_ASSIGN_RETURN_ROUTE_CB(DATA_FRAME):
     id = 0x46
     frame_type = FRAME_TYPE_CALLBACK | FRAME_TYPE_ACK
 

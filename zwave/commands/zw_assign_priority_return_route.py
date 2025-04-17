@@ -34,7 +34,7 @@ class _NodeID16(NODE_ID_16_FRAME):
     ]
 
 
-class _ZwAssignPriorityReturnRouteFields(NODE_ID_FIELDS):
+class _Fields(NODE_ID_FIELDS):
     _fields_ = [
         ('_node_id_8', _NodeID8),
         ('_node_id_16', _NodeID16),
@@ -42,11 +42,14 @@ class _ZwAssignPriorityReturnRouteFields(NODE_ID_FIELDS):
 
 
 class ZwAssignPriorityReturnRoute(DATA_FRAME):
+    """
+    Assign a priority route between two nodes
+    """
     id = 0x4F
     frame_type = FRAME_TYPE_REQUEST | FRAME_TYPE_ACK
 
     _fields_ = [
-        ('_anon_union', _ZwAssignPriorityReturnRouteFields),
+        ('_anon_union', _Fields),
     ]
 
     _anonymous_ = ('_anon_union',)

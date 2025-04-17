@@ -7,7 +7,10 @@ from . import (
 )
 
 
-class ZwIsVirtualNode(DATA_FRAME):
+class FUNC_ZW_IS_VIRTUAL_NODE_CMD(DATA_FRAME):
+    """
+    Test if a given node ID is a virtual node
+    """
     id = 0xA6
     frame_type = FRAME_TYPE_REQUEST | FRAME_TYPE_ACK
 
@@ -26,7 +29,7 @@ class ZwIsVirtualNode(DATA_FRAME):
         self._node_id = value  # NOQA
 
 
-class ZwIsVirtualNodeResponse(DATA_FRAME):
+class FUNC_ZW_IS_VIRTUAL_NODE_RSP(DATA_FRAME):
     id = 0xA6
     frame_type = FRAME_TYPE_RESPONSE | FRAME_TYPE_ACK
 

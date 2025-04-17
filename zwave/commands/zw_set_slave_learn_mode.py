@@ -10,7 +10,10 @@ from . import (
 from ..enums import set_slave_learn_mode
 
 
-class ZwSetSlaveLearnMode(DATA_FRAME):
+class FUNC_ZW_SET_SLAVE_LEARN_MODE_CMD(DATA_FRAME):
+    """
+    Put a virtual node into learn mode
+    """
     id = 0xA4
     frame_type = FRAME_TYPE_REQUEST | FRAME_TYPE_ACK
 
@@ -51,7 +54,7 @@ class ZwSetSlaveLearnMode(DATA_FRAME):
         self._session_id = value  # NOQA
 
 
-class ZwSetSlaveLearnModeResponse(DATA_FRAME):
+class FUNC_ZW_SET_SLAVE_LEARN_MODE_RSP(DATA_FRAME):
     id = 0xA4
     frame_type = FRAME_TYPE_RESPONSE | FRAME_TYPE_ACK
 
@@ -64,7 +67,7 @@ class ZwSetSlaveLearnModeResponse(DATA_FRAME):
         return self._response_status
 
 
-class ZwSetSlaveLearnModeCallback(DATA_FRAME):
+class FUNC_ZW_SET_SLAVE_LEARN_MODE_CB(DATA_FRAME):
     id = 0xA4
     frame_type = FRAME_TYPE_CALLBACK | FRAME_TYPE_ACK
 

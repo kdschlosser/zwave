@@ -26,19 +26,22 @@ class _NodeID16(NODE_ID_16_FRAME):
     ]
 
 
-class _ZwDeleteSucReturnRouteFields(NODE_ID_FIELDS):
+class _Fields(NODE_ID_FIELDS):
     _fields_ = [
         ('_node_id_8', _NodeID8),
         ('_node_id_16', _NodeID16),
     ]
 
 
-class ZwDeleteSucReturnRoute(DATA_FRAME):
+class FUNC_ZW_DELETE_SUC_RETURN_ROUTE_CMD(DATA_FRAME):
+    """
+    Remove return routes to the SUC
+    """
     id = 0x55
     frame_type = FRAME_TYPE_REQUEST | FRAME_TYPE_ACK
 
     _fields_ = [
-        ('_anon_union', _ZwDeleteSucReturnRouteFields),
+        ('_anon_union', _Fields),
     ]
 
     _anonymous_ = ('_anon_union',)
@@ -64,7 +67,7 @@ class ZwDeleteSucReturnRoute(DATA_FRAME):
         self._fields.session_id = value
 
 
-class ZwDeleteSucReturnRouteResponse(DATA_FRAME):
+class FUNC_ZW_DELETE_SUC_RETURN_ROUTE_RSP(DATA_FRAME):
     id = 0x55
     frame_type = FRAME_TYPE_RESPONSE | FRAME_TYPE_ACK
 
@@ -77,7 +80,7 @@ class ZwDeleteSucReturnRouteResponse(DATA_FRAME):
         return self._status
 
 
-class ZwDeleteSucReturnRouteCallback(DATA_FRAME):
+class FUNC_ZW_DELETE_SUC_RETURN_ROUTE_CB(DATA_FRAME):
     id = 0x55
     frame_type = FRAME_TYPE_CALLBACK | FRAME_TYPE_ACK
 

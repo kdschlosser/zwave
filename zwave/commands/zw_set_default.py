@@ -7,7 +7,10 @@ from . import (
 )
 
 
-class ZwSetDefault(DATA_FRAME):
+class FUNC_ZW_SET_DEFAULT_CMD(DATA_FRAME):
+    """
+    Reset controller and node info to default (original) values
+    """
     id = 0x42
     frame_type = FRAME_TYPE_REQUEST | FRAME_TYPE_ACK
 
@@ -26,7 +29,7 @@ class ZwSetDefault(DATA_FRAME):
         self._session_id = value  # NOQA
 
 
-class ZwSetDefaultCallback(DATA_FRAME):
+class FUNC_ZW_SET_DEFAULT_CB(DATA_FRAME):
     id = 0x42
     frame_type = FRAME_TYPE_CALLBACK | FRAME_TYPE_ACK
 

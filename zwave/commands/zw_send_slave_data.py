@@ -11,7 +11,12 @@ from . import (
 )
 
 
-class ZwSendSlaveData(DATA_FRAME):
+class FUNC_ZW_SEND_SLAVE_DATA_CMD(DATA_FRAME):
+    """
+    Send data from slave
+
+    Not in specification
+    """
     id = 0xA3
     frame_type = FRAME_TYPE_REQUEST | FRAME_TYPE_ACK
     frame_type = FRAME_TYPE_RESPONSE | FRAME_TYPE_ACK

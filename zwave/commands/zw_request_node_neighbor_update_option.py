@@ -11,7 +11,12 @@ from . import (
 )
 
 
-class ZwRequestNodeNeighborUpdateOption(DATA_FRAME):
+class FUNC_ZW_REQUEST_NODE_NEIGHBOR_UPDATE_OPTIONS_CMD(DATA_FRAME):
+    """
+    Allow options for request node neighbor update
+
+    Not in specification
+    """
     id = 0x5A
     frame_type = FRAME_TYPE_REQUEST | FRAME_TYPE_ACK
     frame_type = FRAME_TYPE_RESPONSE | FRAME_TYPE_ACK

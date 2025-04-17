@@ -12,6 +12,9 @@ from . import (
 
 
 class ZwRequestNodetypeNeighborUpdate(DATA_FRAME):
+    """
+    Used by the Z-Wave API module to request encryption of a Z-Wave protocol frame
+    """
     id = 0x68
     frame_type = FRAME_TYPE_REQUEST | FRAME_TYPE_ACK
     frame_type = FRAME_TYPE_RESPONSE | FRAME_TYPE_ACK

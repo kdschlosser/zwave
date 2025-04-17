@@ -11,6 +11,9 @@ from .. import _utils
 
 
 class ZwSetListenBeforeTalkThreshold(DATA_FRAME):
+    """
+    Set the RSSI threshold above which the stick will not transmit
+    """
     id = 0x3C
     frame_type = FRAME_TYPE_REQUEST | FRAME_TYPE_ACK
 

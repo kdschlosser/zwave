@@ -10,7 +10,12 @@ from . import (
     uint8_t
 )
 
-class ZwGetRandom(DATA_FRAME):
+
+class FUNC_ZW_GET_RANDOM_CMD(DATA_FRAME):
+    """
+    Not in specification
+    Returns random data of variable length
+    """
     id = 0x1C
     frame_type = FRAME_TYPE_REQUEST | FRAME_TYPE_ACK
     frame_type = FRAME_TYPE_RESPONSE | FRAME_TYPE_ACK

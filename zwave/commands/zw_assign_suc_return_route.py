@@ -26,19 +26,22 @@ class _NodeID16(NODE_ID_16_FRAME):
     ]
 
 
-class _ZwAssignSucReturnRouteFields(NODE_ID_FIELDS):
+class _Fields(NODE_ID_FIELDS):
     _fields_ = [
         ('_node_id_8', _NodeID8),
         ('_node_id_16', _NodeID16),
     ]
 
 
-class ZwAssignSucReturnRoute(DATA_FRAME):
+class FUNC_ZW_ASSIGN_SUC_RETURN_ROUTE_CMD(DATA_FRAME):
+    """
+    Assign a return route to the SUC
+    """
     id = 0x51
     frame_type = FRAME_TYPE_REQUEST | FRAME_TYPE_ACK
 
     _fields_ = [
-        ('_anon_union', _ZwAssignSucReturnRouteFields),
+        ('_anon_union', _Fields),
     ]
 
     _anonymous_ = ('_anon_union',)
@@ -64,7 +67,7 @@ class ZwAssignSucReturnRoute(DATA_FRAME):
         self._fields.session_id = value
 
 
-class ZwAssignSucReturnRouteResponse(DATA_FRAME):
+class FUNC_ZW_ASSIGN_SUC_RETURN_ROUTE_RSP(DATA_FRAME):
     id = 0x51
     frame_type = FRAME_TYPE_RESPONSE | FRAME_TYPE_ACK
 
@@ -77,7 +80,7 @@ class ZwAssignSucReturnRouteResponse(DATA_FRAME):
         return self._status
 
 
-class ZwAssignSucReturnRouteCallback(DATA_FRAME):
+class FUNC_ZW_ASSIGN_SUC_RETURN_ROUTE_CB(DATA_FRAME):
     id = 0x51
     frame_type = FRAME_TYPE_CALLBACK | FRAME_TYPE_ACK
 

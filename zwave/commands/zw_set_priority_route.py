@@ -27,7 +27,7 @@ class _NodeID16(NODE_ID_16_FRAME):
     ]
 
 
-class _ZwSetPriorityRouteFields(NODE_ID_FIELDS):
+class _Fields(NODE_ID_FIELDS):
     _fields_ = [
         ('_node_id_8', _NodeID8),
         ('_node_id_16', _NodeID16),
@@ -35,11 +35,14 @@ class _ZwSetPriorityRouteFields(NODE_ID_FIELDS):
 
 
 class ZwSetPriorityRoute(DATA_FRAME):
+    """
+    ???
+    """
     id = 0x93
     frame_type = FRAME_TYPE_REQUEST | FRAME_TYPE_ACK
 
     _fields_ = [
-        ('_anon_union', _ZwSetPriorityRouteFields),
+        ('_anon_union', _Fields),
     ]
 
     _anonymous_ = ('_anon_union',)

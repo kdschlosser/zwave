@@ -15,7 +15,10 @@ from .. import zw_types
 
 
 # this command is a bit tricky because it can be formatted 3 different ways.
-class ZwApplicationUpdate(DATA_FRAME):
+class FUNC_ZW_APPLICATION_UPDATE_CMD(DATA_FRAME):
+    """
+    Get a list of supported (and controller) command classes
+    """
     id = 0x49
     frame_type = FRAME_TYPE_UNSOLICITED | FRAME_TYPE_ACK
     min_bytes = 256
@@ -68,18 +71,18 @@ class _GenericNodeID16(NODE_ID_16_FRAME):
     ]
 
 
-class _GenericFields(NODE_ID_FIELDS):
+class _Fields(NODE_ID_FIELDS):
     _fields_ = [
         ('_node_id_8', _GenericNodeID8),
         ('_node_id_16', _GenericNodeID16),
     ]
 
 
-class ZwApplicationUpdateGeneric(ZwApplicationUpdate):
+class ZwApplicationUpdateGeneric(FUNC_ZW_APPLICATION_UPDATE_CMD):
     min_bytes = 10
 
     _fields_ = [
-        ('_anon_union', _GenericFields),
+        ('_anon_union', _Fields),
     ]
 
     _anonymous_ = ('_anon_union',)
@@ -129,17 +132,19 @@ class _SmartStartNodeID16(NODE_ID_16_FRAME):
     ]
 
 
-class _SmartStartFields(NODE_ID_FIELDS):
+class _Fields2(NODE_ID_FIELDS):
     _fields_ = [
         ('_node_id_8', _SmartStartNodeID8),
         ('_node_id_16', _SmartStartNodeID16),
     ]
 
 
-class ZwApplicationUpdateSmartStart(ZwApplicationUpdate):
+class ZwApplicationUpdateSmartStart(FUNC_ZW_APPLICATION_UPDATE_CMD):
+
+    _fields_ = [('_anon_union', _Fields2)]
     _anonymous_ = ('_anon_union',)
 
-    rx_statuses = ZwApplicationUpdate.rx_statuses
+    rx_statuses = FUNC_ZW_APPLICATION_UPDATE_CMD.rx_statuses
 
     @property
     def rx_status(self) -> rx_statuses:
@@ -195,22 +200,19 @@ class _IncludeNodeID16(NODE_ID_16_FRAME):
     ]
 
 
-class _IncludeFields(NODE_ID_FIELDS):
+class _Fields3(NODE_ID_FIELDS):
     _fields_ = [
         ('_node_id_8', _IncludeNodeID8),
         ('_node_id_16', _IncludeNodeID16),
     ]
 
 
-class ZwApplicationUpdateIncludeNode(ZwApplicationUpdate):
+class ZwApplicationUpdateIncludeNode(FUNC_ZW_APPLICATION_UPDATE_CMD):
 
-    _fields_ = [
-        ('_anon_union', _IncludeFields),
-    ]
-
+    _fields_ = [('_anon_union', _Fields3),]
     _anonymous_ = ('_anon_union',)
 
-    rx_statuses = ZwApplicationUpdate.rx_statuses
+    rx_statuses = FUNC_ZW_APPLICATION_UPDATE_CMD.rx_statuses
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

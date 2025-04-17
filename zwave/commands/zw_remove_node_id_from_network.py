@@ -15,6 +15,9 @@ from .. import zw_types
 
 
 class ZwRemoveNodeIdFromNetwork(DATA_FRAME):
+    """
+    Trigger removal of a specific node that desires exclusion from the network
+    """
     id = 0x3F
     frame_type = FRAME_TYPE_REQUEST | FRAME_TYPE_ACK
 
@@ -94,7 +97,7 @@ class _NodeID16(NODE_ID_16_FRAME):
     ]
 
 
-class _ZwRemoveNodeIdFromNetworkCallbackFields(NODE_ID_FIELDS):
+class _Fields(NODE_ID_FIELDS):
     _fields_ = [
         ('_node_id_8', _NodeID8),
         ('_node_id_16', _NodeID16),
@@ -108,7 +111,7 @@ class ZwRemoveNodeIdFromNetworkCallback(DATA_FRAME):
     _fields_ = [
         ('_session_id', uint8_t),
         ('_status', uint8_t),
-        ('_anon_union', _ZwRemoveNodeIdFromNetworkCallbackFields),
+        ('_anon_union', _Fields),
     ]
 
     _anonymous_ = ('_anon_union',)

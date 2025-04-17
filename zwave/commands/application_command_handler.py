@@ -27,20 +27,20 @@ class _NodeID16(NODE_ID_16_FRAME):
     ]
 
 
-class _ApplicationCommandHandlerFields(NODE_ID_FIELDS):
+class _Fields(NODE_ID_FIELDS):
     _fields_ = [
         ('_node_id_8', _NodeID8),
         ('_node_id_16', _NodeID16),
     ]
 
 
-class ApplicationCommandHandler(DATA_FRAME):
+class FUNC_APPLICATION_COMMAND_HANDLER_CMD(DATA_FRAME):
     id = 0x04
     frame_type = FRAME_TYPE_UNSOLICITED | FRAME_TYPE_ACK
 
     _fields_ = [
         ('_rx_status', uint8_t),
-        ('_anon_union', _ApplicationCommandHandlerFields)
+        ('_anon_union', _Fields)
     ]
 
     _anonymous_ = ('_anon_union',)

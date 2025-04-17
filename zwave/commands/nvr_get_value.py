@@ -12,6 +12,9 @@ from . import (
 
 
 class NVRGetValue(DATA_FRAME):
+    """
+    ZW_NVRGetValue(offset, length) => NVRdata[], see INS13954-13
+    """
     id = 0x28
     frame_type = FRAME_TYPE_REQUEST | FRAME_TYPE_ACK
     frame_type = FRAME_TYPE_RESPONSE | FRAME_TYPE_ACK

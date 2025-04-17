@@ -11,6 +11,9 @@ from ..enums import request_new_route_destinations
 
 
 class ZwRequestNewRouteDestinations(DATA_FRAME):
+    """
+    ???
+    """
     id = 0x5C
     frame_type = FRAME_TYPE_REQUEST | FRAME_TYPE_ACK
 

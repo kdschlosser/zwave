@@ -11,7 +11,10 @@ from . import (
 )
 
 
-class ZwNewController(DATA_FRAME):
+class FUNC_ZW_NEW_CONTROLLER_CMD(DATA_FRAME):
+    """
+    Not in specification
+    """
     id = 0x43
     frame_type = FRAME_TYPE_REQUEST | FRAME_TYPE_ACK
     frame_type = FRAME_TYPE_RESPONSE | FRAME_TYPE_ACK

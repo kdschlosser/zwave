@@ -7,7 +7,9 @@ from . import (
 )
 
 
-class SerialApiGetInitData(DATA_FRAME):
+class FUNC_SERIAL_API_GET_INIT_DATA_CMD(DATA_FRAME):
+    """
+    """
     id = 0x02
     frame_type = FRAME_TYPE_REQUEST | FRAME_TYPE_ACK
 
@@ -16,7 +18,7 @@ class SerialApiGetInitData(DATA_FRAME):
         return 0
 
 
-class SerialApiGetInitDataResponse(DATA_FRAME):
+class FUNC_SERIAL_API_GET_INIT_DATA_RSP(DATA_FRAME):
     id = 0x02
     frame_type = FRAME_TYPE_RESPONSE | FRAME_TYPE_ACK
 

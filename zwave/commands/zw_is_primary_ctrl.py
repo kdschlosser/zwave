@@ -12,6 +12,9 @@ from . import (
 
 
 class ZwIsPrimaryCtrl(DATA_FRAME):
+    """
+    ???
+    """
     id = 0x66
     frame_type = FRAME_TYPE_REQUEST | FRAME_TYPE_ACK
     frame_type = FRAME_TYPE_RESPONSE | FRAME_TYPE_ACK

@@ -10,19 +10,22 @@ from . import (
 )
 
 
-class _ZwRequestNodeInfoFields(NODE_ID_FIELDS):
+class _Fields(NODE_ID_FIELDS):
     _fields_ = [
         ('_node_id_8', NODE_ID_8_FRAME),
         ('_node_id_16', NODE_ID_16_FRAME),
     ]
 
 
-class ZwRequestNodeInfo(DATA_FRAME):
+class FUNC_ZW_REQUEST_NODE_INFO_CMD(DATA_FRAME):
+    """
+    Get info (supported command classes) for the specified node
+    """
     id = 0x60
     frame_type = FRAME_TYPE_REQUEST | FRAME_TYPE_ACK
 
     _fields_ = [
-        ('_anon_union', _ZwRequestNodeInfoFields),
+        ('_anon_union', _Fields),
     ]
 
     _anonymous_ = ('_anon_union',)
@@ -40,7 +43,7 @@ class ZwRequestNodeInfo(DATA_FRAME):
         self._fields.node_id = value
 
 
-class ZwRequestNodeInfoResponse(DATA_FRAME):
+class FUNC_ZW_REQUEST_NODE_INFO_RSP(DATA_FRAME):
     id = 0x60
     frame_type = FRAME_TYPE_RESPONSE | FRAME_TYPE_ACK
 

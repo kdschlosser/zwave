@@ -1,3 +1,10 @@
+"""
+Serial API Host Appl. Prg. Guide
+INS12350
+2022-12-01
+"""
+
+
 from . import (
     DATA_FRAME,
     FRAME_TYPE_UNSOLICITED,
@@ -10,7 +17,10 @@ from ..command_classes import COMMAND_CLASS
 from .. import zw_types
 
 
-class SerialApiStarted(DATA_FRAME):
+class FUNC_SERIAL_API_STARTED_CMD(DATA_FRAME):
+    """
+    Sent by the controller after the serial API has been started (again)
+    """
     id = 0x0A
     frame_type = FRAME_TYPE_UNSOLICITED | FRAME_TYPE_ACK
 

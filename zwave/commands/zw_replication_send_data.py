@@ -11,7 +11,12 @@ from . import (
 )
 
 
-class ZwReplicationSendData(DATA_FRAME):
+class FUNC_ZW_REPLICATION_SEND_DATA_CMD(DATA_FRAME):
+    """
+    Replication send data
+
+    Not in specification
+    """
     id = 0x45
     frame_type = FRAME_TYPE_REQUEST | FRAME_TYPE_ACK
     frame_type = FRAME_TYPE_RESPONSE | FRAME_TYPE_ACK

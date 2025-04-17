@@ -8,6 +8,9 @@ from . import (
 
 
 class ZwClearNetworkStats(DATA_FRAME):
+    """
+    Clear the current Network Statistics collected by the Z-Wave API Module
+    """
     id = 0x39
     frame_type = FRAME_TYPE_REQUEST | FRAME_TYPE_ACK
 

@@ -10,7 +10,7 @@ from . import (
 )
 
 
-class _ZwIsNodeWithinDirectRangeFields(NODE_ID_FIELDS):
+class _Fields(NODE_ID_FIELDS):
     _fields_ = [
         ('_node_id_8', NODE_ID_8_FRAME),
         ('_node_id_16', NODE_ID_16_FRAME),
@@ -18,11 +18,14 @@ class _ZwIsNodeWithinDirectRangeFields(NODE_ID_FIELDS):
 
 
 class ZwIsNodeWithinDirectRange(DATA_FRAME):
+    """
+    ???
+    """
     id = 0x5D
     frame_type = FRAME_TYPE_REQUEST | FRAME_TYPE_ACK
 
     _fields_ = [
-        ('_anon_union', _ZwIsNodeWithinDirectRangeFields),
+        ('_anon_union', _Fields),
     ]
 
     _anonymous_ = ('_anon_union',)

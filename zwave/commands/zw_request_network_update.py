@@ -10,7 +10,10 @@ from . import (
 from ..enums import request_network_update
 
 
-class ZwRequestNetworkUpdate(DATA_FRAME):
+class FUNC_ZW_REQUEST_NETWORK_UPDATE_CMD(DATA_FRAME):
+    """
+    Request an Automatic Controller Update from the SUC
+    """
     id = 0x53
     frame_type = FRAME_TYPE_REQUEST | FRAME_TYPE_ACK
 
@@ -31,7 +34,7 @@ class ZwRequestNetworkUpdate(DATA_FRAME):
         self._session_id = value  # NOQA
 
 
-class ZwRequestNetworkUpdateResponse(DATA_FRAME):
+class FUNC_ZW_REQUEST_NETWORK_UPDATE_RSP(DATA_FRAME):
     id = 0x53
     frame_type = FRAME_TYPE_RESPONSE | FRAME_TYPE_ACK
 
@@ -44,7 +47,7 @@ class ZwRequestNetworkUpdateResponse(DATA_FRAME):
         return self._status
 
 
-class ZwRequestNetworkUpdateCallback(DATA_FRAME):
+class FUNC_ZW_REQUEST_NETWORK_UPDATE_CB(DATA_FRAME):
     id = 0x53
     frame_type = FRAME_TYPE_CALLBACK | FRAME_TYPE_ACK
 

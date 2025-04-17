@@ -28,19 +28,22 @@ class _NodeID16(NODE_ID_16_FRAME):
     ]
 
 
-class _ZwReplaceFailedNodeFields(NODE_ID_FIELDS):
+class _Fields(NODE_ID_FIELDS):
     _fields_ = [
         ('_node_id_8', _NodeID8),
         ('_node_id_16', _NodeID16),
     ]
 
 
-class ZwReplaceFailedNode(DATA_FRAME):
+class FUNC_ZW_REPLACE_FAILED_NODE_CMD(DATA_FRAME):
+    """
+    Replace a failed node with a new one that takes the same node ID
+    """
     id = 0x63
     frame_type = FRAME_TYPE_REQUEST | FRAME_TYPE_ACK
 
     _fields_ = [
-        ('_anon_union', _ZwReplaceFailedNodeFields),
+        ('_anon_union', _Fields),
     ]
 
     _anonymous_ = ('_anon_union',)
@@ -66,7 +69,7 @@ class ZwReplaceFailedNode(DATA_FRAME):
         self._fields.session_id = value
 
 
-class ZwReplaceFailedNodeResponse(DATA_FRAME):
+class FUNC_ZW_REPLACE_FAILED_NODE_RSP(DATA_FRAME):
     id = 0x63
     frame_type = FRAME_TYPE_RESPONSE | FRAME_TYPE_ACK
 
@@ -81,7 +84,7 @@ class ZwReplaceFailedNodeResponse(DATA_FRAME):
         return self.statuses(self._status)
 
 
-class ZwReplaceFailedNodeCallback(DATA_FRAME):
+class FUNC_ZW_REPLACE_FAILED_NODE_CB(DATA_FRAME):
     id = 0x63
     frame_type = FRAME_TYPE_CALLBACK | FRAME_TYPE_ACK
 

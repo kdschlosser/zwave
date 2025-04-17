@@ -14,7 +14,10 @@ from ..command_classes import COMMAND_CLASS
 from .. import zw_types
 
 
-class ZwRemoveNodeFromNetwork(DATA_FRAME):
+class FUNC_ZW_REMOVE_NODE_FROM_NETWORK_CMD(DATA_FRAME):
+    """
+    Control the removenode (or removecontroller) process...start, stop, etc.
+    """
     id = 0x4B
     frame_type = FRAME_TYPE_REQUEST | FRAME_TYPE_ACK
 
@@ -94,21 +97,21 @@ class _NodeID16(NODE_ID_16_FRAME):
     ]
 
 
-class _ZwRemoveNodeFromNetworkCallbackFields(NODE_ID_FIELDS):
+class _Fields(NODE_ID_FIELDS):
     _fields_ = [
         ('_node_id_8', _NodeID8),
         ('_node_id_16', _NodeID16),
     ]
 
 
-class ZwRemoveNodeFromNetworkCallback(DATA_FRAME):
+class FUNC_ZW_REMOVE_NODE_FROM_NETWORK_CB(DATA_FRAME):
     id = 0x4B
     frame_type = FRAME_TYPE_CALLBACK | FRAME_TYPE_ACK
 
     _fields_ = [
         ('_session_id', uint8_t),
         ('_status', uint8_t),
-        ('_anon_union', _ZwRemoveNodeFromNetworkCallbackFields),
+        ('_anon_union', _Fields),
     ]
 
     _anonymous_ = ('_anon_union',)

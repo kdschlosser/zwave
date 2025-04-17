@@ -9,7 +9,10 @@ from . import (
 from ..enums import set_rf_receive_mode
 
 
-class ZwSetRfReceiveMode(DATA_FRAME):
+class FUNC_ZW_SET_RF_RECEIVE_MODE_CMD(DATA_FRAME):
+    """
+    Power the RF section of the stick down/up
+    """
     id = 0x10
     frame_type = FRAME_TYPE_REQUEST | FRAME_TYPE_ACK
 
@@ -30,7 +33,7 @@ class ZwSetRfReceiveMode(DATA_FRAME):
         self._modes = value.value  # NOQA
 
 
-class ZwSetRfReceiveModeResponse(DATA_FRAME):
+class FUNC_ZW_SET_RF_RECEIVE_MODE_RSP(DATA_FRAME):
     id = 0x10
     frame_type = FRAME_TYPE_RESPONSE | FRAME_TYPE_ACK
 

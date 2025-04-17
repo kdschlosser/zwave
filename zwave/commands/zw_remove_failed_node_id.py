@@ -28,19 +28,22 @@ class _NodeID16(NODE_ID_16_FRAME):
     ]
 
 
-class _ZwRemoveFailedNodeIdFields(NODE_ID_FIELDS):
+class _Fields(NODE_ID_FIELDS):
     _fields_ = [
         ('_node_id_8', _NodeID8),
         ('_node_id_16', _NodeID16),
     ]
 
 
-class ZwRemoveFailedNodeId(DATA_FRAME):
+class FUNC_ZW_REMOVE_FAILED_NODE_ID_CMD(DATA_FRAME):
+    """
+    Mark a specified node id as failed
+    """
     id = 0x61
     frame_type = FRAME_TYPE_REQUEST | FRAME_TYPE_ACK
 
     _fields_ = [
-        ('_anon_union', _ZwRemoveFailedNodeIdFields),
+        ('_anon_union', _Fields),
     ]
 
     _anonymous_ = ('_anon_union',)
@@ -66,7 +69,7 @@ class ZwRemoveFailedNodeId(DATA_FRAME):
         self._fields.session_id = value
 
 
-class ZwRemoveFailedNodeIdResponse(DATA_FRAME):
+class FUNC_ZW_REMOVE_FAILED_NODE_ID_RSP(DATA_FRAME):
     id = 0x61
     frame_type = FRAME_TYPE_RESPONSE | FRAME_TYPE_ACK
 
@@ -81,7 +84,7 @@ class ZwRemoveFailedNodeIdResponse(DATA_FRAME):
         return self.statuses(self._status)
 
 
-class ZwRemoveFailedNodeIdCallback(DATA_FRAME):
+class FUNC_ZW_REMOVE_FAILED_NODE_ID_CB(DATA_FRAME):
     id = 0x61
     frame_type = FRAME_TYPE_CALLBACK | FRAME_TYPE_ACK
 

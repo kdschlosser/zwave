@@ -7,7 +7,9 @@ from . import (
 )
 
 
-class SerialApiSetTimeouts(DATA_FRAME):
+class FUNC_SERIAL_API_SET_TIMEOUTS_CMD(DATA_FRAME):
+    """
+    """
     id = 0x06
     frame_type = FRAME_TYPE_REQUEST | FRAME_TYPE_ACK
 
@@ -37,7 +39,7 @@ class SerialApiSetTimeouts(DATA_FRAME):
         self._rx_byte_timeout = value // 10  # NOQA
 
 
-class SerialApiSetTimeoutsResponse(DATA_FRAME):
+class FUNC_SERIAL_API_SET_TIMEOUTS_RSP(DATA_FRAME):
     id = 0x06
     frame_type = FRAME_TYPE_RESPONSE | FRAME_TYPE_ACK
 

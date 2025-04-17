@@ -10,7 +10,10 @@ from . import (
 from ..enums import nvm_backup_restore
 
 
-class NVMBackupRestore(DATA_FRAME):
+class FUNC_NVM_BACKUP_RESTORE_CMD(DATA_FRAME):
+    """
+    Read and write from/to the external NVM (700+ series)
+    """
     id = 0x2E
     frame_type = FRAME_TYPE_REQUEST | FRAME_TYPE_ACK
 
@@ -58,7 +61,7 @@ class NVMBackupRestore(DATA_FRAME):
             self._data[i] = item
 
 
-class NVMBackupRestoreResponse(DATA_FRAME):
+class FUNC_NVM_BACKUP_RESTORE_RSP(DATA_FRAME):
     id = 0x2E
     frame_type = FRAME_TYPE_RESPONSE | FRAME_TYPE_ACK
 

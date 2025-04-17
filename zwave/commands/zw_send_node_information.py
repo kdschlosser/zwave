@@ -28,19 +28,22 @@ class _NodeID16(NODE_ID_16_FRAME):
     ]
 
 
-class _ZwSendNodeInformationFields(NODE_ID_FIELDS):
+class _Fields(NODE_ID_FIELDS):
     _fields_ = [
         ('_node_id_8', _NodeID8),
         ('_node_id_16', _NodeID16),
     ]
 
 
-class ZwSendNodeInformation(DATA_FRAME):
+class FUNC_ZW_SEND_NODE_INFORMATION_CMD(DATA_FRAME):
+    """
+    Send Node Information Frame of the stick to a node
+    """
     id = 0x12
     frame_type = FRAME_TYPE_REQUEST | FRAME_TYPE_ACK
 
     _fields_ = [
-        ('_anon_union', _ZwSendNodeInformationFields),
+        ('_anon_union', _Fields),
     ]
 
     _anonymous_ = ('_anon_union',)
@@ -76,7 +79,7 @@ class ZwSendNodeInformation(DATA_FRAME):
         self._fields.session_id = value
 
 
-class ZwSendNodeInformationResponse(DATA_FRAME):
+class FUNC_ZW_SEND_NODE_INFORMATION_RSP(DATA_FRAME):
     id = 0x12
     frame_type = FRAME_TYPE_RESPONSE | FRAME_TYPE_ACK
 
@@ -87,7 +90,7 @@ class ZwSendNodeInformationResponse(DATA_FRAME):
         return self._response_status
 
 
-class ZwSendNodeInformationCallback(DATA_FRAME):
+class FUNC_ZW_SEND_NODE_INFORMATION_CB(DATA_FRAME):
     id = 0x12
     frame_type = FRAME_TYPE_CALLBACK | FRAME_TYPE_ACK
 

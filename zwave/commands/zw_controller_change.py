@@ -11,7 +11,10 @@ from ..command_classes import COMMAND_CLASS
 from .. import zw_types
 
 
-class ZwControllerChange(DATA_FRAME):
+class FUNC_ZW_CONTROLLER_CHANGE_CMD(DATA_FRAME):
+    """
+    Include a controller node and assign it the primary controller role.
+    """
     id = 0x4D
     frame_type = FRAME_TYPE_REQUEST | FRAME_TYPE_ACK
 
@@ -70,7 +73,7 @@ class ZwControllerChange(DATA_FRAME):
         self._session_id = value  # NOQA
 
 
-class ZwControllerChangeCallback(DATA_FRAME):
+class FUNC_ZW_CONTROLLER_CHANGE_CB(DATA_FRAME):
     id = 0x4D
     frame_type = FRAME_TYPE_CALLBACK | FRAME_TYPE_ACK
 

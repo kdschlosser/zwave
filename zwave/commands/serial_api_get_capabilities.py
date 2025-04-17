@@ -9,12 +9,14 @@ from . import (
 from .. import mfg_ids
 
 
-class SerialApiGetCapabilities(DATA_FRAME):
+class FUNC_SERIAL_API_GET_CAPABILITIES_CMD(DATA_FRAME):
+    """
+    """
     id = 0x07
     frame_type = FRAME_TYPE_REQUEST | FRAME_TYPE_ACK
 
 
-class SerialApiGetCapabilitiesResponse(DATA_FRAME):
+class FUNC_SERIAL_API_GET_CAPABILITIES_RSP(DATA_FRAME):
     id = 0x07
     frame_type = FRAME_TYPE_RESPONSE | FRAME_TYPE_ACK
 

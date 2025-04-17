@@ -11,8 +11,11 @@ from . import (
 )
 
 
-class ZwAreNodesNeighbours(DATA_FRAME):
-    id = 0xBC
+class ExtendedNVMOperations(DATA_FRAME):
+    """
+    Read and write from/to the external NVM with 32-bit addresses (700+ series)
+    """
+    id = 0x3D
     frame_type = FRAME_TYPE_REQUEST | FRAME_TYPE_ACK
     frame_type = FRAME_TYPE_RESPONSE | FRAME_TYPE_ACK
     frame_type = FRAME_TYPE_CALLBACK | FRAME_TYPE_ACK

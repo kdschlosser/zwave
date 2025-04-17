@@ -11,7 +11,10 @@ from . import (
 )
 
 
-class MemoryGetBuffer(DATA_FRAME):
+class FUNC_MEMORY_GET_BUFFER_CMD(DATA_FRAME):
+    """
+    Not in specification
+    """
     id = 0x23
     frame_type = FRAME_TYPE_REQUEST | FRAME_TYPE_ACK
     frame_type = FRAME_TYPE_RESPONSE | FRAME_TYPE_ACK

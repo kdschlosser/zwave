@@ -11,7 +11,12 @@ from . import (
 )
 
 
-class GetRoutingTableLine(DATA_FRAME):
+class FUNC_GET_ROUTING_TABLE_LINE_CMD(DATA_FRAME):
+    """
+    Get a specified node's neighbor information from the controller
+
+    doesn't align with specification
+    """
     id = 0x80
     frame_type = FRAME_TYPE_REQUEST | FRAME_TYPE_ACK
     frame_type = FRAME_TYPE_RESPONSE | FRAME_TYPE_ACK

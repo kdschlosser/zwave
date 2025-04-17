@@ -12,6 +12,9 @@ from . import (
 
 
 class ClockGet(DATA_FRAME):
+    """
+    ???
+    """
     id = 0x31
     frame_type = FRAME_TYPE_REQUEST | FRAME_TYPE_ACK
     frame_type = FRAME_TYPE_RESPONSE | FRAME_TYPE_ACK

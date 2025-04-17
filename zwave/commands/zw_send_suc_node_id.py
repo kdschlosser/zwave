@@ -28,7 +28,7 @@ class _NodeID16(NODE_ID_16_FRAME):
     ]
 
 
-class _ZwSendSucNodeIdFields(NODE_ID_FIELDS):
+class _Fields(NODE_ID_FIELDS):
     _fields_ = [
         ('_node_id_8', _NodeID8),
         ('_node_id_16', _NodeID16),
@@ -36,11 +36,14 @@ class _ZwSendSucNodeIdFields(NODE_ID_FIELDS):
 
 
 class ZwSendSucNodeId(DATA_FRAME):
+    """
+    Send the SUC/SIS Node ID from the primary controller to another controller
+    """
     id = 0x57
     frame_type = FRAME_TYPE_REQUEST | FRAME_TYPE_ACK
 
     _fields_ = [
-        ('_anon_union', _ZwSendSucNodeIdFields),
+        ('_anon_union', _Fields),
     ]
 
     _anonymous_ = ('_anon_union',)

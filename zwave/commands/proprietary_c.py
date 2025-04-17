@@ -11,7 +11,9 @@ from . import (
 )
 
 
-class ProprietaryC(DATA_FRAME):
+class FUNC_PROPRIETARY_C_CMD(DATA_FRAME):
+    """
+    """
     id = 0xFC
     frame_type = FRAME_TYPE_REQUEST | FRAME_TYPE_ACK
     frame_type = FRAME_TYPE_RESPONSE | FRAME_TYPE_ACK

@@ -10,7 +10,10 @@ from ..enums import serial_api_setup
 from .. import _utils
 
 
-class SerialApiSetup(DATA_FRAME):
+class FUNC_SERIAL_API_SETUP_CMD(DATA_FRAME):
+    """
+    Configure the Serial API
+    """
     id = 0x0B
     sub_command_id = 0x00
     frame_type = FRAME_TYPE_REQUEST | FRAME_TYPE_ACK
@@ -21,7 +24,7 @@ class SerialApiSetup(DATA_FRAME):
     ]
 
 
-class SerialApiSetupResponse(DATA_FRAME):
+class FUNC_SERIAL_API_SETUP_RSP(DATA_FRAME):
     id = 0x0B
     sub_command_id = 0x00
     frame_type = FRAME_TYPE_RESPONSE | FRAME_TYPE_ACK
@@ -31,7 +34,7 @@ class SerialApiSetupResponse(DATA_FRAME):
     ]
 
 
-class SerialApiSetupGetSupportedCommands(SerialApiSetup):
+class SerialApiSetupGetSupportedCommands(FUNC_SERIAL_API_SETUP_CMD):
     id = 0x0B
     sub_command_id = 0x01
 
@@ -40,7 +43,7 @@ class SerialApiSetupGetSupportedCommands(SerialApiSetup):
         return 0
 
 
-class SerialApiSetupGetSupportedCommandsResponse(SerialApiSetupResponse):
+class SerialApiSetupGetSupportedCommandsResponse(FUNC_SERIAL_API_SETUP_RSP):
     id = 0x0B
     sub_command_id = 0x01
 
@@ -57,7 +60,7 @@ class SerialApiSetupGetSupportedCommandsResponse(SerialApiSetupResponse):
     ]
 
     @property
-    def supported_sub_commands(self) -> list[SerialApiSetup]:
+    def supported_sub_commands(self) -> list[FUNC_SERIAL_API_SETUP_CMD]:
         res = set()
 
         if self._get_supported_commands_flag:
@@ -101,7 +104,7 @@ class SerialApiSetupGetSupportedCommandsResponse(SerialApiSetupResponse):
         return list(res)
 
 
-class SerialApiSetupSetTXStatusReport(SerialApiSetup):
+class SerialApiSetupSetTXStatusReport(FUNC_SERIAL_API_SETUP_CMD):
     id = 0x0B
     sub_command_id = 0x02
 
@@ -118,7 +121,7 @@ class SerialApiSetupSetTXStatusReport(SerialApiSetup):
         self._data[0] = int(bool(value))
 
 
-class SerialApiSetupSetTXStatusReportResponse(SerialApiSetupResponse):
+class SerialApiSetupSetTXStatusReportResponse(FUNC_SERIAL_API_SETUP_RSP):
     id = 0x0B
     sub_command_id = 0x02
 
@@ -129,7 +132,7 @@ class SerialApiSetupSetTXStatusReportResponse(SerialApiSetupResponse):
         return self._command_status
 
 
-class SerialApiSetupSetPowerlevel(SerialApiSetup):
+class SerialApiSetupSetPowerlevel(FUNC_SERIAL_API_SETUP_CMD):
     # TODO: Fix data indexes & fix packet_length
     id = 0x0B
     sub_command_id = 0x04
@@ -319,7 +322,7 @@ class SerialApiSetupSetPowerlevel(SerialApiSetup):
         self._data[5] = mapping[value]
 
 
-class SerialApiSetupSetPowerlevelResponse(SerialApiSetupResponse):
+class SerialApiSetupSetPowerlevelResponse(FUNC_SERIAL_API_SETUP_RSP):
     id = 0x0B
     sub_command_id = 0x04
 
@@ -330,7 +333,7 @@ class SerialApiSetupSetPowerlevelResponse(SerialApiSetupResponse):
         return self._command_status
 
 
-class SerialApiSetupGetPowerlevel(SerialApiSetup):
+class SerialApiSetupGetPowerlevel(FUNC_SERIAL_API_SETUP_CMD):
     id = 0x0B
     sub_command_id = 0x08
 
@@ -339,7 +342,7 @@ class SerialApiSetupGetPowerlevel(SerialApiSetup):
         return 0
 
 
-class SerialApiSetupGetPowerlevelResponse(SerialApiSetupResponse):
+class SerialApiSetupGetPowerlevelResponse(FUNC_SERIAL_API_SETUP_RSP):
     id = 0x0B
     sub_command_id = 0x08
 
@@ -352,7 +355,7 @@ class SerialApiSetupGetPowerlevelResponse(SerialApiSetupResponse):
         return _utils.from_twos_complement(self._data[1], 8) // 10
 
 
-class SerialApiSetupGetMaximumPayloadSize(SerialApiSetup):
+class SerialApiSetupGetMaximumPayloadSize(FUNC_SERIAL_API_SETUP_CMD):
     id = 0x0B
     sub_command_id = 0x10
 
@@ -361,7 +364,7 @@ class SerialApiSetupGetMaximumPayloadSize(SerialApiSetup):
         return 0
 
 
-class SerialApiSetupGetMaximumPayloadSizeResponse(SerialApiSetupResponse):
+class SerialApiSetupGetMaximumPayloadSizeResponse(FUNC_SERIAL_API_SETUP_RSP):
     id = 0x0B
     sub_command_id = 0x10
 
@@ -370,7 +373,7 @@ class SerialApiSetupGetMaximumPayloadSizeResponse(SerialApiSetupResponse):
         return self._data[0]
 
 
-class SerialApiSetupGetLRMaximumPayloadSize(SerialApiSetup):
+class SerialApiSetupGetLRMaximumPayloadSize(FUNC_SERIAL_API_SETUP_CMD):
     id = 0x0B
     sub_command_id = 0x11
 
@@ -379,7 +382,7 @@ class SerialApiSetupGetLRMaximumPayloadSize(SerialApiSetup):
         return 0
 
 
-class SerialApiSetupGetLRMaximumPayloadSizeResponse(SerialApiSetupResponse):
+class SerialApiSetupGetLRMaximumPayloadSizeResponse(FUNC_SERIAL_API_SETUP_RSP):
     id = 0x0B
     sub_command_id = 0x11
 
@@ -388,7 +391,7 @@ class SerialApiSetupGetLRMaximumPayloadSizeResponse(SerialApiSetupResponse):
         return self._data[0]
 
 
-class SerialApiSetupGetRFRegion(SerialApiSetup):
+class SerialApiSetupGetRFRegion(FUNC_SERIAL_API_SETUP_CMD):
     id = 0x0B
     sub_command_id = 0x20
 
@@ -397,7 +400,7 @@ class SerialApiSetupGetRFRegion(SerialApiSetup):
         return 0
 
 
-class SerialApiSetupGetRFRegionResponse(SerialApiSetupResponse):
+class SerialApiSetupGetRFRegionResponse(FUNC_SERIAL_API_SETUP_RSP):
     id = 0x0B
     sub_command_id = 0x20
 
@@ -412,7 +415,7 @@ class SerialApiSetupGetRFRegionResponse(SerialApiSetupResponse):
         self._data[0] = value.value
 
 
-class SerialApiSetupSetRFRegion(SerialApiSetup):
+class SerialApiSetupSetRFRegion(FUNC_SERIAL_API_SETUP_CMD):
     id = 0x0B
     sub_command_id = 0x40
 
@@ -431,7 +434,7 @@ class SerialApiSetupSetRFRegion(SerialApiSetup):
         self._data[0] = value.value
 
 
-class SerialApiSetupSetRFRegionResponse(SerialApiSetupResponse):
+class SerialApiSetupSetRFRegionResponse(FUNC_SERIAL_API_SETUP_RSP):
     id = 0x0B
     sub_command_id = 0x40
 
@@ -442,7 +445,7 @@ class SerialApiSetupSetRFRegionResponse(SerialApiSetupResponse):
         return self._command_status
 
 
-class SerialApiSetupSetNodeIDBaseType(SerialApiSetup):
+class SerialApiSetupSetNodeIDBaseType(FUNC_SERIAL_API_SETUP_CMD):
     id = 0x0B
     sub_command_id = 0x80
 
@@ -461,7 +464,7 @@ class SerialApiSetupSetNodeIDBaseType(SerialApiSetup):
         self._data[0] = value.value
 
 
-class SerialApiSetupSetNodeIDBaseTypeResponse(SerialApiSetupResponse):
+class SerialApiSetupSetNodeIDBaseTypeResponse(FUNC_SERIAL_API_SETUP_RSP):
     id = 0x0B
     sub_command_id = 0x80
 

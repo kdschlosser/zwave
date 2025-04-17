@@ -8,6 +8,9 @@ from . import (
 
 
 class GetTXTimers(DATA_FRAME):
+    """
+    Request the Z-Wave module's internal TX timers
+    """
     id = 0x38
     frame_type = FRAME_TYPE_REQUEST | FRAME_TYPE_ACK
 

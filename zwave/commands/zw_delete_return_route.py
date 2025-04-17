@@ -26,19 +26,22 @@ class _NodeID16(NODE_ID_16_FRAME):
     ]
 
 
-class _ZwDeleteReturnRouteFields(NODE_ID_FIELDS):
+class _Fields(NODE_ID_FIELDS):
     _fields_ = [
         ('_node_id_8', _NodeID8),
         ('_node_id_16', _NodeID16),
     ]
 
 
-class ZwDeleteReturnRoute(DATA_FRAME):
+class FUNC_ZW_DELETE_RETURN_ROUTE_CMD(DATA_FRAME):
+    """
+    Delete all return routes from the specified node
+    """
     id = 0x47
     frame_type = FRAME_TYPE_REQUEST | FRAME_TYPE_ACK
 
     _fields_ = [
-        ('_anon_union', _ZwDeleteReturnRouteFields),
+        ('_anon_union', _Fields),
     ]
 
     _anonymous_ = ('_anon_union',)
@@ -64,7 +67,7 @@ class ZwDeleteReturnRoute(DATA_FRAME):
         self._fields.session_id = value
 
 
-class ZwDeleteReturnRouteResponse(DATA_FRAME):
+class FUNC_ZW_DELETE_RETURN_ROUTE_RSP(DATA_FRAME):
     id = 0x47
     frame_type = FRAME_TYPE_RESPONSE | FRAME_TYPE_ACK
 
@@ -77,7 +80,7 @@ class ZwDeleteReturnRouteResponse(DATA_FRAME):
         return self._response
 
 
-class ZwDeleteReturnRouteCallback(DATA_FRAME):
+class FUNC_ZW_DELETE_RETURN_ROUTE_CB(DATA_FRAME):
     id = 0x47
     frame_type = FRAME_TYPE_CALLBACK | FRAME_TYPE_ACK
 

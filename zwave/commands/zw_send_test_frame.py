@@ -1,3 +1,9 @@
+"""
+Z-Wave Host API Specification
+0.7.2
+2021.09.02
+"""
+
 from . import (
     DATA_FRAME,
     FRAME_TYPE_REQUEST,
@@ -9,6 +15,7 @@ from . import (
     NODE_ID_FIELDS,
     uint8_t
 )
+
 from ..enums import send_test_frame
 
 
@@ -27,19 +34,22 @@ class _NodeID16(NODE_ID_16_FRAME):
     ]
 
 
-class _SendTestFrameFields(NODE_ID_FIELDS):
+class _Fields(NODE_ID_FIELDS):
     _fields_ = [
         ('_node_id_8', _NodeID8),
         ('_node_id_16', _NodeID16),
     ]
 
 
-class ZwSendTestFrame(DATA_FRAME):
+class FUNC_ZW_SEND_TEST_FRAME_CMD(DATA_FRAME):
+    """
+    Sends a NOP Power frame to the given node
+    """
     id = 0xBE
     frame_type = FRAME_TYPE_REQUEST | FRAME_TYPE_ACK
 
     _fields_ = [
-        ('_anon_union', _SendTestFrameFields),
+        ('_anon_union', _Fields),
     ]
 
     _anonymous_ = ('_anon_union',)
@@ -73,7 +83,7 @@ class ZwSendTestFrame(DATA_FRAME):
         self._fields.session_id = value
 
 
-class ZwSendTestFrameResponse(DATA_FRAME):
+class FUNC_ZW_SEND_TEST_FRAME_RSP(DATA_FRAME):
     id = 0xBE
     frame_type = FRAME_TYPE_RESPONSE | FRAME_TYPE_ACK
 
@@ -84,7 +94,7 @@ class ZwSendTestFrameResponse(DATA_FRAME):
         return self._status
 
 
-class ZwSendTestFrameCallback(DATA_FRAME):
+class FUNC_ZW_SEND_TEST_FRAME_CB(DATA_FRAME):
     id = 0xBE
     frame_type = FRAME_TYPE_CALLBACK | FRAME_TYPE_ACK
 
@@ -102,4 +112,3 @@ class ZwSendTestFrameCallback(DATA_FRAME):
     @property
     def tx_status(self) -> tx_statuses:
         return self.tx_statuses(self._tx_status)
-

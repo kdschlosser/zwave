@@ -13,7 +13,7 @@ from . import (
 from ..enums import get_priority_route
 
 
-class _ZwGetPriorityRouteFields(NODE_ID_FIELDS):
+class _Fields(NODE_ID_FIELDS):
     _fields_ = [
         ('_node_id_8', NODE_ID_8_FRAME),
         ('_node_id_16', NODE_ID_16_FRAME),
@@ -21,11 +21,14 @@ class _ZwGetPriorityRouteFields(NODE_ID_FIELDS):
 
 
 class ZwGetPriorityRoute(DATA_FRAME):
+    """
+    Get the route that is used as the first routing attempty when transmitting to a node
+    """
     id = 0x92
     frame_type = FRAME_TYPE_REQUEST | FRAME_TYPE_ACK
 
     _fields_ = [
-        ('_anon_union', _ZwGetPriorityRouteFields),
+        ('_anon_union', _Fields),
     ]
 
     _anonymous_ = ('_anon_union',)
@@ -58,7 +61,7 @@ class _NodeID16(NODE_ID_16_FRAME):
     ]
 
 
-class _ZwGetPriorityRouteResponseFields(NODE_ID_FIELDS):
+class _Fields(NODE_ID_FIELDS):
     _fields_ = [
         ('_node_id_8', _NodeID8),
         ('_node_id_16', _NodeID16),
@@ -70,7 +73,7 @@ class ZwGetPriorityRouteResponse(DATA_FRAME):
     frame_type = FRAME_TYPE_RESPONSE | FRAME_TYPE_ACK
 
     _fields_ = [
-        ('_anon_union', _ZwGetPriorityRouteResponseFields),
+        ('_anon_union', _Fields),
     ]
 
     _anonymous_ = ('_anon_union',)

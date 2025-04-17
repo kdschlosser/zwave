@@ -10,6 +10,9 @@ from .. import _utils
 
 
 class ZwGetBackgroundRssi(DATA_FRAME):
+    """
+    request the most recent background RSSI levels detected
+    """
     id = 0x3B
     frame_type = FRAME_TYPE_REQUEST | FRAME_TYPE_ACK
 
