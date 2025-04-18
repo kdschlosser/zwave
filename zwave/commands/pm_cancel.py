@@ -11,7 +11,7 @@ from . import (
 )
 
 
-class PMCancel(DATA_FRAME):
+class FUNC_PM_CANCEL_CMD(DATA_FRAME):
     """
     ???
     """

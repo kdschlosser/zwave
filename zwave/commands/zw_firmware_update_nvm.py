@@ -11,7 +11,7 @@ from . import (
 )
 
 
-class ZwFirmwareUpdateNvm(DATA_FRAME):
+class FUNC_ZW_FIRMWARE_UPDATE_NVM_CMD(DATA_FRAME):
     """
     Access the NVM section for 500 series OTW firmware updates
     """

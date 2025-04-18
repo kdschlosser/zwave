@@ -11,7 +11,7 @@ from . import (
 )
 
 
-class SerialApiExt(DATA_FRAME):
+class FUNC_SERIAL_API_EXT_CMD(DATA_FRAME):
     """
     ???
     """

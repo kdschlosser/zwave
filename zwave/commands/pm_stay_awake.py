@@ -11,7 +11,7 @@ from . import (
 )
 
 
-class PMStayAwake(DATA_FRAME):
+class FUNC_PM_STAY_AWAKE_CMD(DATA_FRAME):
     """
     ???
     """

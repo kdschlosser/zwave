@@ -11,7 +11,7 @@ from . import (
 )
 
 
-class ZwNunitCmd(DATA_FRAME):
+class FUNC_ZW_NUNIT_CMD_CMD(DATA_FRAME):
     """
     ???
     """

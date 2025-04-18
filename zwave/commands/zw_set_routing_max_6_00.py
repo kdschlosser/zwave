@@ -11,7 +11,7 @@ from . import (
 )
 
 
-class ZwSetRoutingMax600(DATA_FRAME):
+class FUNC_ZW_SET_ROUTING_MAX_6_00_CMD(DATA_FRAME):
     """
     ???
     """

@@ -19,7 +19,7 @@ from . import (
 from ..enums import send_data_multi_ex
 
 
-class ZwSendDataMultiEx(DATA_FRAME):
+class FUNC_ZW_SEND_DATA_MULTI_EX_CMD(DATA_FRAME):
     """
     End Node Send Data Multicast Command
 
@@ -85,7 +85,7 @@ class ZwSendDataMultiEx(DATA_FRAME):
         self._data[self._data_length + 4] = value
 
 
-class ZwSendDataMultiExResponse(DATA_FRAME):
+class FUNC_ZW_SEND_DATA_MULTI_EX_RSP(DATA_FRAME):
     id = 0x0F
     frame_type = FRAME_TYPE_RESPONSE | FRAME_TYPE_ACK
 
@@ -96,7 +96,7 @@ class ZwSendDataMultiExResponse(DATA_FRAME):
         return self._response_status
 
 
-class ZwSendDataMultiExCallback(DATA_FRAME):
+class FUNC_ZW_SEND_DATA_MULTI_EX_CB(DATA_FRAME):
     id = 0x0F
     frame_type = FRAME_TYPE_CALLBACK | FRAME_TYPE_ACK
 

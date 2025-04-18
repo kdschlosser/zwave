@@ -1,3 +1,9 @@
+"""
+Z-Wave Host API Specification
+0.7.2
+2021.09.02
+"""
+
 from . import (
     DATA_FRAME,
     FRAME_TYPE_REQUEST,
@@ -9,6 +15,9 @@ from . import (
 
 class FUNC_ZW_GET_CONTROLLER_CAPABILITIES_CMD(DATA_FRAME):
     """
+    Get Controller Capabilities Command
+
+    This command is used to request a controller from its current network capabilities.
     """
     id = 0x05
     frame_type = FRAME_TYPE_REQUEST | FRAME_TYPE_ACK

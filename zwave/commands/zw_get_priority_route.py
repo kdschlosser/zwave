@@ -20,7 +20,7 @@ class _Fields(NODE_ID_FIELDS):
     ]
 
 
-class ZwGetPriorityRoute(DATA_FRAME):
+class FUNC_ZW_GET_PRIORITY_ROUTE_CMD(DATA_FRAME):
     """
     Get the route that is used as the first routing attempty when transmitting to a node
     """
@@ -68,7 +68,7 @@ class _Fields(NODE_ID_FIELDS):
     ]
 
 
-class ZwGetPriorityRouteResponse(DATA_FRAME):
+class FUNC_ZW_GET_PRIORITY_ROUTE_RSP(DATA_FRAME):
     id = 0x92
     frame_type = FRAME_TYPE_RESPONSE | FRAME_TYPE_ACK
 

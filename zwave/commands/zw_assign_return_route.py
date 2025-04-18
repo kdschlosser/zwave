@@ -1,3 +1,9 @@
+"""
+Z-Wave Host API Specification
+0.7.2
+2021.09.02
+"""
+
 from . import (
     DATA_FRAME,
     FRAME_TYPE_REQUEST,
@@ -38,7 +44,9 @@ class _Fields(NODE_ID_FIELDS):
 
 class FUNC_ZW_ASSIGN_RETURN_ROUTE_CMD(DATA_FRAME):
     """
-    Assign a return route from the source node to the destination node
+    Assign Return Route Command
+
+    This command is used to assign return routes to end nodes in a network.
     """
     id = 0x46
     frame_type = FRAME_TYPE_REQUEST | FRAME_TYPE_ACK

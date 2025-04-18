@@ -11,7 +11,7 @@ from . import (
 )
 
 
-class ZwReservedFn(DATA_FRAME):
+class FUNC_ZW_RESERVED_FN_CMD(DATA_FRAME):
     """
     ???
     """

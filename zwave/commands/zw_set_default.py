@@ -1,3 +1,9 @@
+"""
+Z-Wave Host API Specification
+0.7.2
+2021.09.02
+"""
+
 from . import (
     DATA_FRAME,
     FRAME_TYPE_REQUEST,
@@ -9,7 +15,11 @@ from . import (
 
 class FUNC_ZW_SET_DEFAULT_CMD(DATA_FRAME):
     """
-    Reset controller and node info to default (original) values
+    Set Default Command
+
+    This command is used to set the Z-Wave API Module to its default state. It means that the Z-Wave API
+    Module will leave its current network and erase all information related to its current Z-Wave network
+    (topology, network keys, HomeID, etc.).
     """
     id = 0x42
     frame_type = FRAME_TYPE_REQUEST | FRAME_TYPE_ACK

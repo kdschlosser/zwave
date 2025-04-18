@@ -11,14 +11,14 @@ from . import (
 )
 
 
-class ExtendedNVMOperations(DATA_FRAME):
+class FUNC_NVM_EXT_BACKUP_RESTORE_CMD(DATA_FRAME):
     """
     Read and write from/to the external NVM with 32-bit addresses (700+ series)
+
+    Not in specification
     """
     id = 0x3D
     frame_type = FRAME_TYPE_REQUEST | FRAME_TYPE_ACK
-    frame_type = FRAME_TYPE_RESPONSE | FRAME_TYPE_ACK
-    frame_type = FRAME_TYPE_CALLBACK | FRAME_TYPE_ACK
 
     @property
     def packet_length(self):

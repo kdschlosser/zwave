@@ -11,7 +11,7 @@ from . import (
 )
 
 
-class ZwReservedSsd(DATA_FRAME):
+class FUNC_ZW_RESERVED_SSD_CMD(DATA_FRAME):
     """
     ???
     """

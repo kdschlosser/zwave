@@ -50,7 +50,7 @@ S2Access = 0x04
 S0 = 0x80
 
 
-class ZwSecuritySetup(DATA_FRAME):
+class FUNC_ZW_SECURITY_SETUP_CMD(DATA_FRAME):
     """
     ???
     """
@@ -82,6 +82,6 @@ class ZwSecuritySetup(DATA_FRAME):
         return None
 
 
-class ZwSecuritySetupCallback(DATA_FRAME):
+class FUNC_ZW_SECURITY_SETUP_CB(DATA_FRAME):
     id = 0x9C
     frame_type = FRAME_TYPE_RESPONSE | FRAME_TYPE_ACK

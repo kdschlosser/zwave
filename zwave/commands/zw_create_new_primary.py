@@ -1,3 +1,9 @@
+"""
+Z-Wave Host API Specification
+0.7.2
+2021.09.02
+"""
+
 from . import (
     DATA_FRAME,
     FRAME_TYPE_REQUEST,
@@ -13,7 +19,9 @@ from .. import zw_types
 
 class FUNC_ZW_CREATE_NEW_PRIMARY_CMD(DATA_FRAME):
     """
-    Include a controller node and assign it the primary controller role. ONLY use from a secondary controller that is SUC.
+    Add Controller And Assign Primary Controller Role Command
+
+    This command is used to include and give the Primary Controller Role to another controller node.
     """
     id = 0x4C
     frame_type = FRAME_TYPE_REQUEST | FRAME_TYPE_ACK

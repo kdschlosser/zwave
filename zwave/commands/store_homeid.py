@@ -11,7 +11,7 @@ from . import (
 )
 
 
-class StoreHomeid(DATA_FRAME):
+class FUNC_STORE_HOMEID_CMD(DATA_FRAME):
     """
     ???
     """

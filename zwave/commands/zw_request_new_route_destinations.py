@@ -10,7 +10,7 @@ from . import (
 from ..enums import request_new_route_destinations
 
 
-class ZwRequestNewRouteDestinations(DATA_FRAME):
+class FUNC_ZW_REQUEST_NEW_ROUTE_DESTINATIONS_CMD(DATA_FRAME):
     """
     ???
     """
@@ -54,7 +54,7 @@ class ZwRequestNewRouteDestinations(DATA_FRAME):
         self._data[self._packet_length] = value
 
 
-class ZwRequestNewRouteDestinationsResponse(DATA_FRAME):
+class FUNC_ZW_REQUEST_NEW_ROUTE_DESTINATIONS_RSP(DATA_FRAME):
     id = 0x5C
     frame_type = FRAME_TYPE_RESPONSE | FRAME_TYPE_ACK
 
@@ -67,7 +67,7 @@ class ZwRequestNewRouteDestinationsResponse(DATA_FRAME):
         return bool(self._response)
 
 
-class ZwRequestNewRouteDestinationsCallback(DATA_FRAME):
+class FUNC_ZW_REQUEST_NEW_ROUTE_DESTINATIONS_CB(DATA_FRAME):
     id = 0x5C
     frame_type = FRAME_TYPE_CALLBACK | FRAME_TYPE_ACK
 

@@ -11,7 +11,7 @@ from . import (
 )
 
 
-class ZwSendDataMeta(DATA_FRAME):
+class FUNC_ZW_SEND_DATA_META_CMD(DATA_FRAME):
     """
     ???
     """

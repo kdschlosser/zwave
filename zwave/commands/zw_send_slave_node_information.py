@@ -38,7 +38,7 @@ class _Fields(NODE_ID_FIELDS):
     ]
 
 
-class FUNC_ZW_SEND_SLAVE_NODE_INFO_CMD(DATA_FRAME):
+class FUNC_ZW_SEND_SLAVE_NODE_INFORMATION_CMD(DATA_FRAME):
     """
     Send the NIF of a virtual node owned by the Z-Wave API module
     """

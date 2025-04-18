@@ -1,3 +1,9 @@
+"""
+Serial API Host Appl. Prg. Guide
+INS12350
+2022-12-01
+"""
+
 from . import (
     DATA_FRAME,
     FRAME_TYPE_REQUEST,
@@ -11,6 +17,9 @@ from .. import mfg_ids
 
 class FUNC_SERIAL_API_GET_CAPABILITIES_CMD(DATA_FRAME):
     """
+    Starting with the Serial API protocol version 4, users can call the Serial API Capabilities Command to
+    determine which Serial API functions a specific Serial API Z-Wave Module supports with the
+    FUNC_ID_SERIAL_API_GET_CAPABILITIES Serial API function
     """
     id = 0x07
     frame_type = FRAME_TYPE_REQUEST | FRAME_TYPE_ACK

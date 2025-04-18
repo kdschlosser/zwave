@@ -11,7 +11,7 @@ from . import (
 )
 
 
-class ZwIsPrimaryCtrl(DATA_FRAME):
+class FUNC_ZW_IS_PRIMARY_CTRL_CMD(DATA_FRAME):
     """
     ???
     """

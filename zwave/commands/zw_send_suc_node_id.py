@@ -35,7 +35,7 @@ class _Fields(NODE_ID_FIELDS):
     ]
 
 
-class ZwSendSucNodeId(DATA_FRAME):
+class FUNC_ZW_SEND_SUC_ID_CMD(DATA_FRAME):
     """
     Send the SUC/SIS Node ID from the primary controller to another controller
     """
@@ -79,7 +79,7 @@ class ZwSendSucNodeId(DATA_FRAME):
         self._fields.session_id = value
 
 
-class ZwSendSucNodeIdResponse(DATA_FRAME):
+class FUNC_ZW_SEND_SUC_ID_RSP(DATA_FRAME):
     id = 0x57
     frame_type = FRAME_TYPE_RESPONSE | FRAME_TYPE_ACK
 
@@ -92,7 +92,7 @@ class ZwSendSucNodeIdResponse(DATA_FRAME):
         return self._command_status
 
 
-class ZwSendSucNodeIdCallback(DATA_FRAME):
+class FUNC_ZW_SEND_SUC_ID_CB(DATA_FRAME):
     id = 0x57
     frame_type = FRAME_TYPE_CALLBACK | FRAME_TYPE_ACK
 

@@ -14,7 +14,7 @@ from . import (
 )
 
 
-class ZwNetworkManagementSetMaxInclusionRequestIntervals(DATA_FRAME):
+class FUNC_ZW_NETWORK_MANAGEMENT_SET_MAX_INCLUSION_REQUEST_INTERVALS_CMD(DATA_FRAME):
     """
     Set the maximum interval between SmartStart inclusion requests
     """
@@ -38,7 +38,7 @@ class ZwNetworkManagementSetMaxInclusionRequestIntervals(DATA_FRAME):
         self._requested_intervals = value  # NOQA
 
 
-class ZwNetworkManagementSetMaxInclusionRequestIntervalsResponse(DATA_FRAME):
+class FUNC_ZW_NETWORK_MANAGEMENT_SET_MAX_INCLUSION_REQUEST_INTERVALS_RSP(DATA_FRAME):
     id = 0xD6
     frame_type = FRAME_TYPE_RESPONSE | FRAME_TYPE_ACK
 

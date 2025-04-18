@@ -11,7 +11,7 @@ from . import (
 )
 
 
-class ZwSupport9600Only(DATA_FRAME):
+class FUNC_ZW_SUPPORT9600_ONLY_CMD(DATA_FRAME):
     """
     ???
     """

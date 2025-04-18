@@ -41,7 +41,7 @@ class _Fields(NODE_ID_FIELDS):
     ]
 
 
-class ZwAssignPriorityReturnRoute(DATA_FRAME):
+class FUNC_ZW_ASSIGN_PRIORITY_RETURN_ROUTE_CMD(DATA_FRAME):
     """
     Assign a priority route between two nodes
     """
@@ -101,7 +101,7 @@ class ZwAssignPriorityReturnRoute(DATA_FRAME):
         self._fields.session_id = value
 
 
-class ZwAssignPriorityReturnRouteResponse(DATA_FRAME):
+class FUNC_ZW_ASSIGN_PRIORITY_RETURN_ROUTE_RSP(DATA_FRAME):
     id = 0x4F
     frame_type = FRAME_TYPE_RESPONSE | FRAME_TYPE_ACK
 
@@ -114,7 +114,7 @@ class ZwAssignPriorityReturnRouteResponse(DATA_FRAME):
         return self._response
 
 
-class ZwAssignPriorityReturnRouteCallback(DATA_FRAME):
+class FUNC_ZW_ASSIGN_PRIORITY_RETURN_ROUTE_CB(DATA_FRAME):
     id = 0x4F
     frame_type = FRAME_TYPE_CALLBACK | FRAME_TYPE_ACK
 

@@ -11,7 +11,7 @@ from . import (
 )
 
 
-class ZwAesEcb(DATA_FRAME):
+class FUNC_ZW_AES_ECB_CMD(DATA_FRAME):
     """
     ???
     """

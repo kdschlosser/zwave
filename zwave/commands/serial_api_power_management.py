@@ -18,7 +18,7 @@ from ..enums import serial_api_power_management
 
 
 # TODO: Get command ids
-class FUNC_POWER_MANAGEMENT_CMD(DATA_FRAME):
+class FUNC_SERIAL_API_POWER_MANAGEMENT_CMD(DATA_FRAME):
     """
     The Serial API Power Management Commands is designed for use in a system where a Z-Wave module
     is connected to a host CPU system via a serial port and a number of I/O pins are used for control of the
@@ -43,7 +43,7 @@ class FUNC_POWER_MANAGEMENT_CMD(DATA_FRAME):
         self._config_cmd = value  # NOQA
 
 
-class PM_PIN_UP_CONFIGURATION_CMD(FUNC_POWER_MANAGEMENT_CMD):
+class PM_PIN_UP_CONFIGURATION_CMD(FUNC_SERIAL_API_POWER_MANAGEMENT_CMD):
     """
     The Pin Configuration Command is used to map the power management input pin PoweredUp to a
     physical IO pin.
@@ -81,7 +81,7 @@ class PM_PIN_UP_CONFIGURATION_CMD(FUNC_POWER_MANAGEMENT_CMD):
         self._active_level = value.value  # NOQA
 
 
-class PM_POWERUP_MODE_CONFIGURATION_CMD(FUNC_POWER_MANAGEMENT_CMD):
+class PM_POWERUP_MODE_CONFIGURATION_CMD(FUNC_SERIAL_API_POWER_MANAGEMENT_CMD):
     """
     The Power up Mode Configuration Command is used to configure the state of the PowerCtrl pins when
     the Serial API has to power up the host CPU system
@@ -201,7 +201,7 @@ class PM_POWERUP_MODE_CONFIGURATION_CMD(FUNC_POWER_MANAGEMENT_CMD):
             self._data[7] = value.value  # NOQA
 
 
-class PM_POWERUP_ZWAVE_CONFIGURATION_CMD(FUNC_POWER_MANAGEMENT_CMD):
+class PM_POWERUP_ZWAVE_CONFIGURATION_CMD(FUNC_SERIAL_API_POWER_MANAGEMENT_CMD):
     """
     Wake up the host CPU when receiving a Z-Wave command where the first 5 bytes of the frame matches
     the specified value and mask.

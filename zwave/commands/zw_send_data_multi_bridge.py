@@ -11,7 +11,7 @@ from . import (
 )
 
 
-class ZwSendDataMultiBridge(DATA_FRAME):
+class FUNC_ZW_SEND_DATA_MULTI_BRIDGE_CMD(DATA_FRAME):
     """
     Send data using multicast (Bridge API)
     """

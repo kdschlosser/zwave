@@ -1,3 +1,9 @@
+"""
+Z-Wave Host API Specification
+0.7.2
+2021.09.02
+"""
+
 from . import (
     DATA_FRAME,
     FRAME_TYPE_REQUEST,
@@ -19,7 +25,10 @@ class _Fields(NODE_ID_FIELDS):
 
 class FUNC_ZW_GET_NODE_PROTOCOL_INFO_CMD(DATA_FRAME):
     """
-    Get protocol info (baud rate, listening, etc.) for a given node
+    Get Node Information Protocol Data Command
+
+    This command is used to request the Node Information protocol data about a NodeID to the Z-Wave
+    API Module.
     """
     id = 0x41
     frame_type = FRAME_TYPE_REQUEST | FRAME_TYPE_ACK

@@ -1,3 +1,9 @@
+"""
+Z-Wave Host API Specification
+0.7.2
+2021.09.02
+"""
+
 from . import (
     DATA_FRAME,
     FRAME_TYPE_REQUEST,
@@ -11,6 +17,9 @@ from ..enums import get_version
 
 class FUNC_ZW_GET_VERSION_CMD(DATA_FRAME):
     """
+    Get Library Version Command
+
+    This command is used to request the Z-Wave library basis version that runs on a Z-Wave Module.
     """
     id = 0x15
     frame_type = FRAME_TYPE_REQUEST | FRAME_TYPE_ACK

@@ -1,3 +1,10 @@
+"""
+Z-Wave Host API Specification
+0.7.2
+2021.09.02
+"""
+
+
 from . import (
     DATA_FRAME,
     FRAME_TYPE_UNSOLICITED,
@@ -35,6 +42,11 @@ class _Fields(NODE_ID_FIELDS):
 
 
 class FUNC_APPLICATION_COMMAND_HANDLER_CMD(DATA_FRAME):
+    """
+    Application Command Handler Command
+    This command is used by a Z-Wave module to notify a host application that a Z-Wave frame has been
+    received.
+    """
     id = 0x04
     frame_type = FRAME_TYPE_UNSOLICITED | FRAME_TYPE_ACK
 

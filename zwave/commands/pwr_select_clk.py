@@ -11,7 +11,7 @@ from . import (
 )
 
 
-class PwrSelectClk(DATA_FRAME):
+class FUNC_PWR_SELECT_CLK_CMD(DATA_FRAME):
     """
     ???
     """

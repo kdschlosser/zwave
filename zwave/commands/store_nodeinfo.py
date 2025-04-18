@@ -11,7 +11,7 @@ from . import (
 )
 
 
-class StoreNodeinfo(DATA_FRAME):
+class FUNC_STORE_NODEINFO_CMD(DATA_FRAME):
     """
     ???
     """

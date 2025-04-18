@@ -42,7 +42,7 @@ class _Fields(NODE_ID_FIELDS):
     ]
 
 
-class ZwSendDataEx(DATA_FRAME):
+class FUNC_ZW_SEND_DATA_EX_CMD(DATA_FRAME):
     """
     End Node Send Data Command
 
@@ -126,7 +126,7 @@ class ZwSendDataEx(DATA_FRAME):
         self._fields.data[self._fields.data_length + 5] = value
 
 
-class ZwSendDataExResponse(DATA_FRAME):
+class FUNC_ZW_SEND_DATA_EX_RSP(DATA_FRAME):
     id = 0x0E
     frame_type = FRAME_TYPE_RESPONSE | FRAME_TYPE_ACK
 
@@ -137,7 +137,7 @@ class ZwSendDataExResponse(DATA_FRAME):
         return self._response_status
 
 
-class ZwSendDataExCallback(DATA_FRAME):
+class FUNC_ZW_SEND_DATA_EX_CB(DATA_FRAME):
     id = 0x0E
     frame_type = FRAME_TYPE_CALLBACK | FRAME_TYPE_ACK
 

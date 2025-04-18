@@ -1,3 +1,9 @@
+"""
+Z-Wave Host API Specification
+0.7.2
+2021.09.02
+"""
+
 from . import (
     DATA_FRAME,
     FRAME_TYPE_REQUEST,
@@ -9,6 +15,9 @@ from . import (
 
 class FUNC_SERIAL_API_GET_INIT_DATA_CMD(DATA_FRAME):
     """
+    Get Init Data Command
+
+    This command is used to request the initialization data and current node list in the network.
     """
     id = 0x02
     frame_type = FRAME_TYPE_REQUEST | FRAME_TYPE_ACK

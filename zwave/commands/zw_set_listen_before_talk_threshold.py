@@ -1,3 +1,9 @@
+"""
+Z-Wave Host API Specification
+0.7.2
+2021.09.02
+"""
+
 from . import (
     DATA_FRAME,
     FRAME_TYPE_REQUEST,
@@ -10,9 +16,13 @@ from ..enums import set_listen_before_talk_threshold
 from .. import _utils
 
 
-class ZwSetListenBeforeTalkThreshold(DATA_FRAME):
+class FUNC_ZW_SET_LISTEN_BEFORE_TALK_THRESHOLD_CMD(DATA_FRAME):
     """
-    Set the RSSI threshold above which the stick will not transmit
+    Set Listen Before Talk Threshold Command
+
+    This command is used to to set the “Listen Before Talk” RSSI threshold that controls at what RSSI level
+    a Z-Wave node will refuse to transmit because of noise. The default threshold value is set to a value
+    corresponding to the RF regulatory requirements in the specific country.
     """
     id = 0x3C
     frame_type = FRAME_TYPE_REQUEST | FRAME_TYPE_ACK
@@ -45,7 +55,7 @@ class ZwSetListenBeforeTalkThreshold(DATA_FRAME):
         self._rssi_thresh = _utils.from_rssi(value)  # NOQA
 
 
-class ZwSetListenBeforeTalkThresholdResponse(DATA_FRAME):
+class FUNC_ZW_SET_LISTEN_BEFORE_TALK_THRESHOLD_RSP(DATA_FRAME):
     id = 0x3C
     frame_type = FRAME_TYPE_RESPONSE | FRAME_TYPE_ACK
 

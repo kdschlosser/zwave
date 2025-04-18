@@ -11,7 +11,7 @@ from . import (
 )
 
 
-class ZwRediscoveryNeeded(DATA_FRAME):
+class FUNC_ZW_REDISCOVERY_NEEDED_CMD(DATA_FRAME):
     """
     ???
     """

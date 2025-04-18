@@ -1,3 +1,9 @@
+"""
+Z-Wave Host API Specification
+0.7.2
+2021.09.02
+"""
+
 from . import (
     DATA_FRAME,
     FRAME_TYPE_REQUEST,
@@ -7,9 +13,15 @@ from . import (
 )
 
 
-class ZwGetNetworkStats(DATA_FRAME):
+class FUNC_ZW_GET_NETWORK_STATS_CMD(DATA_FRAME):
     """
-    Request the current Network Statistics from the Z-Wave API Module
+    Get Network Statistics Command
+
+    This command is used to request the current Network Statistics as collected by a library runs on the Z-
+    Wave Module. It is expected that the library will continuously update any Network Statistics counter
+    until it reaches 65535, which then indicates that the specific counter has reached 65535 or more occur-
+    rences. The Network Statistics counters shall be cleared either on module startup, or by receiving Clear
+    Network Statistics Command.
     """
     id = 0x3A
     frame_type = FRAME_TYPE_REQUEST | FRAME_TYPE_ACK
@@ -19,7 +31,7 @@ class ZwGetNetworkStats(DATA_FRAME):
         return 0
 
 
-class ZwGetNetworkStatsResponse(DATA_FRAME):
+class FUNC_ZW_GET_NETWORK_STATS_RSP(DATA_FRAME):
     id = 0x3A
     frame_type = FRAME_TYPE_RESPONSE | FRAME_TYPE_ACK
 

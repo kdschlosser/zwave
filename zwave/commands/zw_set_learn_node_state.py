@@ -13,11 +13,10 @@ from . import (
 
 class FUNC_ZW_SET_LEARN_NODE_STATE_CMD(DATA_FRAME):
     """
+    Not in specification
     """
     id = 0x40
     frame_type = FRAME_TYPE_REQUEST | FRAME_TYPE_ACK
-    frame_type = FRAME_TYPE_RESPONSE | FRAME_TYPE_ACK
-    frame_type = FRAME_TYPE_CALLBACK | FRAME_TYPE_ACK
 
     @property
     def packet_length(self):

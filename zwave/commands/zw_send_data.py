@@ -1,3 +1,9 @@
+"""
+Z-Wave Host API Specification
+0.7.2
+2021.09.02
+"""
+
 from . import (
     DATA_FRAME,
     FRAME_TYPE_REQUEST,
@@ -38,7 +44,9 @@ class _Fields(NODE_ID_FIELDS):
 
 class FUNC_ZW_SEND_DATA_CMD(DATA_FRAME):
     """
-    Send data
+    Controller Node Send Data Command
+
+    This command is used to transmit contents of a data buffer to a single node or all nodes (broadcast).
     """
     id = 0x13
     frame_type = FRAME_TYPE_REQUEST | FRAME_TYPE_ACK
@@ -107,7 +115,7 @@ class FUNC_ZW_SEND_DATA_RSP(DATA_FRAME):
         return self._status
 
 
-class ZwSendDataCallback(DATA_FRAME):
+class FUNC_ZW_SEND_DATA_CB(DATA_FRAME):
     id = 0x13
     frame_type = FRAME_TYPE_CALLBACK | FRAME_TYPE_ACK
 

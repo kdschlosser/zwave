@@ -1,3 +1,9 @@
+"""
+Z-Wave Host API Specification
+0.7.2
+2021.09.02
+"""
+
 from . import (
     DATA_FRAME,
     FRAME_TYPE_REQUEST,
@@ -34,7 +40,10 @@ class _Fields(NODE_ID_FIELDS):
 
 class FUNC_ZW_REQUEST_NODE_NEIGHBOR_UPDATE_CMD(DATA_FRAME):
     """
-    Ask the specified node to update its neighbors (then read them from the controller)
+    Request Node Neighbor Discovery Command
+
+    This command is used to request a node to perform a new neighbor discovery and receive the updated
+    list of neighbors.
     """
     id = 0x48
     frame_type = FRAME_TYPE_REQUEST | FRAME_TYPE_ACK

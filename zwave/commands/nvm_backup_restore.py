@@ -1,3 +1,9 @@
+"""
+Z-Wave Host API Specification
+0.7.2
+2021.09.02
+"""
+
 from . import (
     DATA_FRAME,
     FRAME_TYPE_REQUEST,
@@ -12,7 +18,9 @@ from ..enums import nvm_backup_restore
 
 class FUNC_NVM_BACKUP_RESTORE_CMD(DATA_FRAME):
     """
-    Read and write from/to the external NVM (700+ series)
+    This command is used to read and write the firmware data of the Z-Wave API Module.
+
+    (700+ series)
     """
     id = 0x2E
     frame_type = FRAME_TYPE_REQUEST | FRAME_TYPE_ACK

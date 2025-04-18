@@ -11,14 +11,12 @@ from . import (
 )
 
 
-class SerialApiGetApplHostMemoryOffset(DATA_FRAME):
+class FUNC_SERIAL_API_GET_APPL_HOST_MEMORY_OFFSET_CMD(DATA_FRAME):
     """
     ???
     """
     id = 0x25
     frame_type = FRAME_TYPE_REQUEST | FRAME_TYPE_ACK
-    frame_type = FRAME_TYPE_RESPONSE | FRAME_TYPE_ACK
-    frame_type = FRAME_TYPE_CALLBACK | FRAME_TYPE_ACK
 
     @property
     def packet_length(self):

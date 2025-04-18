@@ -11,7 +11,7 @@ from . import (
 )
 
 
-class TimerCancel(DATA_FRAME):
+class FUNC_TIMER_CANCEL_CMD(DATA_FRAME):
     """
     ???
     """

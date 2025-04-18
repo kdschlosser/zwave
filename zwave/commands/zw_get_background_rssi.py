@@ -1,3 +1,9 @@
+"""
+Z-Wave Host API Specification
+0.7.2
+2021.09.02
+"""
+
 from . import (
     DATA_FRAME,
     FRAME_TYPE_REQUEST,
@@ -9,9 +15,11 @@ from . import (
 from .. import _utils
 
 
-class ZwGetBackgroundRssi(DATA_FRAME):
+class FUNC_ZW_GET_BACKGROUND_RSSI_CMD(DATA_FRAME):
     """
-    request the most recent background RSSI levels detected
+    Get Background RSSI Command
+
+    This command is used to request the most recent background RSSI levels detected.
     """
     id = 0x3B
     frame_type = FRAME_TYPE_REQUEST | FRAME_TYPE_ACK
@@ -21,7 +29,7 @@ class ZwGetBackgroundRssi(DATA_FRAME):
         return 0
 
 
-class ZwGetBackgroundRssiResponse(DATA_FRAME):
+class FUNC_ZW_GET_BACKGROUND_RSSI_RSP(DATA_FRAME):
     id = 0x3B
     frame_type = FRAME_TYPE_RESPONSE | FRAME_TYPE_ACK
 

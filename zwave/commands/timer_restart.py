@@ -11,7 +11,7 @@ from . import (
 )
 
 
-class TimerRestart(DATA_FRAME):
+class FUNC_TIMER_RESTART_CMD(DATA_FRAME):
     """
     ???
     """

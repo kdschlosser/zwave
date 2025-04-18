@@ -1,3 +1,9 @@
+"""
+Z-Wave Host API Specification
+0.7.2
+2021.09.02
+"""
+
 from . import (
     DATA_FRAME,
     FRAME_TYPE_REQUEST,
@@ -11,6 +17,11 @@ from .. import command_classes
 
 class FUNC_SERIAL_API_APPL_NODE_INFORMATION_CMD(DATA_FRAME):
     """
+    Set Application Node Information Command
+
+    This command is used to generate the Node Information Frame (NIF) contents and store this information
+    about node capabilities to the Z-Wave module. The host application may initially set up the NIF prior to
+    starting or joining a Z-Wave network.
     """
     id = 0x03
     frame_type = FRAME_TYPE_REQUEST | FRAME_TYPE_ACK

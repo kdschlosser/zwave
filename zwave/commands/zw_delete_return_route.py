@@ -1,3 +1,9 @@
+"""
+Z-Wave Host API Specification
+0.7.2
+2021.09.02
+"""
+
 from . import (
     DATA_FRAME,
     FRAME_TYPE_REQUEST,
@@ -35,7 +41,9 @@ class _Fields(NODE_ID_FIELDS):
 
 class FUNC_ZW_DELETE_RETURN_ROUTE_CMD(DATA_FRAME):
     """
-    Delete all return routes from the specified node
+    Delete Return Route Command
+
+    This command is used to request the deletion of the static return routes.
     """
     id = 0x47
     frame_type = FRAME_TYPE_REQUEST | FRAME_TYPE_ACK

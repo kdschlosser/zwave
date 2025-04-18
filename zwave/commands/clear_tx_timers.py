@@ -5,7 +5,7 @@ from . import (
 )
 
 
-class ClearTXTimers(DATA_FRAME):
+class FUNC_CLEAR_TX_TIMERS_CMD(DATA_FRAME):
     """
     Reset the Z-Wave module's internal TX timers
     """

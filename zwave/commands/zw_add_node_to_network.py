@@ -1,3 +1,9 @@
+"""
+Z-Wave Host API Specification
+0.7.2
+2021.09.02
+"""
+
 from . import (
     DATA_FRAME,
     FRAME_TYPE_REQUEST,
@@ -14,7 +20,9 @@ from .. import zw_types
 
 class FUNC_ZW_ADD_NODE_TO_NETWORK_CMD(DATA_FRAME):
     """
-    Control the addnode (or addcontroller) process...start, stop, etc.
+    Add Node To Network Command
+
+    This command is used to trigger a node inclusion to a Z-Wave network.
     """
     id = 0x4A
     frame_type = FRAME_TYPE_REQUEST | FRAME_TYPE_ACK

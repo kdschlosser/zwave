@@ -11,7 +11,7 @@ from . import (
 )
 
 
-class ZwRequestNodetypeNeighborUpdate(DATA_FRAME):
+class FUNC_ZW_REQUEST_NODETYPE_NEIGHBOR_UPDATE_CMD(DATA_FRAME):
     """
     Used by the Z-Wave API module to request encryption of a Z-Wave protocol frame
     """

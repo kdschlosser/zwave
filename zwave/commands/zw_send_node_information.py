@@ -1,3 +1,9 @@
+"""
+Z-Wave Host API Specification
+0.7.2
+2021.09.02
+"""
+
 from . import (
     DATA_FRAME,
     FRAME_TYPE_REQUEST,
@@ -37,7 +43,9 @@ class _Fields(NODE_ID_FIELDS):
 
 class FUNC_ZW_SEND_NODE_INFORMATION_CMD(DATA_FRAME):
     """
-    Send Node Information Frame of the stick to a node
+    Send Node Information Command
+
+    This command is used to trigger a transmission of Node Information Frame.
     """
     id = 0x12
     frame_type = FRAME_TYPE_REQUEST | FRAME_TYPE_ACK

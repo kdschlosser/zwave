@@ -34,7 +34,7 @@ class _Fields(NODE_ID_FIELDS):
     ]
 
 
-class ZwSetPriorityRoute(DATA_FRAME):
+class FUNC_ZW_SET_PRIORITY_ROUTE_CMD(DATA_FRAME):
     """
     ???
     """
@@ -78,7 +78,7 @@ class ZwSetPriorityRoute(DATA_FRAME):
         self._fields.route_speed = value.value
 
 
-class ZwSetPriorityRouteResponse(DATA_FRAME):
+class FUNC_ZW_SET_PRIORITY_ROUTE_RSP(DATA_FRAME):
     id = 0x93
     frame_type = FRAME_TYPE_RESPONSE | FRAME_TYPE_ACK
 

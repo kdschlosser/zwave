@@ -11,7 +11,7 @@ from . import (
 )
 
 
-class TimerStart(DATA_FRAME):
+class FUNC_TIMER_START_CMD(DATA_FRAME):
     """
     ???
     """

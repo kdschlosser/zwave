@@ -41,7 +41,7 @@ class _Fields(NODE_ID_FIELDS):
     ]
 
 
-class ZwAssignPrioritySucReturnRoute(DATA_FRAME):
+class FUNC_ZW_ASSIGN_PRIORITY_SUC_RETURN_ROUTE_CMD(DATA_FRAME):
     """
     Assign a priority route from a node to the SUC
     """
@@ -101,7 +101,7 @@ class ZwAssignPrioritySucReturnRoute(DATA_FRAME):
         self._fields.session_id = value
 
 
-class ZwAssignPrioritySucReturnRouteResponse(DATA_FRAME):
+class FUNC_ZW_ASSIGN_PRIORITY_SUC_RETURN_ROUTE_RSP(DATA_FRAME):
     """
     ???
     """
@@ -117,7 +117,7 @@ class ZwAssignPrioritySucReturnRouteResponse(DATA_FRAME):
         return self._response
 
 
-class ZwAssignPrioritySucReturnRouteCallback(DATA_FRAME):
+class FUNC_ZW_ASSIGN_PRIORITY_SUC_RETURN_ROUTE_CB(DATA_FRAME):
     id = 0x58
     frame_type = FRAME_TYPE_CALLBACK | FRAME_TYPE_ACK
 

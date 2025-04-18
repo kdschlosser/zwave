@@ -1,3 +1,9 @@
+"""
+Z-Wave Host API Specification
+0.7.2
+2021.09.02
+"""
+
 from . import (
     DATA_FRAME,
     FRAME_TYPE_REQUEST,
@@ -16,7 +22,11 @@ from .. import zw_types
 
 class FUNC_ZW_REMOVE_NODE_FROM_NETWORK_CMD(DATA_FRAME):
     """
-    Control the removenode (or removecontroller) process...start, stop, etc.
+    Remove Node From Network Command
+
+    This command is used to trigger a node removal operation from a Z-Wave network. It is also possible to
+    perform out-of-range removal of nodes from the network when repeater nodes are capable of forwarding
+    the new network wide exclusion (NWE) frame.
     """
     id = 0x4B
     frame_type = FRAME_TYPE_REQUEST | FRAME_TYPE_ACK

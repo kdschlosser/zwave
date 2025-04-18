@@ -11,7 +11,7 @@ from . import (
 )
 
 
-class ZwSendDataMetaBridge(DATA_FRAME):
+class FUNC_ZW_SEND_DATA_META_BRIDGE_CMD(DATA_FRAME):
     id = 0xAA
     """
     ???

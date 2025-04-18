@@ -13,7 +13,7 @@ from . import (
 )
 
 
-class ZwAreNodesNeighbors(DATA_FRAME):
+class FUNC_ZW_ARE_NODES_NEIGHBORS_CMD(DATA_FRAME):
     """
     Used to check if two nodes are marked as being within direct range of each other
     """
@@ -46,7 +46,7 @@ class ZwAreNodesNeighbors(DATA_FRAME):
         self._node_id2 = value  # NOQA
 
 
-class ZwAreNodesNeighborsResponse(DATA_FRAME):
+class FUNC_ZW_ARE_NODES_NEIGHBORS_RSP(DATA_FRAME):
     id = 0xBC
     frame_type = FRAME_TYPE_RESPONSE | FRAME_TYPE_ACK
 

@@ -11,7 +11,7 @@ from . import (
 )
 
 
-class SerialApiTest(DATA_FRAME):
+class FUNC_SERIAL_API_TEST_CMD(DATA_FRAME):
     """
     ???
     """

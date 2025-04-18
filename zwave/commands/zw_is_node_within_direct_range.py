@@ -17,7 +17,7 @@ class _Fields(NODE_ID_FIELDS):
     ]
 
 
-class ZwIsNodeWithinDirectRange(DATA_FRAME):
+class FUNC_ZW_IS_NODE_WITHIN_DIRECT_RANGE_CMD(DATA_FRAME):
     """
     ???
     """
@@ -43,7 +43,7 @@ class ZwIsNodeWithinDirectRange(DATA_FRAME):
         self._fields.node_id = value
 
 
-class ZwIsNodeWithinDirectRangeResponse(DATA_FRAME):
+class FUNC_ZW_IS_NODE_WITHIN_DIRECT_RANGE_RSP(DATA_FRAME):
     id = 0x5D
     frame_type = FRAME_TYPE_RESPONSE | FRAME_TYPE_ACK
 

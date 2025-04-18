@@ -11,7 +11,7 @@ from . import (
 )
 
 
-class ApplicationSecurityEvent(DATA_FRAME):
+class FUNC_APPLICATION_SECURITY_EVENT_CMD(DATA_FRAME):
     """
     The protocol uses this function to notify the application of security events.
 

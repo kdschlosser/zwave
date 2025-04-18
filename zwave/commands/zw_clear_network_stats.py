@@ -1,3 +1,9 @@
+"""
+Z-Wave Host API Specification
+0.7.2
+2021.09.02
+"""
+
 from . import (
     DATA_FRAME,
     FRAME_TYPE_REQUEST,
@@ -7,9 +13,11 @@ from . import (
 )
 
 
-class ZwClearNetworkStats(DATA_FRAME):
+class FUNC_ZW_CLEAR_NETWORK_STATS_CMD(DATA_FRAME):
     """
-    Clear the current Network Statistics collected by the Z-Wave API Module
+    Clear Network Statistics Command
+
+    This command is used to clear the current Network Statistics collected by the Z-Wave API Module.
     """
     id = 0x39
     frame_type = FRAME_TYPE_REQUEST | FRAME_TYPE_ACK
@@ -19,7 +27,7 @@ class ZwClearNetworkStats(DATA_FRAME):
         return 0
 
 
-class ZwClearNetworkStatsResponse(DATA_FRAME):
+class FUNC_ZW_CLEAR_NETWORK_STATS_RSP(DATA_FRAME):
     id = 0x39
     frame_type = FRAME_TYPE_RESPONSE | FRAME_TYPE_ACK
 

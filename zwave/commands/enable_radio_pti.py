@@ -11,7 +11,7 @@ from . import (
 )
 
 
-class EnableRadioPTI(DATA_FRAME):
+class FUNC_ENABLE_RADIO_PTI_CMD(DATA_FRAME):
     """
     ???
     """

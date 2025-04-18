@@ -1,3 +1,10 @@
+"""
+Z-Wave Host API Specification
+0.7.2
+2021.09.02
+"""
+
+
 from . import (
     DATA_FRAME,
     FRAME_TYPE_REQUEST,
@@ -11,7 +18,11 @@ from ..enums import set_rf_receive_mode
 
 class FUNC_ZW_SET_RF_RECEIVE_MODE_CMD(DATA_FRAME):
     """
-    Power the RF section of the stick down/up
+    Set RF Receive Mode Command
+
+    This command is used to to power down the RF when not in use e.g., expects nothing to be received. It
+    can also be used to set the RF into receive mode. This functionality is useful in battery powered Z-Wave
+    nodes. The RF is automatic powered up when transmitting data.
     """
     id = 0x10
     frame_type = FRAME_TYPE_REQUEST | FRAME_TYPE_ACK

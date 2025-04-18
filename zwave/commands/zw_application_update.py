@@ -1,3 +1,9 @@
+"""
+Z-Wave Host API Specification
+0.7.2
+2021.09.02
+"""
+
 from . import (
     DATA_FRAME,
     FRAME_TYPE_ACK,
@@ -17,7 +23,24 @@ from .. import zw_types
 # this command is a bit tricky because it can be formatted 3 different ways.
 class FUNC_ZW_APPLICATION_UPDATE_CMD(DATA_FRAME):
     """
-    Get a list of supported (and controller) command classes
+    Application Update Command
+
+    This command is used to update node information data structures and to control SmartStart inclusion.
+
+    This command is used by during the following conditions:
+        - If the Z-Wave API Module runs an End Node library type (refer to Table 4.36), it MUST send this
+          command to the host application when:
+
+            - It received a Node Information Frame Command.
+
+    If the Z-Wave API Module runs an Controller node library type (refer to Table 4.36), it MUST send this
+    command to the host application when:
+        - It received a Node Information Frame Command.
+        - It received a SmartStart Prime Command and it is in SmartStart Add Mode.
+        - It received an Included Node Info Frame Command and it is in SmartStart Add Mode.
+        - It has the SIS Role and a node is added or excluded from the network by a controller (Primary or Inclusion controller).
+        - It has received a change in the Node Information Frame data for a node during network topology
+          update process (either Automatic Controller Update or Controller Replication).
     """
     id = 0x49
     frame_type = FRAME_TYPE_UNSOLICITED | FRAME_TYPE_ACK

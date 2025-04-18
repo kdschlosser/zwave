@@ -1,3 +1,9 @@
+"""
+Z-Wave Host API Specification
+0.7.2
+2021.09.02
+"""
+
 from . import (
     DATA_FRAME,
     FRAME_TYPE_REQUEST,
@@ -7,9 +13,12 @@ from . import (
 )
 
 
-class GetTXTimers(DATA_FRAME):
+class FUNC_GET_TX_TIMERS_CMD(DATA_FRAME):
     """
-    Request the Z-Wave module's internal TX timers
+    Get Tx Timer Command
+
+    This command is used to request the Z-Wave Module internal Tx timer. When the module receives this
+    command, it MUST return the Tx timer for each channels
     """
     id = 0x38
     frame_type = FRAME_TYPE_REQUEST | FRAME_TYPE_ACK
@@ -19,7 +28,7 @@ class GetTXTimers(DATA_FRAME):
         return 0
 
 
-class GetTXTimersResponse(DATA_FRAME):
+class FUNC_GET_TX_TIMERS_RSP(DATA_FRAME):
     id = 0x38
     frame_type = FRAME_TYPE_RESPONSE | FRAME_TYPE_ACK
 

@@ -89,7 +89,8 @@ version   |  version  |  framework  |    version
 
 """
 
-class ZwGetProtocolVersion(DATA_FRAME):
+
+class FUNC_ZW_GET_PROTOCOL_VERSION_CMD(DATA_FRAME):
     """
     Used to request the Z-Wave Protocol version data (700 series)
     """
@@ -101,7 +102,7 @@ class ZwGetProtocolVersion(DATA_FRAME):
         return 0
 
 
-class ZwGetProtocolVersionResponse(DATA_FRAME):
+class FUNC_ZW_GET_PROTOCOL_VERSION_RSP(DATA_FRAME):
     id = 0x09
     frame_type = FRAME_TYPE_RESPONSE | FRAME_TYPE_ACK
 

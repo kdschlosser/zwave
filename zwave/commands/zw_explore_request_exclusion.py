@@ -7,7 +7,7 @@ from . import (
 )
 
 
-class ZwExploreRequestExclusion(DATA_FRAME):
+class FUNC_ZW_EXPLORE_REQUEST_EXCLUSION_CMD(DATA_FRAME):
     """
     Initiate network wide exclusion while in learn mode
     """
@@ -19,7 +19,7 @@ class ZwExploreRequestExclusion(DATA_FRAME):
         return 0
 
 
-class ZwExploreRequestExclusionResponse(DATA_FRAME):
+class FUNC_ZW_EXPLORE_REQUEST_EXCLUSION_RSP(DATA_FRAME):
     id = 0x5F
     frame_type = FRAME_TYPE_RESPONSE | FRAME_TYPE_ACK
 

@@ -11,7 +11,7 @@ from . import (
 )
 
 
-class ZwSetExtIntLevel(DATA_FRAME):
+class FUNC_ZW_SET_EXT_INT_LEVEL_CMD(DATA_FRAME):
     """
     ???
     """

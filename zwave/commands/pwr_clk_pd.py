@@ -11,7 +11,7 @@ from . import (
 )
 
 
-class PwrClkPd(DATA_FRAME):
+class FUNC_PWR_CLK_PD_CMD(DATA_FRAME):
     """
     ???
     """

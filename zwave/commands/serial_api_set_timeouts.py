@@ -1,3 +1,10 @@
+"""
+Serial API Host Appl. Prg. Guide
+INS12350
+2022-12-01
+"""
+
+
 from . import (
     DATA_FRAME,
     FRAME_TYPE_REQUEST,
@@ -9,6 +16,7 @@ from . import (
 
 class FUNC_SERIAL_API_SET_TIMEOUTS_CMD(DATA_FRAME):
     """
+    The timeout in the Serial API (starting with the Serial API version 4) can be set in 10 ms ticks
     """
     id = 0x06
     frame_type = FRAME_TYPE_REQUEST | FRAME_TYPE_ACK

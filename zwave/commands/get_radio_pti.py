@@ -11,7 +11,7 @@ from . import (
 )
 
 
-class GetRadioPTI(DATA_FRAME):
+class FUNC_GET_RADIO_PTI_CMD(DATA_FRAME):
     """
     Radio debugging data. similiar to using a Zniffer
     """

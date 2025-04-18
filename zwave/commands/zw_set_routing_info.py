@@ -11,9 +11,8 @@ from . import (
 )
 
 
-class ZwSetRoutingInfo(DATA_FRAME):
+class FUNC_ZW_SET_ROUTING_INFO_CMD(DATA_FRAME):
     """
-    ???
     """
     id = 0x1B
     frame_type = FRAME_TYPE_REQUEST | FRAME_TYPE_ACK

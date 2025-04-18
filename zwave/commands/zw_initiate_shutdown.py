@@ -7,7 +7,7 @@ from . import (
 )
 
 
-class ZwInitiateShutdown(DATA_FRAME):
+class FUNC_ZW_INITIATE_SHUTDOWN_CMD(DATA_FRAME):
     """
     Instruct the Z-Wave API to shut down in order to safely remove the power
     """
@@ -19,7 +19,7 @@ class ZwInitiateShutdown(DATA_FRAME):
         return 0
 
 
-class ZwInitiateShutdownResponse(DATA_FRAME):
+class FUNC_ZW_INITIATE_SHUTDOWN_RSP(DATA_FRAME):
     id = 0xD9
     frame_type = FRAME_TYPE_RESPONSE | FRAME_TYPE_ACK
 

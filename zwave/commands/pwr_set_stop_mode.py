@@ -11,7 +11,7 @@ from . import (
 )
 
 
-class PwrSetStopMode(DATA_FRAME):
+class FUNC_PWR_SETSTOPMODE_CMD(DATA_FRAME):
     """
     ???
     """

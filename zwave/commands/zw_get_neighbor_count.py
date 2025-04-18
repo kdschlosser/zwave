@@ -17,7 +17,7 @@ from . import (
 )
 
 
-class ZwGetNeighborCount(DATA_FRAME):
+class FUNC_ZW_GET_NEIGHBOR_COUNT_CMD(DATA_FRAME):
     """
     ???
     """
@@ -39,7 +39,7 @@ class ZwGetNeighborCount(DATA_FRAME):
         self._node_id = value  # NOQA
 
 
-class ZwGetNeighborCountResponse(DATA_FRAME):
+class FUNC_ZW_GET_NEIGHBOR_COUNT_RSP(DATA_FRAME):
     id = 0xBB
     frame_type = FRAME_TYPE_RESPONSE | FRAME_TYPE_ACK
 

@@ -11,7 +11,7 @@ from . import (
 )
 
 
-class Unknown(DATA_FRAME):
+class FUNC_UNKNOWN_CMD(DATA_FRAME):
     """
     ???
     """

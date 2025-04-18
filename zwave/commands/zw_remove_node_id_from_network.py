@@ -1,3 +1,9 @@
+"""
+Z-Wave Host API Specification
+0.7.2
+2021.09.02
+"""
+
 from . import (
     DATA_FRAME,
     FRAME_TYPE_REQUEST,
@@ -14,9 +20,13 @@ from ..command_classes import COMMAND_CLASS
 from .. import zw_types
 
 
-class ZwRemoveNodeIdFromNetwork(DATA_FRAME):
+class FUNC_ZW_REMOVE_NODE_ID_FROM_NETWORK_CMD(DATA_FRAME):
     """
-    Trigger removal of a specific node that desires exclusion from the network
+    Remove Specific Node From Network Command
+
+    This command is used to trigger a specific node removal operation from a Z-Wave network. It is also
+    possible to perform out-of-range removal of specific node from the network when repeater nodes are
+    capable of forwarding the new network wide exclusion (NWE) frame.
     """
     id = 0x3F
     frame_type = FRAME_TYPE_REQUEST | FRAME_TYPE_ACK
@@ -104,7 +114,7 @@ class _Fields(NODE_ID_FIELDS):
     ]
 
 
-class ZwRemoveNodeIdFromNetworkCallback(DATA_FRAME):
+class FUNC_ZW_REMOVE_NODE_ID_FROM_NETWORK_CB(DATA_FRAME):
     id = 0x3F
     frame_type = FRAME_TYPE_CALLBACK | FRAME_TYPE_ACK
 
