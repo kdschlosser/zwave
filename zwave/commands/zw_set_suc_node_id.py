@@ -1,3 +1,9 @@
+"""
+Z-Wave Host API Specification
+0.7.2
+2021.09.02
+"""
+
 from . import (
     DATA_FRAME,
     FRAME_TYPE_REQUEST,
@@ -41,7 +47,10 @@ class _Fields(NODE_ID_FIELDS):
 
 class FUNC_ZW_SET_SUC_NODE_ID_CMD(DATA_FRAME):
     """
-    Configure a static/bridge controller to be a SUC/SIS node (or not)
+    Set SUC NodeID Command
+
+    This command is used to configure a static/bridge controller to be a SUC/SIS node or not. The Primary
+    Controller should use this function to set a static/bridge controller to be the SUC/SIS node.
     """
     id = 0x54
     frame_type = FRAME_TYPE_REQUEST | FRAME_TYPE_ACK

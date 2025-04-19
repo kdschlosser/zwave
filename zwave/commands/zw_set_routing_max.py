@@ -1,3 +1,9 @@
+"""
+Z-Wave Host API Specification
+0.7.2
+2021.09.02
+"""
+
 from . import (
     DATA_FRAME,
     FRAME_TYPE_REQUEST,
@@ -9,7 +15,10 @@ from . import (
 
 class FUNC_ZW_SET_ROUTING_MAX_CMD(DATA_FRAME):
     """
-    Set the maximum number of source routing attempts
+    Set Maximum Routing Attempts Command
+
+    This command is used to set the maximum number of source routing attempts based on the routing table
+    lookups, and this shall be used before the Z-Wave protocol layer starts the dynamic route resolution.
     """
     id = 0xD4
     frame_type = FRAME_TYPE_REQUEST | FRAME_TYPE_ACK

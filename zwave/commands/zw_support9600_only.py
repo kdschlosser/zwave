@@ -13,12 +13,10 @@ from . import (
 
 class FUNC_ZW_SUPPORT9600_ONLY_CMD(DATA_FRAME):
     """
-    ???
+    Not in specification
     """
     id = 0x5B
     frame_type = FRAME_TYPE_REQUEST | FRAME_TYPE_ACK
-    frame_type = FRAME_TYPE_RESPONSE | FRAME_TYPE_ACK
-    frame_type = FRAME_TYPE_CALLBACK | FRAME_TYPE_ACK
 
     @property
     def packet_length(self):

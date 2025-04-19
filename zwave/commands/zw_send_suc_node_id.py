@@ -1,3 +1,9 @@
+"""
+Z-Wave Host API Specification
+0.7.2
+2021.09.02
+"""
+
 from . import (
     DATA_FRAME,
     FRAME_TYPE_REQUEST,
@@ -37,7 +43,10 @@ class _Fields(NODE_ID_FIELDS):
 
 class FUNC_ZW_SEND_SUC_ID_CMD(DATA_FRAME):
     """
-    Send the SUC/SIS Node ID from the primary controller to another controller
+    Send SUC NodeID Command
+
+    This command is used to trigger the transfer of SUC/SIS NodeID from Primary/Static controller to a
+    given controller NodeID.
     """
     id = 0x57
     frame_type = FRAME_TYPE_REQUEST | FRAME_TYPE_ACK

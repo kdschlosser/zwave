@@ -1,4 +1,4 @@
-from . import HOST_CLASS, TXStatus
+from . import HOST_CLASS, HOST_ENUM, TXStatus
 
 
 class command(HOST_CLASS):
@@ -6,12 +6,15 @@ class command(HOST_CLASS):
 
 
 class response(HOST_CLASS):
-    pass
+
+    class return_route_response(HOST_ENUM):
+        Failed = 0x00
+        Started = 0x01
 
 
 class callback(HOST_CLASS):
 
-    class status(TXStatus):
+    class tx_status(TXStatus):
         pass
 
 

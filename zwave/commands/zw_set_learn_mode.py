@@ -1,3 +1,9 @@
+"""
+Z-Wave Host API Specification
+0.7.2
+2021.09.02
+"""
+
 from . import (
     DATA_FRAME,
     FRAME_TYPE_REQUEST,
@@ -15,7 +21,9 @@ from ..enums import set_learn_mode
 
 class FUNC_ZW_SET_LEARN_MODE_CMD(DATA_FRAME):
     """
-    Put a controller into learn mode for replication/ receipt of configuration info
+    Set Learn Mode Command
+
+    This command is used to start or stop Learn Mode
     """
     id = 0x50
     frame_type = FRAME_TYPE_REQUEST | FRAME_TYPE_ACK

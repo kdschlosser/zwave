@@ -17,7 +17,9 @@ from ..enums import get_dcdc_config
 
 class FUNC_GET_DCDC_CONFIG_CMD(DATA_FRAME):
     """
-    ???
+    Get DCDC Configuration Command
+
+    The host CPU system can get the current DCDC Configuration
     """
     id = 0xDE
     frame_type = FRAME_TYPE_REQUEST | FRAME_TYPE_ACK

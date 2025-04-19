@@ -6,18 +6,16 @@ class command(HOST_CLASS):
 
 
 class response(HOST_CLASS):
-    pass
+
+    class new_route_response(HOST_ENUM):
+        FailedOrBusy = 0x00
+        Started = 0x01
 
 
 class callback(HOST_CLASS):
 
-    class status(HOST_ENUM):
-        Done = 0x00
-        Abort = 0x01
-        Wait = 0x02
-        Disabled = 0x03
-
-
-
-
-
+    class new_route_status(HOST_ENUM):
+        UpdateDone = 0x00
+        UpdateAbort = 0x01
+        UpdateBusy = 0x02
+        UpdateDisabled = 0x03

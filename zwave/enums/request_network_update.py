@@ -11,13 +11,8 @@ class response(HOST_CLASS):
 
 class callback(HOST_CLASS):
 
-    class status(HOST_ENUM):
+    class network_update_status(HOST_ENUM):
         UpdateDone = 0x00
         UpdateAborted = 0x01
         SUCBusy = 0x02
         UpdateOverflow = 0x03
-
-
-
-
-

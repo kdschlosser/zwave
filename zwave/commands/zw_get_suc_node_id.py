@@ -1,3 +1,9 @@
+"""
+Z-Wave Host API Specification
+0.7.2
+2021.09.02
+"""
+
 from . import (
     DATA_FRAME,
     FRAME_TYPE_REQUEST,
@@ -11,7 +17,9 @@ from . import (
 
 class FUNC_ZW_GET_SUC_NODE_ID_CMD(DATA_FRAME):
     """
-    Try to retrieve a Static Update Controller node id (zero if no SUC present)
+    Get SUC NodeID Command
+
+    This command is used to get currently registered SUC/SIS NodeID in a Z-Wave network.
     """
     id = 0x56
     frame_type = FRAME_TYPE_REQUEST | FRAME_TYPE_ACK

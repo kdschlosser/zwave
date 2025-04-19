@@ -1,3 +1,9 @@
+"""
+Z-Wave Host API Specification
+0.7.2
+2021.09.02
+"""
+
 from . import (
     DATA_FRAME,
     FRAME_TYPE_REQUEST,
@@ -43,7 +49,11 @@ class _Fields(NODE_ID_FIELDS):
 
 class FUNC_ZW_ASSIGN_PRIORITY_RETURN_ROUTE_CMD(DATA_FRAME):
     """
-    Assign a priority route between two nodes
+    Assign Priority Return Route Command
+
+    This command is used to assign priority route to end nodes. An end node MUST always use the priority
+    route for the first transmission attempt. Refer to Z-Wave Alliance, ZWA_Z-Wave and Z-Wave Long Range
+    Network Layer Specification_SPE for details.
     """
     id = 0x4F
     frame_type = FRAME_TYPE_REQUEST | FRAME_TYPE_ACK

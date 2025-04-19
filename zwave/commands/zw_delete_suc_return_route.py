@@ -1,3 +1,9 @@
+"""
+Z-Wave Host API Specification
+0.7.2
+2021.09.02
+"""
+
 from . import (
     DATA_FRAME,
     FRAME_TYPE_REQUEST,
@@ -35,7 +41,9 @@ class _Fields(NODE_ID_FIELDS):
 
 class FUNC_ZW_DELETE_SUC_RETURN_ROUTE_CMD(DATA_FRAME):
     """
-    Remove return routes to the SUC
+    Delete SUC Return Route Command
+
+    This command is used to request the deletion of the SUC/SIS return routes.
     """
     id = 0x55
     frame_type = FRAME_TYPE_REQUEST | FRAME_TYPE_ACK
@@ -72,12 +80,14 @@ class FUNC_ZW_DELETE_SUC_RETURN_ROUTE_RSP(DATA_FRAME):
     frame_type = FRAME_TYPE_RESPONSE | FRAME_TYPE_ACK
 
     _fields_ = [
-        ('_status', uint8_t),
+        ('_return_route_response', uint8_t),
     ]
 
+    return_route_responses = delete_suc_return_route.response.return_route_response
+
     @property
-    def status(self):
-        return self._status
+    def return_route_response(self) -> return_route_responses:
+        return self.return_route_responses(self._return_route_response)
 
 
 class FUNC_ZW_DELETE_SUC_RETURN_ROUTE_CB(DATA_FRAME):
@@ -89,12 +99,12 @@ class FUNC_ZW_DELETE_SUC_RETURN_ROUTE_CB(DATA_FRAME):
         ('_status', uint8_t),
     ]
 
-    statuses = delete_suc_return_route.callback.status
+    tx_statuses = delete_suc_return_route.callback.tx_status
 
     @property
     def session_id(self):
         return self._session_id
 
     @property
-    def status(self) -> statuses:
-        return self.statuses(self._status)
+    def status(self) -> tx_statuses:
+        return self.tx_statuses(self._status)

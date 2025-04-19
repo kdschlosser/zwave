@@ -1,4 +1,4 @@
-from . import HOST_CLASS, RouteDataRate, TXStatus
+from . import HOST_CLASS, HOST_ENUM, RouteDataRate, TXStatus
 
 
 class command(HOST_CLASS):
@@ -7,10 +7,13 @@ class command(HOST_CLASS):
 
 
 class response(HOST_CLASS):
-    pass
+
+    class suc_route_response(HOST_ENUM):
+        AlreadyActive = 0x00
+        Started = 0x01
 
 
 class callback(HOST_CLASS):
 
-    class status(TXStatus):
+    class tx_status(TXStatus):
         pass

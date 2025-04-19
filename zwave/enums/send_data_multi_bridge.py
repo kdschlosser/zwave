@@ -1,8 +1,10 @@
-from . import HOST_CLASS, TXStatus
+from . import HOST_CLASS, HOST_ENUM, TXOption, TXStatus
 
 
 class command(HOST_CLASS):
-    pass
+
+    class tx_option(TXOption):
+        pass
 
 
 class response(HOST_CLASS):
@@ -13,3 +15,8 @@ class callback(HOST_CLASS):
 
     class tx_status(TXStatus):
         pass
+
+
+
+
+

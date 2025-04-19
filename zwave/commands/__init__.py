@@ -99,26 +99,26 @@ FUNC_ZW_REMOVE_NODE_FROM_NETWORK_CMD = 0x4B  # zw_remove_node_from_network.py   
 FUNC_ZW_CREATE_NEW_PRIMARY_CMD = 0x4C  # zw_create_new_primary.py               **DONE
 FUNC_ZW_CONTROLLER_CHANGE_CMD = 0x4D  # zw_controller_change.py                 **DONE
 FUNC_ZW_RESERVED_FN_CMD = 0x4E  # zw_reserved_fn.py
-FUNC_ZW_ASSIGN_PRIORITY_RETURN_ROUTE_CMD = 0x4F  # zw_assign_priority_return_route.py
+FUNC_ZW_ASSIGN_PRIORITY_RETURN_ROUTE_CMD = 0x4F  # zw_assign_priority_return_route.py   **DONE
 
 
 # **************************  0x50 - 0x5F  **************************
-FUNC_ZW_SET_LEARN_MODE_CMD = 0x50  # zw_set_learn_mode.py
-FUNC_ZW_ASSIGN_SUC_RETURN_ROUTE_CMD = 0x51  # zw_assign_suc_return_route.py
+FUNC_ZW_SET_LEARN_MODE_CMD = 0x50  # zw_set_learn_mode.py                       **DONE
+FUNC_ZW_ASSIGN_SUC_RETURN_ROUTE_CMD = 0x51  # zw_assign_suc_return_route.py     **DONE
 FUNC_ZW_ENABLE_SUC_CMD = 0x52  # zw_enable_suc.py
-FUNC_ZW_REQUEST_NETWORK_UPDATE_CMD = 0x53  # zw_request_network_update.py
-FUNC_ZW_SET_SUC_NODE_ID_CMD = 0x54  # zw_set_suc_node_id.py
-FUNC_ZW_DELETE_SUC_RETURN_ROUTE_CMD = 0x55  # zw_delete_suc_return_route.py
-FUNC_ZW_GET_SUC_NODE_ID_CMD = 0x56  # zw_get_suc_node_id.py
-FUNC_ZW_SEND_SUC_ID_CMD = 0x57  # zw_send_suc_node_id.py
-FUNC_ZW_ASSIGN_PRIORITY_SUC_RETURN_ROUTE_CMD = 0x58  # zw_assign_priority_suc_return_route.py
-FUNC_ZW_REDISCOVERY_NEEDED_CMD = 0x59  # zw_rediscovery_needed.py
+FUNC_ZW_REQUEST_NETWORK_UPDATE_CMD = 0x53  # zw_request_network_update.py       **DONE
+FUNC_ZW_SET_SUC_NODE_ID_CMD = 0x54  # zw_set_suc_node_id.py                     **DONE
+FUNC_ZW_DELETE_SUC_RETURN_ROUTE_CMD = 0x55  # zw_delete_suc_return_route.py     **DONE
+FUNC_ZW_GET_SUC_NODE_ID_CMD = 0x56  # zw_get_suc_node_id.py                     **DONE
+FUNC_ZW_SEND_SUC_ID_CMD = 0x57  # zw_send_suc_node_id.py                        **DONE
+FUNC_ZW_ASSIGN_PRIORITY_SUC_RETURN_ROUTE_CMD = 0x58  # zw_assign_priority_suc_return_route.py   **DONE
+FUNC_ZW_REDISCOVERY_NEEDED_CMD = 0x59  # zw_rediscovery_needed.py               **DONE
 FUNC_ZW_REQUEST_NODE_NEIGHBOR_UPDATE_OPTIONS_CMD = 0x5A  # zw_request_node_neighbor_update_option.py
 FUNC_ZW_SUPPORT9600_ONLY_CMD = 0x5B  # zw_support9600_only.py
-FUNC_ZW_REQUEST_NEW_ROUTE_DESTINATIONS_CMD = 0x5C  # zw_request_new_route_destinations.py
-FUNC_ZW_IS_NODE_WITHIN_DIRECT_RANGE_CMD = 0x5D  # zw_is_node_within_direct_range.py
-FUNC_ZW_EXPLORE_REQUEST_INCLUSION_CMD = 0x5E  # zw_explore_request_inclusion.py
-FUNC_ZW_EXPLORE_REQUEST_EXCLUSION_CMD = 0x5F  # zw_explore_request_exclusion.py
+FUNC_ZW_REQUEST_NEW_ROUTE_DESTINATIONS_CMD = 0x5C  # zw_request_new_route_destinations.py   **DONE
+FUNC_ZW_IS_NODE_WITHIN_DIRECT_RANGE_CMD = 0x5D  # zw_is_node_within_direct_range.py   **DONE
+FUNC_ZW_EXPLORE_REQUEST_INCLUSION_CMD = 0x5E  # zw_explore_request_inclusion.py **DONE
+FUNC_ZW_EXPLORE_REQUEST_EXCLUSION_CMD = 0x5F  # zw_explore_request_exclusion.py **DONE
 
 
 # **************************  0x60 - 0x6F  **************************
@@ -214,7 +214,7 @@ FUNC_ZW_RESERVED_SSD_CMD = 0xA7  # zw_reserved_ssd.py
 FUNC_APPLICATION_COMMAND_HANDLER_BRIDGE_CMD = 0xA8  # application_command_handler_bridge.py
 FUNC_ZW_SEND_DATA_BRIDGE_CMD = 0xA9  # zw_send_data_bridge.py
 FUNC_ZW_SEND_DATA_META_BRIDGE_CMD = 0xAA  # zw_send_data_meta_bridge.py
-FUNC_ZW_SEND_DATA_MULTI_BRIDGE_CMD = 0xAB  # zw_send_data_multi_bridge.py
+FUNC_ZW_SEND_DATA_MULTI_BRIDGE_CMD = 0xAB  # zw_send_data_multi_bridge.py       **DONE
 0xAC         FUNC_ID_ZW_SEND_PROTOCOL_DATA
 0xAD Not Used
 0xAE Not Used
@@ -226,21 +226,21 @@ FUNC_PWR_SETSTOPMODE_CMD = 0xB0  # pwr_set_stop_mode.py
 FUNC_PWR_CLK_PD_CMD = 0xB1  # pwr_clk_pd.py
 FUNC_PWR_CLK_PUP_CMD = 0xB2  # pwr_clk_pup.py
 FUNC_PWR_SELECT_CLK_CMD = 0xB3  # pwr_select_clk.py
-FUNC_ZW_SET_WUT_TIMEOUT_CMD = 0xB4  # zw_set_wut_timeout.py    **DONE
-FUNC_ZW_IS_WUT_KICKED_CMD = 0xB5  # zw_is_wut_kicked.py    **DONE
-FUNC_ZW_WATCHDOG_ENABLE_CMD = 0xB6  # zw_watchdog_enable.py    **DONE
-FUNC_ZW_WATCHDOG_DISABLE_CMD = 0xB7  # zw_watchdog_disable.py    **DONE
-FUNC_ZW_WATCHDOG_KICK_CMD = 0xB8  # zw_watchdog_kick.py    **DONE
+FUNC_ZW_SET_WUT_TIMEOUT_CMD = 0xB4  # zw_set_wut_timeout.py                     **DONE
+FUNC_ZW_IS_WUT_KICKED_CMD = 0xB5  # zw_is_wut_kicked.py
+FUNC_ZW_WATCHDOG_ENABLE_CMD = 0xB6  # zw_watchdog_enable.py                     **DONE
+FUNC_ZW_WATCHDOG_DISABLE_CMD = 0xB7  # zw_watchdog_disable.py                   **DONE
+FUNC_ZW_WATCHDOG_KICK_CMD = 0xB8  # zw_watchdog_kick.py                         **DONE
 # duplicate *********************************************************
 FUNC_ZW_INT_EXT_LEVEL_SET_CMD = 0xB9  # zw_int_ext_level_set.py
-FUNC_ZW_SET_EXT_INT_LEVEL_CMD = 0xB9  # zw_set_ext_int_level.py
+FUNC_ZW_SET_EXT_INT_LEVEL_CMD = 0xB9  # zw_set_ext_int_level.py                 **DONE
 # *******************************************************************
-FUNC_ZW_RF_POWER_LEVEL_GET_CMD = 0xBA  # zw_rf_power_level_get.py
-FUNC_ZW_GET_NEIGHBOR_COUNT_CMD = 0xBB  # zw_get_neighbor_count.py    **DONE
-FUNC_ZW_ARE_NODES_NEIGHBORS_CMD = 0xBC  # zw_are_nodes_neighbours.py    **DONE
-FUNC_ZW_TYPE_LIBRARY_CMD = 0xBD  # zw_type_library.py    **DONE
-FUNC_ZW_SEND_TEST_FRAME_CMD = 0xBE  # zw_send_test_frame.py    **DONE
-FUNC_ZW_GET_PROTOCOL_STATUS_CMD = 0xBF  # zw_get_protocol_status.py    **DONE
+FUNC_ZW_RF_POWER_LEVEL_GET_CMD = 0xBA  # zw_rf_power_level_get.py               **DONE
+FUNC_ZW_GET_NEIGHBOR_COUNT_CMD = 0xBB  # zw_get_neighbor_count.py               **DONE
+FUNC_ZW_ARE_NODES_NEIGHBORS_CMD = 0xBC  # zw_are_nodes_neighbours.py            **DONE
+FUNC_ZW_TYPE_LIBRARY_CMD = 0xBD  # zw_type_library.py                           **DONE
+FUNC_ZW_SEND_TEST_FRAME_CMD = 0xBE  # zw_send_test_frame.py                     **DONE
+FUNC_ZW_GET_PROTOCOL_STATUS_CMD = 0xBF  # zw_get_protocol_status.py             **DONE
 
 
 # **************************  0xC0 - 0xCF  **************************
@@ -263,22 +263,22 @@ FUNC_ZW_GET_PROTOCOL_STATUS_CMD = 0xBF  # zw_get_protocol_status.py    **DONE
 
 
 # **************************  0xD0 - 0xDF  **************************
-FUNC_ZW_SET_PROMISCUOUS_MODE_CMD = 0xD0  # zw_set_promiscuous_mode.py
+FUNC_ZW_SET_PROMISCUOUS_MODE_CMD = 0xD0  # zw_set_promiscuous_mode.py           **DONE
 FUNC_PROMISCUOUS_APPLICATION_COMMAND_HANDLER_CMD = 0xD1  # promiscuous_application_command_handler.py
-FUNC_ZW_WATCHDOG_START_CMD = 0xD2  # zw_watchdog_start.py    **DONE
-FUNC_ZW_WATCHDOG_STOP_CMD = 0xD3  # zw_watchdog_stop.py    **DONE
-FUNC_ZW_SET_ROUTING_MAX_CMD = 0xD4  # zw_set_routing_max.py    **DONE
-FUNC_ZW_GET_ROUTING_MAX_CMD = 0xD5  # zw_get_routing_max.py    **DONE
+FUNC_ZW_WATCHDOG_START_CMD = 0xD2  # zw_watchdog_start.py                       **DONE
+FUNC_ZW_WATCHDOG_STOP_CMD = 0xD3  # zw_watchdog_stop.py                         **DONE
+FUNC_ZW_SET_ROUTING_MAX_CMD = 0xD4  # zw_set_routing_max.py                     **DONE
+FUNC_ZW_GET_ROUTING_MAX_CMD = 0xD5  # zw_get_routing_max.py                     **DONE
 FUNC_ZW_NETWORK_MANAGEMENT_SET_MAX_INCLUSION_REQUEST_INTERVALS_CMD = 0xD6  # zw_network_management_set_max_inclusion_request_intervals.py    **DONE
 FUNC_PM_STAY_AWAKE_CMD = 0xD7  # pm_stay_awake.py
 FUNC_PM_CANCEL_CMD = 0xD8  # pm_cancel.py
 FUNC_ZW_INITIATE_SHUTDOWN_CMD = 0xD9  # zw_initiate_shutdown.py
-FUNC_SERIAL_API_GET_LR_NODES_CMD = 0xDA  # serial_api_get_lr_nodes.py    **DONE
-FUNC_GET_LR_CHANNEL_CMD = 0xDB  # get_lr_channel.py    **DONE
-FUNC_SET_LR_CHANNEL_CMD = 0xDC  # set_lr_channel.py    **DONE
-FUNC_ZW_SET_LR_VIRTUAL_IDS_CMD = 0xDD  # zw_set_lr_virtual_ids.py    **DONE
-FUNC_GET_DCDC_CONFIG_CMD = 0xDE  # get_dcdc_config.py    **DONE
-FUNC_SET_DCDC_CONFIG_CMD = 0xDF  # set_dcdc_config.py    **DONE
+FUNC_SERIAL_API_GET_LR_NODES_CMD = 0xDA  # serial_api_get_lr_nodes.py           **DONE
+FUNC_GET_LR_CHANNEL_CMD = 0xDB  # get_lr_channel.py                             **DONE
+FUNC_SET_LR_CHANNEL_CMD = 0xDC  # set_lr_channel.py                             **DONE
+FUNC_ZW_SET_LR_VIRTUAL_IDS_CMD = 0xDD  # zw_set_lr_virtual_ids.py               **DONE
+FUNC_GET_DCDC_CONFIG_CMD = 0xDE  # get_dcdc_config.py                           **DONE
+FUNC_SET_DCDC_CONFIG_CMD = 0xDF  # set_dcdc_config.py                           **DONE
 
 
 # **************************  0xE0 - 0xEF  **************************
@@ -291,13 +291,13 @@ FUNC_ZW_NUNIT_END_CMD = 0xE4  # zw_nunit_end.py
 0xE6 Not Used
 FUNC_ENABLE_RADIO_PTI_CMD = 0xE7  # enable_radio_pti.py
 FUNC_GET_RADIO_PTI_CMD = 0xE8  # get_radio_pti.py
-FUNC_SEND_NOP_CMD = 0xE9  # send_nop.py    **DONE
+FUNC_SEND_NOP_CMD = 0xE9  # send_nop.py                                         **DONE
 0xEA Not Used
 0xEB Not Used
 0xEC Not Used
 0xED Not Used
-FUNC_SERIAL_API_POWER_MANAGEMENT_CMD = 0xEE  # serial_api_power_management.py    **DONE
-FUNC_SERIAL_API_READY_CMD = 0xEF  # serial_api_ready.py    **DONE
+FUNC_SERIAL_API_POWER_MANAGEMENT_CMD = 0xEE  # serial_api_power_management.py   **DONE
+FUNC_SERIAL_API_READY_CMD = 0xEF  # serial_api_ready.py                         **DONE
 
 
 # **************************  0xF0 - 0xFF  **************************
@@ -317,6 +317,7 @@ FUNC_PROPRIETARY_C_CMD = 0xFC  # proprietary_c.py
 FUNC_PROPRIETARY_D_CMD = 0xFD  # proprietary_d.py
 FUNC_PROPRIETARY_E_CMD = 0xFE  # proprietary_e.py
 FUNC_UNKNOWN_CMD = 0xFF  # unknown.py
+
 
 '''
 
