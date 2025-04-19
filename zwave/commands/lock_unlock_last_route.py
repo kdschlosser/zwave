@@ -1,3 +1,9 @@
+"""
+Z-Wave Host API Specification
+0.7.2
+2021.09.02
+"""
+
 from . import (
     DATA_FRAME,
     FRAME_TYPE_REQUEST,
@@ -10,7 +16,9 @@ from ..enums import lock_unlock_last_route
 
 class FUNC_LOCK_ROUTE_RESPONSE_CMD(DATA_FRAME):
     """
-    Lock or unlock all last working routes
+    Lock Unlock Last Route Command
+
+    This command is used to lock or unlock all last working route.
     """
     id = 0x90
     frame_type = FRAME_TYPE_REQUEST | FRAME_TYPE_ACK

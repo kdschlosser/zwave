@@ -1,3 +1,9 @@
+"""
+Z-Wave Host API Specification
+0.7.2
+2021.09.02
+"""
+
 from . import (
     DATA_FRAME,
     FRAME_TYPE_REQUEST,
@@ -19,7 +25,9 @@ class _Fields(NODE_ID_FIELDS):
 
 class FUNC_ZW_REQUEST_NODE_INFO_CMD(DATA_FRAME):
     """
-    Get info (supported command classes) for the specified node
+    Request Node Information Command
+
+    This command is used to request the Node Information Frame from a Z-Wave Node.
     """
     id = 0x60
     frame_type = FRAME_TYPE_REQUEST | FRAME_TYPE_ACK

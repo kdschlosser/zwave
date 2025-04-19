@@ -1,3 +1,9 @@
+"""
+Z-Wave Host API Specification
+0.7.2
+2021.09.02
+"""
+
 from . import (
     DATA_FRAME,
     FRAME_TYPE_REQUEST,
@@ -12,7 +18,10 @@ from ..enums import set_slave_learn_mode
 
 class FUNC_ZW_SET_SLAVE_LEARN_MODE_CMD(DATA_FRAME):
     """
-    Put a virtual node into learn mode
+    Set Virtual Node To Learn Mode Command
+
+    This command is used to enable or disable a virtual end node to Learn Mode operation that facilitates
+    the node to be included or removed to/from a Z-Wave Network.
     """
     id = 0xA4
     frame_type = FRAME_TYPE_REQUEST | FRAME_TYPE_ACK

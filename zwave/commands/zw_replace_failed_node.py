@@ -1,3 +1,9 @@
+"""
+Z-Wave Host API Specification
+0.7.2
+2021.09.02
+"""
+
 from . import (
     DATA_FRAME,
     FRAME_TYPE_REQUEST,
@@ -37,7 +43,10 @@ class _Fields(NODE_ID_FIELDS):
 
 class FUNC_ZW_REPLACE_FAILED_NODE_CMD(DATA_FRAME):
     """
-    Replace a failed node with a new one that takes the same node ID
+    Replace Failed Node Command
+
+    This command is used to replace a non-responding node with a new node. Responding nodes MUST
+    NOT be replaced.
     """
     id = 0x63
     frame_type = FRAME_TYPE_REQUEST | FRAME_TYPE_ACK
@@ -74,14 +83,14 @@ class FUNC_ZW_REPLACE_FAILED_NODE_RSP(DATA_FRAME):
     frame_type = FRAME_TYPE_RESPONSE | FRAME_TYPE_ACK
 
     _fields_ = [
-        ('_status', uint8_t),
+        ('_response_status', uint8_t),
     ]
 
-    statuses = replace_failed_node.response.status
+    response_statuses = replace_failed_node.response.response_status
 
     @property
-    def status(self) -> statuses:
-        return self.statuses(self._status)
+    def response_status(self) -> response_statuses:
+        return self.response_statuses(self._status)
 
 
 class FUNC_ZW_REPLACE_FAILED_NODE_CB(DATA_FRAME):
@@ -90,18 +99,18 @@ class FUNC_ZW_REPLACE_FAILED_NODE_CB(DATA_FRAME):
 
     _fields_ = [
         ('_sesion_id', uint8_t),
-        ('_status', uint8_t),
+        ('_operation_status', uint8_t),
     ]
 
-    statuses = replace_failed_node.callback.status
+    operation_statuses = replace_failed_node.callback.operation_status
 
     @property
     def session_id(self):
         return self._session_id
 
     @property
-    def status(self) -> statuses:
-        return self.statuses(self._status)
+    def operation_status(self) -> operation_statuses:
+        return self.operation_statuses(self._operation_status)
 
     @property
     def node_id(self):

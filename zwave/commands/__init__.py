@@ -122,14 +122,14 @@ FUNC_ZW_EXPLORE_REQUEST_EXCLUSION_CMD = 0x5F  # zw_explore_request_exclusion.py 
 
 
 # **************************  0x60 - 0x6F  **************************
-FUNC_ZW_REQUEST_NODE_INFO_CMD = 0x60  # zw_request_node_info.py
-FUNC_ZW_REMOVE_FAILED_NODE_ID_CMD = 0x61  # zw_remove_failed_node_id.py
-FUNC_ZW_IS_FAILED_NODE_ID_CMD = 0x62  # zw_is_failed_node_id.py
-FUNC_ZW_REPLACE_FAILED_NODE_CMD = 0x63  # zw_replace_failed_node.py
+FUNC_ZW_REQUEST_NODE_INFO_CMD = 0x60  # zw_request_node_info.py                 **DONE
+FUNC_ZW_REMOVE_FAILED_NODE_ID_CMD = 0x61  # zw_remove_failed_node_id.py         **DONE
+FUNC_ZW_IS_FAILED_NODE_ID_CMD = 0x62  # zw_is_failed_node_id.py                 **DONE
+FUNC_ZW_REPLACE_FAILED_NODE_CMD = 0x63  # zw_replace_failed_node.py             **DONE
 0x64 Not Used
 FUNC_ZW_SET_ROUTING_MAX_6_00_CMD = 0x65  # zw_set_routing_max_6_00.py
 FUNC_ZW_IS_PRIMARY_CTRL_CMD = 0x66  # zw_is_primary_ctrl.py
-FUNC_ZW_AES_ECB_CMD = 0x67  # zw_aes_ecb.py
+FUNC_ZW_AES_ECB_CMD = 0x67  # zw_aes_ecb.py                                     **DONE
 FUNC_ZW_REQUEST_NODETYPE_NEIGHBOR_UPDATE_CMD = 0x68  # zw_request_nodetype_neighbor_update.py
 0x69??  FUNC_ID_ZW_TRANSFER_PROTOCOL_CC
 0x6A??  FUNC_ID_ZW_ENABLE_NODE_NLS
@@ -149,7 +149,7 @@ FUNC_TIMER_CALL_CMD = 0x73  # timer_call.py
 0x75 Not Used
 0x76 Not Used
 0x77 Not Used
-FUNC_ZW_FIRMWARE_UPDATE_NVM_CMD = 0x78  # zw_firmware_update_nvm.py
+FUNC_ZW_FIRMWARE_UPDATE_NVM_CMD = 0x78  # zw_firmware_update_nvm.py             **DONE
 0x79 Not Used
 0x7A Not Used
 0x7B Not Used
@@ -160,11 +160,11 @@ FUNC_ZW_FIRMWARE_UPDATE_NVM_CMD = 0x78  # zw_firmware_update_nvm.py
 
 
 # **************************  0x80 - 0x8F  **************************
-FUNC_GET_ROUTING_TABLE_LINE_CMD = 0x80  # get_routing_table_line.py                     
-FUNC_GET_TX_COUNTER_CMD = 0x81  # get_tx_counter.py                                             
-FUNC_RESET_TX_COUNTER_CMD = 0x82  # reset_tx_counter.py                                         
+FUNC_GET_ROUTING_TABLE_LINE_CMD = 0x80  # get_routing_table_line.py             ZW_GetRoutingInfo
+FUNC_GET_TX_COUNTER_CMD = 0x81  # get_tx_counter.py                             **DONE
+FUNC_RESET_TX_COUNTER_CMD = 0x82  # reset_tx_counter.py                         **DONE
 FUNC_STORE_NODEINFO_CMD = 0x83  # store_nodeinfo.py
-FUNC_STORE_HOMEID_CMD = 0x84  # store_homeid.py
+FUNC_STORE_HOMEID_CMD = 0x84  # store_homeid.py                                 **DONE
 0x85 Not Used
 0x86 Not Used
 0x87 Not Used
@@ -177,18 +177,11 @@ FUNC_STORE_HOMEID_CMD = 0x84  # store_homeid.py
 0x8E Not Used
 0x8F Not Used
 
-
 # **************************  0x90 - 0x9F  **************************
-FUNC_LOCK_ROUTE_RESPONSE_CMD = 0x90  # lock_unlock_last_route.py
+FUNC_LOCK_ROUTE_RESPONSE_CMD = 0x90  # lock_unlock_last_route.py                **DONE
 0x91 Not Used
-# duplicate *********************************************************
-FUNC_ZW_GET_LAST_WORKING_ROUTE_CMD = 0x92  # zw_get_last_working_route.py
-FUNC_ZW_GET_PRIORITY_ROUTE_CMD = 0x92  # zw_get_priority_route.py
-# *******************************************************************
-# duplicate *********************************************************
-FUNC_ZW_SET_LAST_WORKING_ROUTE_CMD = 0x93  # zw_set_last_working_route.py
-FUNC_ZW_SET_PRIORITY_ROUTE_CMD = 0x93  # zw_set_priority_route.py
-# *******************************************************************
+FUNC_ZW_GET_PRIORITY_ROUTE_CMD = 0x92  # zw_get_priority_route.py               **DONE
+FUNC_ZW_SET_PRIORITY_ROUTE_CMD = 0x93  # zw_set_priority_route.py               **DONE
 0x94 Not Used
 FUNC_SERIAL_API_TEST_CMD = 0x95  # serial_api_test.py
 0x96 Not Used
@@ -203,16 +196,16 @@ FUNC_APPLICATION_SECURITY_EVENT_CMD = 0x9D  # application_security_event.py
 0x9F Not Used
 
 # **************************  0xA0 - 0xAF  **************************
-FUNC_SERIAL_API_APPL_SLAVE_NODE_INFORMATION_CMD = 0xA0  # serial_api_appl_slave_node_information.py
+FUNC_SERIAL_API_APPL_SLAVE_NODE_INFORMATION_CMD = 0xA0  # serial_api_appl_slave_node_information.py **DONE
 FUNC_APPLICATION_SLAVE_COMMAND_HANDLER_CMD = 0xA1  # application_slave_command_handler.py
-FUNC_ZW_SEND_SLAVE_NODE_INFORMATION_CMD = 0xA2  # zw_send_slave_node_information.py
+FUNC_ZW_SEND_SLAVE_NODE_INFORMATION_CMD = 0xA2  # zw_send_slave_node_information.py **DONE
 FUNC_ZW_SEND_SLAVE_DATA_CMD = 0xA3  # zw_send_slave_data.py
-FUNC_ZW_SET_SLAVE_LEARN_MODE_CMD = 0xA4  # zw_set_slave_learn_mode.py
-FUNC_ZW_GET_VIRTUAL_NODES_CMD = 0xA5  # zw_get_virtual_nodes.py
+FUNC_ZW_SET_SLAVE_LEARN_MODE_CMD = 0xA4  # zw_set_slave_learn_mode.py           **DONE
+FUNC_ZW_GET_VIRTUAL_NODES_CMD = 0xA5  # zw_get_virtual_nodes.py                 **DONE
 FUNC_ZW_IS_VIRTUAL_NODE_CMD = 0xA6  # zw_is_virtual_node.py
 FUNC_ZW_RESERVED_SSD_CMD = 0xA7  # zw_reserved_ssd.py
-FUNC_APPLICATION_COMMAND_HANDLER_BRIDGE_CMD = 0xA8  # application_command_handler_bridge.py
-FUNC_ZW_SEND_DATA_BRIDGE_CMD = 0xA9  # zw_send_data_bridge.py
+FUNC_APPLICATION_COMMAND_HANDLER_BRIDGE_CMD = 0xA8  # application_command_handler_bridge.py **DONE
+FUNC_ZW_SEND_DATA_BRIDGE_CMD = 0xA9  # zw_send_data_bridge.py                   **DONE
 FUNC_ZW_SEND_DATA_META_BRIDGE_CMD = 0xAA  # zw_send_data_meta_bridge.py
 FUNC_ZW_SEND_DATA_MULTI_BRIDGE_CMD = 0xAB  # zw_send_data_multi_bridge.py       **DONE
 0xAC         FUNC_ID_ZW_SEND_PROTOCOL_DATA
@@ -344,6 +337,10 @@ FRAME_TYPE_REQUEST = 0x00
 FRAME_TYPE_RESPONSE = 0x01
 FRAME_TYPE_CALLBACK = 0x04
 FRAME_TYPE_UNSOLICITED = 0x08
+
+FRAME_TYPE_HAS_RESPONSE = 0x10
+FRAME_TYPE_HAS_CALLBACK = 0x20
+
 FRAME_TYPE_ACK = 0x80
 
 
@@ -357,6 +354,12 @@ REQUEST_FRAMES = []
 RESPONSE_FRAMES = []
 CALLBACK_FRAMES = []
 UNSOLICITED_FRAMES = []
+
+PRIORITY_1 = 0x01
+PRIORITY_2 = 0x02
+PRIORITY_3 = 0x03
+PRIORITY_4 = 0x04
+PRIORITY_5 = 0x05
 
 
 class ZwaveException(Exception):
@@ -484,9 +487,116 @@ class DATA_FRAME(ctypes.Structure, metaclass=_FrameMeta):
         return data
 
 
+
+import threading
+
+from typing import Callable
+
+class IO:
+
+    def __init__(self):
+        self._rx_byte = None
+        self._rx_bytes = None
+        self._tx_byte = None
+        self._tx_bytes = None
+        self._open_connection = None
+        self._close_connection = None
+
+    @property
+    def rx_byte(self) -> Callable[[], int | None] | None:
+        return self._rx_byte
+
+    @rx_byte.setter
+    def rx_byte(self, value: Callable[[], int | None]):
+        self._rx_byte = value
+
+    @property
+    def rx_bytes(self) -> Callable[[int, int], bytearray | None] | None:
+        return self._rx_byte
+
+    @rx_bytes.setter
+    def rx_bytes(self, value: Callable[[int, int], bytearray | None]):
+        self._rx_byte = value
+
+    @property
+    def tx_byte(self) -> Callable[[int], int | None] | None:
+        return self._tx_byte
+
+    @tx_byte.setter
+    def tx_byte(self, value: Callable[[int], int | None]):
+        self._tx_byte = value
+
+    @property
+    def tx_bytes(self) -> Callable[[bytearray],  int] | None:
+        return self._tx_bytes
+
+    @tx_bytes.setter
+    def tx_bytes(self, value: Callable[[bytearray],  int]):
+        self._tx_bytes = value
+
+    @property
+    def open_connection(self) -> Callable[[], bool] | None:
+        return self._open_connection
+
+    @open_connection.setter
+    def open_connection(self, value: Callable[[], bool]):
+        self._open_connection = value
+
+    @property
+    def close_connection(self) -> Callable[[], bool] | None:
+        return self._close_connection
+
+    @close_connection.setter
+    def close_connection(self, value: Callable[[], bool]):
+        self._close_connection = value
+
+
+class IOWorker:
+
+    def __init__(self, io: IO):
+        self._io = io
+
+        self._thread = None
+        self._exit_event = threading.Event()
+        self._queue_lock = threading.Lock()
+        self._queue = {
+            PRIORITY_1: [],
+            PRIORITY_2: [],
+            PRIORITY_3: [],
+            PRIORITY_4: [],
+            PRIORITY_5: []
+        }
+
+    def stop(self):
+        if self._thread is not None:
+            with self._queue_lock:
+                for value in self._queue.values():
+                    del value[:]
+
+            self._exit_event.set()
+            self._thread.join(20)
+
+            if self._thread is not None:
+                raise RuntimeError
+
+    def start(self):
+        self._thread = threading.Thread(target=self._loop)
+        self._thread.daemon = True
+        self._thread.start()
+
+    def _loop(self):
+        while not self._exit_event.is_set():
+
+            if cls.frame_type & FRAME_TYPE_HAS_RESPONSE:
+
+            if cls.frame_type & FRAME_TYPE_HAS_CALLBACK:
+
+
+
 SOF_TIMEOUT = 1500  # milliseconds
 
-def rx(serial):
+
+def rx(io):
     data = bytearray()
 
     ACK = 0x06
@@ -494,7 +604,7 @@ def rx(serial):
     CAN = 0x18
     SOF = 0x01
 
-    byte = serial.rx_byte()
+    byte = io.rx_byte()
 
     if byte is None:
         return None
@@ -504,10 +614,10 @@ def rx(serial):
 
         length = None
         while length is None:
-            length = serial.rx_byte()
+            length = io.rx_byte()
 
         data += bytearray([length])
-        data += bytearray(serial.rx_bytes(length - 1, SOF_TIMEOUT))
+        data += bytearray(io.rx_bytes(length - 1, SOF_TIMEOUT))
 
         if len(data) - 1 != length:
             return None
@@ -524,6 +634,56 @@ def rx(serial):
     return byte
 
 
-def send_frame(serial, frame: bytearray):
-    serial.tx_bytes(frame)
+def send_frame(io, frame: bytearray):
+    io.tx_bytes(frame)
 
+
+class DynamicModule:
+
+    def __init__(self):
+        import sys
+
+        mod = sys.modules[__name__]
+
+        self.__name__ = mod.__name__
+        self.__cached__ = mod.__cached__
+        self.__doc__ = mod.__doc__
+        self.__file__ = mod.__file__
+        self.__loader__ = mod.__loader__
+        self.__package__ = mod.__package__
+        self.__path__ = mod.__path__
+        self.__spec__ = mod.__spec__
+
+        self.__session_id = 0
+        self.__session_id_lock = threading.Lock()
+        self.__original_module__ = mod
+        sys.modules[__name__] = self
+
+    def __getattr__(self, item):
+        if item in self.__dict__:
+            return self.__dict__[item]
+
+        if (
+            hasattr(DynamicModule, item) and
+            isinstance(getattr(DynamicModule, item), property)
+        ):
+            return getattr(DynamicModule, item).fget(self)
+
+        if hasattr(self.__original_module__, item):
+            value = getattr(self.__original_module__, item)
+            setattr(self, item, value)
+            return value
+
+        raise AttributeError(item)
+
+    @property
+    def SESSION_ID(self):
+        with self.__session_id_lock:
+            if self.__session_id == 255:
+                self.__session_id = 0
+
+            self.__session_id += 1
+            return self.__session_id
+
+
+_dm = DynamicModule()

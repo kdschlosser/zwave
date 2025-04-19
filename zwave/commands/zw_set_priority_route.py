@@ -1,3 +1,9 @@
+"""
+Z-Wave Host API Specification
+0.7.2
+2021.09.02
+"""
+
 from . import (
     DATA_FRAME,
     FRAME_TYPE_REQUEST,
@@ -7,22 +13,23 @@ from . import (
     NODE_ID_16_FRAME,
     NODE_ID_FIELDS,
     uint8_t,
-    uint32_t
+    uint16_t
 )
+
 from ..enums import set_priority_route
 
 
 class _NodeID8(NODE_ID_8_FRAME):
 
     _fields_ = [
-        ('repeater', uint32_t),
+        ('repeaters', uint8_t * 8),
         ('route_speed', uint8_t),
     ]
 
 
 class _NodeID16(NODE_ID_16_FRAME):
     _fields_ = [
-        ('repeater', uint32_t),
+        ('repeaters', uint16_t * 4),
         ('route_speed', uint8_t),
     ]
 
@@ -36,7 +43,11 @@ class _Fields(NODE_ID_FIELDS):
 
 class FUNC_ZW_SET_PRIORITY_ROUTE_CMD(DATA_FRAME):
     """
-    ???
+    Set Priority Route Command
+
+    This command is used to set the Priority Route for a destination node. The Priority Route is the route
+    that shall be used as the first routing attempt by the Z-Wave protocol when transmitting to a node. The
+    Priority Route is expected to be stored in NVM of the Z-Wave module.
     """
     id = 0x93
     frame_type = FRAME_TYPE_REQUEST | FRAME_TYPE_ACK
@@ -62,12 +73,17 @@ class FUNC_ZW_SET_PRIORITY_ROUTE_CMD(DATA_FRAME):
         self._fields.node_id = value
 
     @property
-    def repeater(self) -> int:
-        return self._fields.repeater
+    def repeaters(self) -> list[int]:
+        return [
+            self._fields.repeaters[i]
+            for i in range(4)
+            if self._fields.repeaters[i] != 0x00
+        ]
 
-    @repeater.setter
-    def repeater(self, value: int):
-        self._fields.repeater = value
+    @repeaters.setter
+    def repeaters(self, value: list[int]):
+        for i, item in enumerate(value):
+            self._fields.repeaters[i] = item
 
     @property
     def route_speed(self) -> route_speeds:

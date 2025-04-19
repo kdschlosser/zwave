@@ -1,3 +1,9 @@
+"""
+Z-Wave Host API Specification
+0.7.2
+2021.09.02
+"""
+
 from . import (
     DATA_FRAME,
     FRAME_TYPE_REQUEST,
@@ -19,7 +25,9 @@ class _Fields(NODE_ID_FIELDS):
 
 class FUNC_ZW_IS_FAILED_NODE_ID_CMD(DATA_FRAME):
     """
-    Check to see if a specified node has failed
+    Is Node Failed Command
+
+    This command is used to request if a given NodeID is considered as failed by the Z-Wave API Module.
     """
     id = 0x62
     frame_type = FRAME_TYPE_REQUEST | FRAME_TYPE_ACK

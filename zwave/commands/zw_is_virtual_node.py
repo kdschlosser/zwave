@@ -1,3 +1,9 @@
+"""
+Z-Wave Host API Specification
+0.7.2
+2021.09.02
+"""
+
 from . import (
     DATA_FRAME,
     FRAME_TYPE_REQUEST,
@@ -9,7 +15,9 @@ from . import (
 
 class FUNC_ZW_IS_VIRTUAL_NODE_CMD(DATA_FRAME):
     """
-    Test if a given node ID is a virtual node
+    Is Virtual Node Command
+
+    This command is used to check if a given NodeID is a virtual end node.
     """
     id = 0xA6
     frame_type = FRAME_TYPE_REQUEST | FRAME_TYPE_ACK

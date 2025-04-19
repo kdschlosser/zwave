@@ -1,3 +1,9 @@
+"""
+Z-Wave Host API Specification
+0.7.2
+2021.09.02
+"""
+
 from . import (
     DATA_FRAME,
     FRAME_TYPE_UNSOLICITED,
@@ -17,7 +23,7 @@ from .. import _utils
 class _NodeID8(NODE_ID_8_FRAME):
 
     _fields_ = [
-        ('dst_node_id', uint8_t),
+        ('src_node_id', uint8_t),
         ('payload_len', uint8_t),
         ('data', uint8_t * 256)
     ]
@@ -26,7 +32,7 @@ class _NodeID8(NODE_ID_8_FRAME):
 class _NodeID16(NODE_ID_16_FRAME):
 
     _fields_ = [
-        ('dst_node_id', uint16_t),
+        ('src_node_id', uint16_t),
         ('payload_len', uint8_t),
         ('data', uint8_t * 256)
     ]
@@ -42,7 +48,10 @@ class _Fields(NODE_ID_FIELDS):
 
 class FUNC_APPLICATION_COMMAND_HANDLER_BRIDGE_CMD(DATA_FRAME):
     """
-    A message from another node using the Bridge API
+    Bridge Application Command Handler Command
+
+    This command is used by a Z-Wave module to notify a host application that a Z-Wave frame has been
+    received.
     """
     id = 0xA8
     frame_type = FRAME_TYPE_UNSOLICITED | FRAME_TYPE_ACK

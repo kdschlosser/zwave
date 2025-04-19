@@ -1,3 +1,9 @@
+"""
+Z-Wave Host API Specification
+0.7.2
+2021.09.02
+"""
+
 from . import (
     DATA_FRAME,
     FRAME_TYPE_REQUEST,
@@ -7,7 +13,7 @@ from . import (
     NODE_ID_16_FRAME,
     NODE_ID_FIELDS,
     uint8_t,
-    uint32_t
+    uint16_t
 )
 
 from ..enums import get_priority_route
@@ -22,7 +28,13 @@ class _Fields(NODE_ID_FIELDS):
 
 class FUNC_ZW_GET_PRIORITY_ROUTE_CMD(DATA_FRAME):
     """
-    Get the route that is used as the first routing attempty when transmitting to a node
+    Get Priority Route Command
+
+    This command is used to request the priority route that is defined in the Z-Wave API module. If a route
+    has been set to the module using Set Priority Route Command, the module MUST provide the priority
+    route using Get Priority Route Command Response frame. If no priority route has been set in the
+    module, the Get Priority Route Command Response frame MUST contain either the Last WorkingRoute
+    (LWR) or the Next to Last Working Route (NLWR).
     """
     id = 0x92
     frame_type = FRAME_TYPE_REQUEST | FRAME_TYPE_ACK
@@ -49,14 +61,14 @@ class FUNC_ZW_GET_PRIORITY_ROUTE_CMD(DATA_FRAME):
 class _NodeID8(NODE_ID_8_FRAME):
 
     _fields_ = [
-        ('repeater', uint32_t),
+        ('repeaters', uint8_t * 4),
         ('route_speed', uint8_t),
     ]
 
 
 class _NodeID16(NODE_ID_16_FRAME):
     _fields_ = [
-        ('repeater', uint32_t),
+        ('repeaters', uint16_t * 4),
         ('route_speed', uint8_t),
     ]
 
@@ -89,12 +101,17 @@ class FUNC_ZW_GET_PRIORITY_ROUTE_RSP(DATA_FRAME):
         self._fields.node_id = value
 
     @property
-    def repeater(self) -> int:
-        return self._fields.repeater
+    def repeaters(self) -> list[int]:
+        return [
+            self._fields.repeaters[i]
+            for i in range(4)
+            if self._fields.repeaters[i] != 0x00
+        ]
 
-    @repeater.setter
-    def repeater(self, value: int):
-        self._fields.repeater = value
+    @repeaters.setter
+    def repeaters(self, value: list[int]):
+        for i, item in enumerate(value):
+            self._fields.repeaters[i] = item
 
     @property
     def route_speed(self) -> route_speeds:

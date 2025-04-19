@@ -1,3 +1,9 @@
+"""
+Z-Wave Host API Specification
+0.7.2
+2021.09.02
+"""
+
 from . import (
     DATA_FRAME,
     FRAME_TYPE_REQUEST,
@@ -40,7 +46,9 @@ class _Fields(NODE_ID_FIELDS):
 
 class FUNC_ZW_SEND_SLAVE_NODE_INFORMATION_CMD(DATA_FRAME):
     """
-    Send the NIF of a virtual node owned by the Z-Wave API module
+    Virtual Node Send Node Information Command
+
+    This command is used to create and transmit a virtual end node Node Information Frame.
     """
     id = 0xA2
     frame_type = FRAME_TYPE_REQUEST | FRAME_TYPE_ACK
@@ -90,7 +98,7 @@ class FUNC_ZW_SEND_SLAVE_NODE_INFORMATION_CMD(DATA_FRAME):
         self._fields.session_id = value
 
 
-class FUNC_ZW_SEND_SLAVE_NODE_INFO_RSP(DATA_FRAME):
+class FUNC_ZW_SEND_SLAVE_NODE_INFORMATION_RSP(DATA_FRAME):
     id = 0xA2
     frame_type = FRAME_TYPE_RESPONSE | FRAME_TYPE_ACK
 
@@ -103,7 +111,7 @@ class FUNC_ZW_SEND_SLAVE_NODE_INFO_RSP(DATA_FRAME):
         return self._response_status
 
 
-class FUNC_ZW_SEND_SLAVE_NODE_INFO_CB(DATA_FRAME):
+class FUNC_ZW_SEND_SLAVE_NODE_INFORMATION_CB(DATA_FRAME):
     id = 0xA2
     frame_type = FRAME_TYPE_CALLBACK | FRAME_TYPE_ACK
 

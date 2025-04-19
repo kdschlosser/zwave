@@ -1,3 +1,9 @@
+"""
+Z-Wave Host API Specification
+0.7.2
+2021.09.02
+"""
+
 from . import (
     DATA_FRAME,
     FRAME_TYPE_REQUEST,
@@ -12,7 +18,10 @@ from ..command_classes import COMMAND_CLASS
 
 class FUNC_SERIAL_API_APPL_SLAVE_NODE_INFORMATION_CMD(DATA_FRAME):
     """
-    Set node info of virtual nodes owned by the Z-Wave API module
+    Set Virtual Nodes Application Node Information Command
+
+    This command is used to configure the Node Information Data for the Virtual nodes own by the Z-Wave
+    API Module.
     """
     id = 0xA0
     frame_type = FRAME_TYPE_REQUEST | FRAME_TYPE_ACK

@@ -57,7 +57,7 @@ class FUNC_ZW_SEND_DATA_CMD(DATA_FRAME):
 
     _anonymous_ = ('_anon_union',)
 
-    options = send_data.command.option
+    tx_options = send_data.command.tx_option
 
     @property
     def packet_length(self):
@@ -88,11 +88,11 @@ class FUNC_ZW_SEND_DATA_CMD(DATA_FRAME):
         self.session_id = session_id
 
     @property
-    def option(self) -> options:
-        return self.options(self._fields.data[self._fields.data_len])
+    def option(self) -> tx_options:
+        return self.tx_options(self._fields.data[self._fields.data_len])
 
     @option.setter
-    def option(self, value: options):
+    def option(self, value: tx_options):
         self._fields.data[self._fields.data_len] = value.value
 
     @property
@@ -125,7 +125,7 @@ class FUNC_ZW_SEND_DATA_CB(DATA_FRAME):
         ('_reports', tx_report.TXReport * 10)
     ]
 
-    tx_statuses = send_data.callback.status
+    tx_statuses = send_data.callback.tx_status
 
     def session_id(self) -> int:
         return self._session_id

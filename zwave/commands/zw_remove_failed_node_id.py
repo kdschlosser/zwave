@@ -1,3 +1,9 @@
+"""
+Z-Wave Host API Specification
+0.7.2
+2021.09.02
+"""
+
 from . import (
     DATA_FRAME,
     FRAME_TYPE_REQUEST,
@@ -37,7 +43,13 @@ class _Fields(NODE_ID_FIELDS):
 
 class FUNC_ZW_REMOVE_FAILED_NODE_ID_CMD(DATA_FRAME):
     """
-    Mark a specified node id as failed
+    Remove Failed Node Command
+
+    This command is used to request a non-responding node removal operation from the controller routing
+    table. When a node is non-responding, its’ NodeID shall be included in the failed NodeID list. If the
+    node responding again it shall be removed from the failed NodeID list. A failed node MUST only
+    be removed if the NodeID is in the failed NodeID list and extra precaution shall be considered before
+    the failed node is removed. A responding node MUST NOT be removed.
     """
     id = 0x61
     frame_type = FRAME_TYPE_REQUEST | FRAME_TYPE_ACK
@@ -74,14 +86,14 @@ class FUNC_ZW_REMOVE_FAILED_NODE_ID_RSP(DATA_FRAME):
     frame_type = FRAME_TYPE_RESPONSE | FRAME_TYPE_ACK
 
     _fields_ = [
-        ('_status', uint8_t),
+        ('_response_status', uint8_t),
     ]
 
-    statuses = remove_failed_node_id.response.status
+    response_statuses = remove_failed_node_id.response.response_status
 
     @property
-    def status(self) -> statuses:
-        return self.statuses(self._status)
+    def response_status(self) -> response_statuses:
+        return self.response_statuses(self._response_status)
 
 
 class FUNC_ZW_REMOVE_FAILED_NODE_ID_CB(DATA_FRAME):
@@ -90,68 +102,15 @@ class FUNC_ZW_REMOVE_FAILED_NODE_ID_CB(DATA_FRAME):
 
     _fields_ = [
         ('_sesion_id', uint8_t),
-        ('_status', uint8_t),
+        ('_operation_status', uint8_t),
     ]
 
-    statuses = remove_failed_node_id.callback.status
+    operation_statuses = remove_failed_node_id.callback.operation_status
 
     @property
     def session_id(self):
         return self._session_id
 
     @property
-    def status(self) -> statuses:
-        return self.statuses(self._status)
-
-    @property
-    def node_id(self):
-        if self._node_id_len == 1:
-            return self._data[0]
-        else:
-            return (self._data[0] << 8) | self._data[1]
-
-    @property
-    def command_class_list_len(self):
-        if self._node_id_len == 1:
-            return self._data[1]
-        else:
-            return self._data[2]
-
-    @property
-    def basic_device_type(self) -> zw_types.BASIC_TYPE:
-        if self._node_id_len == 1:
-            return zw_types.BASIC_TYPE(self._data[2])
-        else:
-            return zw_types.BASIC_TYPE(self._data[3])
-
-    @property
-    def generic_device_type(self) -> zw_types.GENERIC_TYPE:
-        if self._node_id_len == 1:
-            return zw_types.GENERIC_TYPE(self._data[3])
-        else:
-            return zw_types.GENERIC_TYPE(self._data[4])
-
-    @property
-    def specific_device_type(self) -> zw_types.SPECIFIC_TYPES:
-        generic_type = self.generic_device_type
-
-        if self._node_id_len == 1:
-            return generic_type(self._data[4])
-        else:
-            return generic_type(self._data[5])
-
-    @property
-    def command_classes(self) -> list[COMMAND_CLASS]:
-        if self._node_id_len == 1:
-            start = 5
-        else:
-            start = 6
-
-        stop = start + self.command_class_list_len
-
-        res = []
-
-        for i in range(start, stop, 1):
-            res.append(COMMAND_CLASS.from_id(self._data[i]))
-
-        return res
+    def operation_status(self) -> operation_statuses:
+        return self.operation_statuses(self._operation_status)
